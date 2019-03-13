@@ -190,7 +190,8 @@ body {
 }
 
 #board {
-    margin-top: 1rem;
+    margin-top: 3rem;
+    margin-right: 300px;
 }
 
 
@@ -316,6 +317,24 @@ body {
     padding: 0.5rem;
     color: #555;
 }
+
+
+.game-container {
+    display: flex;
+    justify-content: center;
+}
+
+#chatbox {
+    margin: 50px 100px 0 50px;
+    position: relative;
+}
+
+#chatbox h3 {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+
 
 
 
