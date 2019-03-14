@@ -331,10 +331,17 @@ body {
 
 #chatbox h3 {
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 50px;
 }
 
+
+#chatbox .btn {
+    display: block;
+    color: #333;
+    width: 50px;
+    transform: translateX(50px);
+}
 
 
 
