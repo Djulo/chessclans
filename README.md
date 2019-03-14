@@ -1,1 +1,1 @@
-# chessclans Ogi Majmun
+# chessclans
