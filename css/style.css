@@ -291,7 +291,7 @@ body {
 }
 
 #profile img {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 #profile h3 {
@@ -343,7 +343,24 @@ body {
     transform: translateX(50px);
 }
 
+#profile .btn-container {
+    display: flex;
+    justify-content: flex-start;
+}
 
+#profile .btn {
+    color: #333;
+    background: #f4f4f4;
+    width: 100px;
+    margin: 10px 10px 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#profile .btn:hover {
+    background: #fefefe;
+}
 
 /* Higlights */
 .highlight-white {
