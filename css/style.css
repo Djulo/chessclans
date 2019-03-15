@@ -362,6 +362,26 @@ body {
     background: #fefefe;
 }
 
+.game-container .right-container {
+    position: relative;
+}
+
+
+.game-container .right-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    left: -250px;
+}
+
+.game-container .right-content button {
+    padding: 1.25rem;
+    margin: 20px 0;
+}
 /* Higlights */
 .highlight-white {
     -webkit-box-shadow: inset 0 0 3px 3px yellow;
