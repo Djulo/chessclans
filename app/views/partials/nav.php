@@ -50,19 +50,10 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Search">
       </div>
     </form>
-<<<<<<< HEAD
     <a href="signup" class="btn btn-primary mr-sm-2">Sign up</a>
     <a href="signin" class="btn btn-outline-secondary">Sign in</a>
-=======
-    <a href="#" class="btn btn-primary mr-sm-2">Sign up</a>
-    <a href="#" class="btn btn-outline-secondary">Sign in</a>
->>>>>>> 1d111519b1118ce2dc6a5d416337a2935bdc7004
   </div>
 </nav>
-
-
-
-
 
 
 
