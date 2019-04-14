@@ -33,9 +33,9 @@
 
             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
             <a href="signin"><label class="mt-3  ml-1">Sign in instead</label></a>
-            <hr class="my-4">
+            <!-- <hr class="my-4">
             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
-            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button> -->
           </form>
         </div>
       </div>

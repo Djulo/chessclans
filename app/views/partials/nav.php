@@ -12,7 +12,7 @@
   <div class="collapse navbar-collapse" id="basicExampleNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Play</a>
+        <a class="nav-link" href="home">Play</a>
       </li>
 
       <li class="nav-item dropdown">
