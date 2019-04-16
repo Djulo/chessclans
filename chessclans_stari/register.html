@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/chesspieces/wikipedia/bR.png">
+    <link rel="stylesheet" href="css/chessboard-0.3.0.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="css/mobile.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="js/chessboard-0.3.0.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Register</title>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li><a href="game.html">Play </a><i class="fas fa-angle-down"></i>
+                <ul>
+                    <li><a href="game.html">Create Game</a></li>
+                </ul>
+            </li>
+            <li>Learn <i class="fas fa-angle-down"></i>
+                <ul>
+                    <li><a href="#">Chess basics</a></li>
+                    <li><a href="#">Puzzels</a></li>
+                    <li><a href="#">Openings</a></li>
+                    <li><a href="#">Endgame</a></li>
+                </ul>
+            </li>
+            <li>Watch <i class="fas fa-angle-down"></i>
+                <ul>
+                    <li><a href="#">Current games</a></li>
+                    <li><a href="#">Streamers</a></li>
+                </ul>
+            </li>
+            <li>Community <i class="fas fa-angle-down"></i>
+                <ul>
+                    <li><a href="#">Players</a></li>
+                    <li><a href="#">Clans</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li><i class="fas fa-search"></i></li>
+            <li><a href="login.html">Sign in</a></li>
+            <li><i class="fas fa-cog"></i></li>
+            <li><i class="fas fa-bars"></i></li>
+        </ul>
+    </nav>
+
+    <main id="register">
+        <div class="register-container">
+            <div class="left-content">
+                <h1>ChessClans</h1>
+                <p>#num players<br>#num games in play</p>
+            </div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="text">Username</label>
+                    <input type="username" name="username" id="username" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" />
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="pasword2" id="password2" />
+                </div>
+                <button type="submit" class="btn">Register</button>
+                </p>
+            </form>
+        </div>  
+    </main>
+  
+</body>
+</html>

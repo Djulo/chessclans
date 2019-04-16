@@ -6,6 +6,7 @@ use App\Models\User;
 
 require '../app/helpers.php';
 
+
 class UsersController
 {
 
@@ -25,7 +26,7 @@ class UsersController
     $user = new User($_POST);
     $result = $user->signin();
     if(empty($result['error'])){
-      redirect('');
+      redirect('chessclans');
     }
     return view('signin', compact('result'));
   }

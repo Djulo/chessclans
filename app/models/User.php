@@ -27,6 +27,7 @@ class User
     if(isset($data['confirm'])){
       $this->passwordConfirmation = $data['confirm'];
     }
+
   }
 
   public function register()
@@ -75,6 +76,7 @@ class User
         $param['email'] = $this->email;
         App::get('database')->update($sql, $param);
       }
+      
     }
     else{
       $result['password'] = "The username/password combo is invalid";

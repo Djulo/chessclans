@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+}
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    max-width: 1100px;
+    margin: auto;
+    z-index: 2;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+#navbar ul li {
+    color: #333;
+    display: inline-block;
+    padding: 1rem;
+    position: relative;
+}
+
+#navbar ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Hide nested ul by default */
+#navbar ul li ul {
+    display: none;
+}
+
+#navbar ul li:hover {
+    cursor: pointer;
+    background: #fff;
+    color: #333;
+}
+
+#navbar ul li:hover a {
+    color: #333;
+}
+
+/* Nested dropdown show */
+#navbar ul li:hover ul {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 200px;
+    margin-top: 1rem;
+}
+
+#navbar ul li:hover ul li {
+    display: block;
+    background: #fff;
+}
+
+#navbar ul li:hover ul li a {
+    color: #333;
+}
+
+#navbar ul li:hover ul li:hover {
+    background: #e0e0e0;
+    color: inherit;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100vh;
+}
+
+
+/* Main area */
+#showcase .showcase-content{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    width: 1100px;
+    height: 50vh;
+}
+
+#showcase .showcase-content .left-content {
+    padding: 2rem;
+}
+
+#showcase .showcase-content .left-content h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+#showcase .showcase-content .left-content p {
+    color: #555;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    border: 1px solid;
+    border-color: rgba(100, 100, 100, 0.7);
+    margin-top: 2rem;  
+    padding: 1.25rem;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area:before {
+    content: '';
+    background: url(../img/chesspieces/wikipedia/wR.png) no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+#showcase .showcase-content .main-area .game-mode-container {
+    position: relative;
+    border: 1px solid;
+    border-color: rgba(169, 169, 168, 0.7);
+}
+
+
+#showcase .showcase-content .main-area .game-mode-container:hover {
+    background: lightskyblue;
+    opacity: 0.7;
+}
+
+#showcase .showcase-content .main-area .game-mode {
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area .game-mode a {
+    text-decoration: none;
+    color: #333;
+    z-index: 1;
+}
+
+#showcase .showcase-content .right-container {
+    position: relative;
+    margin-top: 2rem;
+}
+
+
+#showcase .showcase-content .right-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    margin: 2rem 0;
+}
+
+#showcase .showcase-content .right-content a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid;
+    background: #f4f4f4;
+    font-weight: bold;
+    border-color: rgba(200, 200, 200, 0.7);
+    padding: 1.75rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+#showcase .showcase-content .right-content a:hover {
+    background: #f8f8f8;
+}
+
+#board {
+    margin-top: 3rem;
+    margin-right: 300px;
+}
+
+
+#register {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    width: 1100px;
+    height: 50vh;
+}
+
+#register .register-container {
+    display: flex;
+    padding: 2rem;
+}
+
+#register .register-container .left-content {
+    margin-right: 150px;
+}
+
+#register .left-content h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+#register .left-content p {
+    color: #555;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    position: relative;
+}
+
+#register .register-container #register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#register .register-container #register-form .form-group label {
+    display: block;
+
+}
+
+#register .register-container #register-form .form-group {
+    margin-bottom: 1rem;
+}
+#register .register-container #register-form .form-group h1,
+#register .register-container #register-form .form-group p {
+    text-align: center;
+}
+
+#register .register-container #register-form .form-group input {
+    width: 200px;
+}
+
+#register .register-container #register-form .form-group #textarea {
+    height: 150px;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    width: 1100px;
+    grid-gap: 1rem;
+    margin: 50px auto;
+}
+
+#rating .rating-container {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#rating .rating-container .mode {
+    padding: 0.5rem;
+
+}
+
+#rating .rating-container h4 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+#rating .rating-container p {
+    color: #555;
+    line-height: 1.25rem;
+    font-size: 1rem;
+    position: relative;
+}
+
+#main .main-content {
+    margin-left: 100px;
+    color: #333;
+}
+
+#profile img {
+    margin-top: 1rem;
+}
+
+#profile h3 {
+    margin-top: 20px;
+}
+
+#friends .friends-container {
+    margin-right: 300px;
+    width: 100%;
+    color: #333;
+}
+
+#friends .friends-container h3 {
+    margin-bottom: 10px;
+}
+
+#friends .friends-container ul {
+    margin-left: 10px;
+    list-style: none;
+}
+
+#friends .friends-container ul li {
+    padding: 0.5rem;
+    color: #555;
+}
+
+
+.game-container {
+    display: flex;
+    justify-content: center;
+}
+
+#chatbox {
+    margin: 50px 100px 0 50px;
+    position: relative;
+}
+
+#chatbox h3 {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+}
+
+
+#chatbox .btn {
+    display: block;
+    color: #333;
+    width: 50px;
+    transform: translateX(50px);
+}
+
+#profile .btn-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#profile .btn {
+    color: #333;
+    background: #f4f4f4;
+    width: 100px;
+    margin: 10px 10px 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#profile .btn:hover {
+    background: #fefefe;
+}
+
+.game-container .right-container {
+    position: relative;
+}
+
+
+.game-container .right-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    margin: auto;
+    position: absolute;
+    top: 100px;
+    left: -250px;
+}
+
+.game-container .right-content button {
+    padding: 1.25rem;
+    margin: 20px 0;
+}
+/* Higlights */
+.highlight-white {
+    -webkit-box-shadow: inset 0 0 3px 3px yellow;
+    -moz-box-shadow: inset 0 0 3px 3px yellow;
+    box-shadow: inset 0 0 3px 3px yellow;  
+}
+
+.highlight-black {
+    -webkit-box-shadow: inset 0 0 3px 3px blue;
+    -moz-box-shadow: inset 0 0 3px 3px blue;
+    box-shadow: inset 0 0 3px 3px blue;  
+}
