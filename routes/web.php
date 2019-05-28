@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 
