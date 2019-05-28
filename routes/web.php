@@ -35,8 +35,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
+Route::get('/chat', 'ChatController@index')->name('chat');
+Route::get('/message', 'MessageController@index')->name('message');
+Route::post('/message', 'MessageController@store')->name('message.store');
 
 
-Route::get('profile', function () {
-    return '<h1>This is profile page</h1>';
-})->middleware('verified');
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile/update', 'ProfileController@updateProfile')->name('profile.update');

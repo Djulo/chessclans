@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" defer></script>
     <script src="{{ asset('js/chessboard-0.3.0.min.js') }}" defer></script>
-    <script src="{{ asset('js/chess.js') }}" defer></script>
+    <script src="{{ asset('js/game.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,6 +23,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/chessboard-0.3.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken'=> csrf_token(),
+                'user'=> [
+                    'authenticated' => auth()->check(),
+                    'id' => auth()->check() ? auth()->user()->id : null,
+                    'name' => auth()->check() ? auth()->user()->name : null,
+                    ]
+                ])
+            !!};
+    </script>
 </head>
 <body>
     <div id="app">
@@ -56,10 +68,14 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                        @if (auth()->user()->profile_image)
+                                            <img src="{{ asset(auth()->user()->profile_image) }}" style="width: 40px; height: 40px; border-radius: 50%;">
+                                        @endif
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

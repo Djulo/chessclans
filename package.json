@@ -24,6 +24,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "chess.js": "^0.10.2"
+        "chess.js": "^0.10.2",
+        "laravel-echo": "^1.5.3",
+        "pusher-js": "^4.4.0",
+        "vue-axios": "^2.1.4",
+        "vue-router": "^3.0.6"
     }
 }
