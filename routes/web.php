@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 
@@ -35,8 +35,3 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
-
-
-Route::get('profile', function () {
-    return '<h1>This is profile page</h1>';
-})->middleware('verified');
