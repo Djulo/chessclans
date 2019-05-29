@@ -41,4 +41,4 @@ Route::post('/message', 'MessageController@store')->name('message.store');
 
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::post('/profile/update', 'ProfileController@updateProfile')->name('profile.update');
+Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
