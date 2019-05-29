@@ -39,6 +39,10 @@ Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
+Route::post('/game/move', 'GameController@insertMove');
+Route::post('/game/next', 'GameController@next');
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');

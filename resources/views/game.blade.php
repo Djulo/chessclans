@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -18,11 +18,13 @@
 
                     @endcomponent
                     <div id=startGame>
-                    <a type="button" href="/game" class="btn btn-primary">Start game</a>
-                    <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
+                    <?php
+                   
+                    ?>
+                    <!-- <button type="button" class="btn btn-primary">Start game</button> -->
                     </div>
 
-                <!-- <div id="board" class="container board" style="width: 400px"></div> -->
+                <div id="board" class="container board" style="width: 400px"></div>
                 </div>
             </div>
         </div>
