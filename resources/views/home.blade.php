@@ -20,10 +20,24 @@
                     <div id=startGame>
                     <a type="button" href="/game" class="btn btn-primary">Start game</a>
                     <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
+                    <input type="text" placeholder="Search users..">    
                     </div>
-
+                    
                 <!-- <div id="board" class="container board" style="width: 400px"></div> -->
+                <br>
+                <table class="table table-sm table-hover table-striped">
+                @foreach ($users as $user)
+               
+                    <tr>
+                        <td>
+                            <a href="profile/{{ $user->id }}" style="text-decoration:none; color:black"><?php echo $user->name;?></a>
+                        <td>
+                    </tr>
+                
+                @endforeach
+                </table>
                 </div>
+                
             </div>
         </div>
     </div>

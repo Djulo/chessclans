@@ -21,14 +21,19 @@
                     <div class="tab-pane active" id="profile">
                         <h4 class="mb-3">
                             <font id="Username" class="" href="#" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                       <span class="caret"> <?php  echo($user[0]->name) ?> </span>
                             </font>
                         </h4>
                         <div class="row">
                             <div class="col-md-6">
                             <h5>Country</h5>
                                 <p>
-                                    Serbia
+                                    @if ($user[0]->country!=null)
+                                    <?php  echo($user[0]->country) ?>
+                                    
+                                    @else
+                                    Unknown
+                                    @endif
                                 </p>
                                 <h5>Bio</h5>
                                 <p>
@@ -47,7 +52,7 @@
                             </div>
                             <div class="col-md-12">
                                 <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Games</h5>
-                                <table class="table table-sm table-hover table-striped">
+                                    
                                     <tbody>
                                         <tr>
                                             <td>
@@ -74,12 +79,14 @@
                                 </table>
                             </div>
                             <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <span style="display:inline-block; width: 20px;"></span> 
+                            <button type="submit" class="btn btn-danger">Report user</button>   
                         </div>
                         <!--/row-->
                     </div>
 
                     <div class="tab-pane" id="edit">
-                        <form role="form">
+
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">User name</label>
                                 <div class="col-lg-9">
@@ -122,7 +129,7 @@
             </div>
             <div class="col-lg-4 order-lg-1 text-center">
                 @if (auth()->user()->profile_image)
-                <img src="{{ asset(auth()->user()->profile_image) }}" style="width: 150px; height:150px;">
+                <img src="{{ asset(auth()->user()->profile_image) }}" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
                 @else
                 <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
                 @endif

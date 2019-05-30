@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use App\User;
+use DB;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -17,9 +19,20 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('auth.profile');
+        //dd(Auth::user()->name);
+        $userid= Auth::user()->id;
+        $user = DB::table('users')->where('id',$userid)->get();
+        return view('auth.profile',['user'=> $user]);
     }
+    public function show(Request $request)
+    {
+        $id = $request->route()->parameters();
+        //dd($id);
+        $user = DB::table('users')->where('id',$id)->get();
 
+        return view('auth.profile',['user'=>$user]);
+
+    }
     public function updateProfile(Request $request)
     {
 
