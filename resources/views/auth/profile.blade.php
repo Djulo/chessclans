@@ -122,7 +122,7 @@
             </div>
             <div class="col-lg-4 order-lg-1 text-center">
                 @if (auth()->user()->profile_image)
-                <img src="{{ asset(auth()->user()->profile_image) }}">
+                <img src="{{ asset(auth()->user()->profile_image) }}" style="width: 150px; height:150px;">
                 @else
                 <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
                 @endif
