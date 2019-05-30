@@ -121,7 +121,12 @@
                 </div>
             </div>
             <div class="col-lg-4 order-lg-1 text-center">
+                @if (auth()->user()->profile_image)
+                <img src="{{ asset(auth()->user()->profile_image) }}">
+                @else
                 <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                @endif
+                {{--  --}}
                 <!--<h6 class="mt-2">Upload a different photo</h6>-->
                 <label class="custom-file">
                 <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
