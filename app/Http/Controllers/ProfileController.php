@@ -20,6 +20,12 @@ class ProfileController extends Controller
         return view('auth.profile');
     }
 
+    public function view(Request $request)
+    {
+        $id = $request->route()->parameters();
+        dd($id);
+    }
+
     public function updateProfile(Request $request)
     {
 

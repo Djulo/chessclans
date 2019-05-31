@@ -31,6 +31,7 @@ Vue.component('user-component', require('./components/UserComponent.vue').defaul
 Vue.component('chat-messages-component', require('./components/ChatMessagesComponent.vue').default);
 Vue.component('chat-form-component', require('./components/ChatFormComponent.vue').default);
 Vue.component('message-component', require('./components/MessageComponent.vue').default);
+Vue.component('game-component', require('./components/GameComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

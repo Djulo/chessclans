@@ -17,10 +17,13 @@
                     @component('components.who')
 
                     @endcomponent
-                    <div id=startGame>
-                    <a type="button" href="/game" class="btn btn-primary">Start game</a>
-                    <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
-                    </div>
+                    <form method="POST" action="{{ route('game') }}">
+                        @csrf
+                        <div id=startGame>
+                            <button type="submit" class="btn btn-primary">Start game</button>
+                            <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
+                        </div>
+                    <form>
 
                 <!-- <div id="board" class="container board" style="width: 400px"></div> -->
                 </div>

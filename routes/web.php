@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\GameController;
+use App\Events\MoveCreated;
+use App\Events\TestEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/broadcast', function() {
+
+    event(new TestEvent('Sent from my Laravel application'));
+
+    return 'ok';
+});
+
+Route::get('/move', 'MoveController@index')->name('move');
+Route::post('/move', 'MoveController@store')->name('move.store');
+
 Auth::routes();
 Auth::routes(['verify' => true]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
@@ -41,10 +55,16 @@ Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
 Route::get('/game', 'GameController@index')->name('game');
-Route::post('/game/move', 'GameController@insertMove');
-Route::post('/game/next', 'GameController@next');
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::get('/{id}', 'GameController@show')->name('game.show');
+Route::post('/game', 'GameController@store');
+Route::post('/game/{id}/move', 'GameController@insertMove');
 
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+Route::get('/profile/{user}', 'ProfileController@view');
+
+

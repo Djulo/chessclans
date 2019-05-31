@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->profile_image;
     }
+
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
 }

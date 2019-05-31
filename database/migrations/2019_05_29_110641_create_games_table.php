@@ -15,8 +15,12 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('move');
+            $table->bigInteger('white')->unsigned();
+            $table->bigInteger('black')->unsigned();
             $table->timestamps();
+
+            $table->foreign('white')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('black')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

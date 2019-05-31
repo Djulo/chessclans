@@ -21,3 +21,8 @@ Broadcast::channel('chat', function ($user) {
         'name' => $user->name
     ];
 });
+
+Broadcast::channel('game.{gameId}', function($user, $gameId) {
+    return $user->id == Game::findOrNew($gameId)->white ||
+         $user->id == Game::findOrNew($gameId)->black;
+});

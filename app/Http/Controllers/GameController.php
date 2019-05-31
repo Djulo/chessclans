@@ -3,41 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-
-/*echo"SVETA";
-if (isset($_POST['moveIs'])) {
-   // echo "Sveta";
-}*/
+use Illuminate\Support\Facades\DB;
+use App\Game;
+use Illuminate\Support\Facades\Auth;
+use App\Move;
+use App\Events\GameCreated;
+use App\Events\MoveCreated;
 
 class GameController extends Controller
 {
-    //
-    public function index(){
-        //$this->insertMove();
-        return view("game");
-       
-    }
-    public function insertMove(Request $request){
-        $move=$request->moveIs;
-        DB::table('games')->insert(
-            [ 'move' => $move]
-        );
-    }
-    public function next(Request $request){
-        //echo("AJDEEEEEEEEE");
-        $games = DB::table('games')->get('move');
-        //die (var_dump($games));
-        //echo "<script> next(); </script>";
-        $iter=$request->next;
-    
-       // dd($games[$iter]);
-   
-        return (string)$games[$iter]->move;
-        return "debil";
+
+    public function index()
+    {
+        return redirect()->back();
     }
 
+    public function insertMove(Request $request)
+    {
+        //dd('test');
+        $fen = $request->fen;
+        $id = $request->id;
 
+        $move = new Move;
+        $move->fen = $fen;
+        $move->game_id = $id;
+        $move->save();
 
-   
+        event(new MoveCreated($move));
+    }
+
+    public function store(Request $request)
+    {
+        $game = new Game;
+        $game->white = 1;
+        $game->black = 2;
+
+        $game->save();
+
+        $game = Game::latest()->first();
+
+        event(new GameCreated($game));
+
+        return redirect()->route('game.show', $game->id);
+    }
+
+    public function show($id)
+    {
+        $game = Game::findOrFail($id);
+        return view('game')->withGame($game);
+    }
+
 }

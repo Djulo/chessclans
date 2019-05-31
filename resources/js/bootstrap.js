@@ -54,4 +54,5 @@ window.Echo = new Echo({
     encrypted: true
 });
 
+
 require('./echo');

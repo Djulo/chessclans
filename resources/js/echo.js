@@ -15,3 +15,4 @@ Echo.join('chat')
     .listen('MessageCreated', (data) => {
         Event.$emit('added_message', data.message);
     })
+
