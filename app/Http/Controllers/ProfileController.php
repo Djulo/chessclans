@@ -70,7 +70,15 @@ class ProfileController extends Controller
         // Return user back and show a flash message
         return redirect()->back()->with(['status' => 'Profile updated successfully.']);
     }
+    public function add(){
+        
+        $userid= Auth::user()->id;
+        $user = DB::table('users')->where('id',$userid)->get();
+        echo $user->name;
+        
+      
 
+    }
     public function updatePicture(Request $request)
     {
 

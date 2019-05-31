@@ -78,9 +78,17 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if($user[0]->id==auth()->user()->id)
                             <button type="submit" class="btn btn-primary">Update Profile</button>
+                            @endif
                             <span style="display:inline-block; width: 20px;"></span> 
+                            @if($user[0]->id!=auth()->user()->id)
                             <button type="submit" class="btn btn-danger">Report user</button>   
+                            @endif
+                            <span style="display:inline-block; width: 20px;"></span> 
+                            @if($user[0]->id!=auth()->user()->id)
+                            <button type="submit" class="btn btn-primary">Add friend</button>
+                            @endif
                         </div>
                         <!--/row-->
                     </div>
