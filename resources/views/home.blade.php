@@ -44,8 +44,10 @@
                
                     <tr>
                         <td>
-                            <a href="profile/{{ $user->id }}" style="text-decoration:none; color:black"><?php echo $user->name;?></a>
-                        <td>
+                            @if(auth()->user()->id!=$user->id)
+                             <a href="profile/{{ $user->id }}" style="text-decoration:none; color:black"><?php echo $user->name;?></a>
+                            @endif
+                             <td>
                     </tr>
                 
                 @endforeach

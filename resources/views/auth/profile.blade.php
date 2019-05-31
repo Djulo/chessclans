@@ -78,9 +78,19 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if($user[0]->id==auth()->user()->id)
                             <button type="submit" class="btn btn-primary">Update Profile</button>
+                            @endif
                             <span style="display:inline-block; width: 20px;"></span> 
+                            @if($user[0]->id!=auth()->user()->id)
                             <button type="submit" class="btn btn-danger">Report user</button>   
+                            @endif
+                            <span style="display:inline-block; width: 20px;"></span> 
+                            @if($user[0]->id!=auth()->user()->id)
+                            <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
+                              <input type="submit" class="btn btn-primary" value="Add friend">
+                            </form>
+                            @endif
                         </div>
                         <!--/row-->
                     </div>
