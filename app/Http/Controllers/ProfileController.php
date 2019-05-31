@@ -33,6 +33,7 @@ class ProfileController extends Controller
         return view('auth.profile',['user'=>$user]);
 
     }
+
     public function updateProfile(Request $request)
     {
 
@@ -46,8 +47,9 @@ class ProfileController extends Controller
         // Get current user
         $user = User::findOrFail(auth()->user()->id);
         // Set user name
-        $user->name = $request->input('name');
 
+        $user->name = $request->input('name');
+            
 
         // Check if a profile image has been uploaded
         if ($request->has('profile_image')) {
@@ -72,11 +74,16 @@ class ProfileController extends Controller
     }
     public function add(){
         
-        $userid= Auth::user()->id;
-        $user = DB::table('users')->where('id',$userid)->get();
-        echo $user->name;
-        
-      
+        dd('radi');
+        //nece
+        //treba li return?
+        return redirect('/home');
+
+    }
+    public function accept(){
+
+
+
 
     }
     public function updatePicture(Request $request)

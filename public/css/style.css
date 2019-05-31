@@ -5,3 +5,106 @@
 .board {
     width: 400px;
 }
+/* Main area */
+#showcase .showcase-content{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    width: 1100px;
+    height: 50vh;
+    /* background-color:black;  */
+}
+
+#showcase .showcase-content .left-content {
+    padding: 2rem;
+}
+
+#showcase .showcase-content .left-content h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+#showcase .showcase-content .left-content p {
+    color: #555;
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    border: 1px solid;
+    border-color: rgba(100, 100, 100, 0.7);
+    margin-top: 2rem;  
+    padding: 1.25rem;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area:before {
+    content: '';
+    background: url(../img/chesspieces/wikipedia/wR.png) no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+#showcase .showcase-content .main-area .game-mode-container {
+    position: relative;
+    border: 1px solid;
+    border-color: rgba(169, 169, 168, 0.7);
+}
+
+
+#showcase .showcase-content .main-area .game-mode-container:hover {
+    background: lightskyblue;
+    opacity: 0.7;
+}
+
+#showcase .showcase-content .main-area .game-mode {
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+#showcase .showcase-content .main-area .game-mode a {
+    text-decoration: none;
+    color: #333;
+    z-index: 1;
+}
+
+#showcase .showcase-content .right-container {
+    position: relative;
+    margin-top: 2rem;
+}
+
+
+#showcase .showcase-content .right-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    margin: 2rem 0;
+}
+
+#showcase .showcase-content .right-content a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid;
+    background: #f4f4f4;
+    font-weight: bold;
+    border-color: rgba(200, 200, 200, 0.7);
+    padding: 1.75rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+#showcase .showcase-content .right-content a:hover {
+    background: #f8f8f8;
+}
