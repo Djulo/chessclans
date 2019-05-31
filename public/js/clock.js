@@ -66,9 +66,12 @@
       // set right timer
       rightTimer = $('#right .toggle').on('click', function () {
 
+       // alert("Desni tajmer");
+       //alert(  t1.minutes()*60+t1.seconds());
+     
        //ovde dodao da poveca vreme..
-       t1.add(moment.duration(5,'s'));
-
+      //  t1.add(moment.duration(5,'s'));
+      //  t2.add(moment.duration(5,'s'));
         // pause other timer
         if (leftTimer) {
           clearInterval(leftTimer);
@@ -80,6 +83,7 @@
             t2.subtract(moment.duration(1, 's'));
             return displayTime("#right .time", t2);
           } else {
+            alert("Isteklo je vreme belom igracu");
             return clearInterval(self);
           }
         }, 1000);
@@ -98,6 +102,7 @@
             t1.subtract(moment.duration(1, 's'));
             return displayTime("#left .time", t1);
           } else {
+            alert("Isteklo je vreme crnom igracu");
             return clearInterval(self);
           }
         }, 1000);
