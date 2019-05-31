@@ -1,5 +1,6 @@
-@extends('layouts.app')
 
+@extends('layouts.app')
+<script type="text/javascript" src="{{ URL::asset('js\setData.js') }}"></script>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -24,8 +25,21 @@
                     </div>
                     
                 <!-- <div id="board" class="container board" style="width: 400px"></div> -->
+              
                 <br>
-                <table class="table table-sm table-hover table-striped">
+            
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <section id="showcase">
+       
+       <div class="showcase-content">
+           <div class="left-content">
+               <h1>ChessClans</h1>
+               <h2 class="alert-info" >#users:</h2>
+               <table class="table table-sm table-hover table-striped">
                 @foreach ($users as $user)
                
                     <tr>
@@ -36,10 +50,91 @@
                 
                 @endforeach
                 </table>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+           </div>
+           <div class="main-area-container">
+               <div class="main-area">
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="/game" onclick="proba(1,5)">
+                               <h1>1 + 0</h1>
+                               <h4>Bullet</h4>
+                             
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>2 + 1</h1>
+                               <h4>Bullet</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>3 + 0</h1>
+                               <h4>Blitz</h4>
+                           </a>    
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>3 + 2</h1>
+                               <h4>Blitz</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>5 + 0</h1>
+                               <h4>Blitz</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>5 + 3</h1>
+                               <h4>Blitz</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>10 + 0</h1>
+                               <h4>Rapid</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html">
+                               <h1>15 + 15</h1>
+                               <h4>Classical</h4>
+                           </a>
+                       </div>
+                   </div>
+                   <div class="game-mode-container">
+                       <div class="game-mode">
+                           <a href="game.html"><h4>Custom</h4></a>
+                       </div>
+                   </div>  
+               </div>
+           </div>
+           <div class="right-container">
+               <div class="right-content">
+                   <a href="game.html">dugme 1</a>
+                   <a href="game.html">dugme 2</a>
+                   <a href="game.html">dugme 3</a>
+               </div>
+           </div>
+       </div>
+  
+</section>
 </div>
+
 @endsection

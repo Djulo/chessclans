@@ -49,3 +49,4 @@ Route::get('/profile/{user}', 'ProfileController@show');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+

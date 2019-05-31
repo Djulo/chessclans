@@ -121,9 +121,7 @@ var updateStatus = function() {
    document.getElementById("p1").click();
   }
   else document.getElementById("p2").click();
-  //if(moveColor==='White')
   
-
 
   // checkmate?
   if (game.in_checkmate() === true) {
@@ -134,6 +132,7 @@ var updateStatus = function() {
   // draw?
   else if (game.in_draw() === true) {
     status = 'Game over, drawn position';
+    alert(status);
   }
 
   // game still on
