@@ -71,6 +71,7 @@
                         </li>
                         @endif
                         @else
+<<<<<<< HEAD
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -80,6 +81,15 @@
                                 @endif
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
+=======
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        @if (auth()->user()->profile_image)
+                                            <img src="{{ asset(auth()->user()->profile_image) }}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                                        @endif
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                 </a>
+>>>>>>> 4bab1c0700b622f66c93ec2d414ac984a11adb7b
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>

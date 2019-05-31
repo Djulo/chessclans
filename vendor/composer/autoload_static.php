@@ -446,6 +446,8 @@ class ComposerStaticInit6fdeca8d0b4597df1eadfe1b40e34f77
         'App\\Providers\\TelescopeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TelescopeServiceProvider.php',
         'App\\Traits\\UploadTrait' => __DIR__ . '/../..' . '/app/Traits/UploadTrait.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\prijatelji' => __DIR__ . '/../..' . '/app/prijatelji.php',
+        'App\\zahtevi' => __DIR__ . '/../..' . '/app/zahtevi.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',

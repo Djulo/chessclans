@@ -10,10 +10,11 @@
 
 /* clearfix */
 .clearfix-7da63 {
-  clear: both;
+  /* clear: both; */
 }
 
 /* board */
+
 .board-b72b1 {
   border: 2px solid #404040;
   -moz-box-sizing: content-box;

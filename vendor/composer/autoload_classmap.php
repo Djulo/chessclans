@@ -50,6 +50,8 @@ return array(
     'App\\Providers\\TelescopeServiceProvider' => $baseDir . '/app/Providers/TelescopeServiceProvider.php',
     'App\\Traits\\UploadTrait' => $baseDir . '/app/Traits/UploadTrait.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\prijatelji' => $baseDir . '/app/prijatelji.php',
+    'App\\zahtevi' => $baseDir . '/app/zahtevi.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
     'BeyondCode\\DumpServer\\DumpServerServiceProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
     'BeyondCode\\DumpServer\\Dumper' => $vendorDir . '/beyondcode/laravel-dump-server/src/Dumper.php',

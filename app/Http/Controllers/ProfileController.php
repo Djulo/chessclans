@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use App\User;
+use DB;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -17,7 +19,19 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('auth.profile');
+        //dd(Auth::user()->name);
+        $userid= Auth::user()->id;
+        $user = DB::table('users')->where('id',$userid)->get();
+        return view('auth.profile',['user'=> $user]);
+    }
+    public function show(Request $request)
+    {
+        $id = $request->route()->parameters();
+        //dd($id);
+        $user = DB::table('users')->where('id',$id)->get();
+
+        return view('auth.profile',['user'=>$user]);
+
     }
 
     public function view(Request $request)
@@ -39,8 +53,9 @@ class ProfileController extends Controller
         // Get current user
         $user = User::findOrFail(auth()->user()->id);
         // Set user name
-        $user->name = $request->input('name');
 
+        $user->name = $request->input('name');
+            
 
         // Check if a profile image has been uploaded
         if ($request->has('profile_image')) {
@@ -63,7 +78,20 @@ class ProfileController extends Controller
         // Return user back and show a flash message
         return redirect()->back()->with(['status' => 'Profile updated successfully.']);
     }
+    public function add(){
+        
+        dd('radi');
+        //nece
+        //treba li return?
+        return redirect('/home');
 
+    }
+    public function accept(){
+
+
+
+
+    }
     public function updatePicture(Request $request)
     {
 
