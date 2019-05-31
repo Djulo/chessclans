@@ -118,11 +118,17 @@ var updateStatus = function() {
   var moveColor = 'White';
   if (game.turn() === 'b') {
     moveColor = 'Black';
+   document.getElementById("p1").click();
   }
+  else document.getElementById("p2").click();
+  //if(moveColor==='White')
+  
+
 
   // checkmate?
   if (game.in_checkmate() === true) {
     status = 'Game over, ' + moveColor + ' is in checkmate.';
+    alert(status);
   }
 
   // draw?
@@ -159,7 +165,9 @@ var updateStatus = function() {
     data: { "moveIs": sendMove},
     success: function(response) { console.log(response); }
 });
+
 };
+
 var state="rnbqkbnr/pp2pppp/2p5/3p4/3P4/4P3/PPP2PPP/RNBQKBNR w KQkq - 0 3";
 var cfg = {
   draggable: true,
@@ -229,5 +237,6 @@ function prev(){
     //alert("svetaaa");
   }
 updateStatus();
+
 //To do: dodaj dugme da npr nastavi igru od te pozicije..;
 }

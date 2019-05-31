@@ -20,8 +20,11 @@ class GameController extends Controller
     }
     public function insertMove(Request $request){
         $move=$request->moveIs;
-        DB::table('games')->insert(
-            [ 'move' => $move]
+      /*  DB::table('games')->insert(
+            [ 'move' => $move]*/
+            DB::table('moves')->insert(
+                ['fen'=>$move, 'game_id'=>"1"]
+            
         );
     }
     public function next(Request $request){
