@@ -45,6 +45,8 @@ Route::post('/game/move', 'GameController@insertMove');
 Route::post('/game/next', 'GameController@next');
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
+Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
+Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
