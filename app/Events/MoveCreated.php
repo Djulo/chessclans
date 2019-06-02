@@ -36,7 +36,7 @@ class MoveCreated implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('game.' . $this->move->game_id);
+        return new Channel('game.' . $this->move->game_id);
     }
 
     public function broadcastAs()

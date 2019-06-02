@@ -36,7 +36,7 @@ class GameCreated implements ShouldBroadcastNow
     public function broadcastOn()
     {
         //dd($this->game);
-        return new PrivateChannel('game.' . $this->game->id);
+        return new Channel('game.' . $this->game->id);
     }
 
     public function boradcastAs()

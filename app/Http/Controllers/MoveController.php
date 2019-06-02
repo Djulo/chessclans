@@ -14,9 +14,7 @@ class MoveController extends Controller
     public function index()
     {
         $moves = Move::with(['game'])->get();
-        Log::debug('Some message.');
         return response()->json($moves);
-        //return view('welcome');
     }
 
     public function store(Request $request)
@@ -29,10 +27,8 @@ class MoveController extends Controller
         $move->game_id = $id;
         $move->save();
 
-        error_log('Some message here.');
-
         $move = Move::latest()->first();
-        event(new MoveCreated($move));
+        broadcast(new MoveCreated($move))->toOthers();
 
         return response()->json($move);
     }

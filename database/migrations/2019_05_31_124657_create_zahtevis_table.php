@@ -15,12 +15,8 @@ class CreateZahtevisTable extends Migration
     {
         Schema::create('zahtevis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('white')->unsigned();
-            $table->bigInteger('black')->unsigned();
             $table->timestamps();
-
-            $table->foreign('white')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('black')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('id_kome');
         });
     }
 

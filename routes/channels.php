@@ -22,7 +22,10 @@ Broadcast::channel('chat', function ($user) {
     ];
 });
 
-Broadcast::channel('game.{gameId}', function($user, $gameId) {
-    return $user->id == Game::findOrNew($gameId)->white ||
-         $user->id == Game::findOrNew($gameId)->black;
+use App\Move;
+
+Broadcast::channel('game.{move}', function($user, Move $move) {
+    $game = Game::find($move->game_id);
+    return (int) $user->id === (int) $game->white ||
+        (int) $user->id === (int) $game->black;
 });

@@ -1,14 +1,11 @@
-
-
-    @extends('layouts.app')
-
-    @section('content')
-    <div class="container">
-        <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
-            @csrf
-            <div class="row my-2">
-                <div class="col-lg-8 order-lg-2">
-                    <ul class="nav nav-tabs">
+@extends('layouts.app')
+@section('content')
+<div class="container">
+    <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
+        @csrf
+        <div class="row my-2">
+            <div class="col-lg-8 order-lg-2">
+                <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                     </li>
@@ -20,17 +17,17 @@
                 <div class="tab-content py-4">
                     <div class="tab-pane active" id="profile">
                         <h4 class="mb-3">
-                            <font id="Username" class="" href="#" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false" v-pre>
-                                       <span class="caret"> <?php  echo($user[0]->name) ?> </span>
+                            <font id="Username" class="" href="#" role="button" data-toggle="" aria-haspopup="true"
+                                aria-expanded="false" v-pre>
+                                <span class="caret"> <?php  echo($user[0]->name) ?> </span>
                             </font>
                         </h4>
                         <div class="row">
                             <div class="col-md-6">
-                            <h5>Country</h5>
+                                <h5>Country</h5>
                                 <p>
                                     @if ($user[0]->country!=null)
                                     <?php  echo($user[0]->country) ?>
-                                    
                                     @else
                                     Unknown
                                     @endif
@@ -46,13 +43,15 @@
                                 <font size="4.5"><?php  echo($user[0]->ranking) ?></font>
                                 <i class="fas fa-chess-board fa-lg" size="5x"></i>
                                 <hr>
-                                <span class="badge text-control" role="button"><i class="fas fa-user"></i> 5 Friends</span>
+                                <span class="badge text-control" role="button"><i class="fas fa-user"></i> 5
+                                    Friends</span>
                                 <span class="badge text-control"><i class="fas fa-chess-rook"></i> 43 Games</span>
-                                <span class="badge text-control"><i class="fas fa-trophy"></i> 55% Wins   </span>
+                                <span class="badge text-control"><i class="fas fa-trophy"></i> 55% Wins </span>
                             </div>
                             <div class="col-md-12">
-                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Games</h5>
-                                    <table class="table table-sm table-hover table-striped">
+                                <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Games
+                                </h5>
+                                <table class="table table-sm table-hover table-striped">
                                     <tbody>
                                         <tr>
                                             <td>
@@ -61,19 +60,19 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                            <a><strong>Alek</strong> 1-0 <strong>OG</strong></a>                                        </td>
+                                                <a><strong>Alek</strong> 1-0 <strong>OG</strong></a> </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                            <a><strong>Milos</strong> 0-1 <strong>OG</strong></a>                                        </td>
+                                                <a><strong>Milos</strong> 0-1 <strong>OG</strong></a> </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                            <a><strong>OG</strong> 1-0 <strong>Agadmator</strong></a>                                        </td>
+                                                <a><strong>OG</strong> 1-0 <strong>Agadmator</strong></a> </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                            <a><strong>OG</strong> 1-0 <strong>Alek</strong></a>                                        </td>
+                                                <a><strong>OG</strong> 1-0 <strong>Alek</strong></a> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -81,14 +80,15 @@
                             @if($user[0]->id==auth()->user()->id)
                             <button type="submit" class="btn btn-primary">Update Profile</button>
                             @endif
-                            <span style="display:inline-block; width: 20px;"></span> 
+                            <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            <button type="submit" class="btn btn-danger">Report user</button>   
+                            <button type="submit" class="btn btn-danger">Report user</button>
                             @endif
-                            <span style="display:inline-block; width: 20px;"></span> 
+                            <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
-                              <input type="submit" class="btn btn-primary" value="Add friend">
+                            <form action="{{ route('profile.add') }}" method="POST" role="form"
+                                enctype="multipart/form-data">
+                                <input type="submit" class="btn btn-primary" value="Add friend">
                             </form>
                             @endif
                         </div>
@@ -97,25 +97,26 @@
 
                     <div class="tab-pane" id="edit">
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">User name</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control" readonly type="text" value="{{ Auth::user()->name }}"name='username'>
-                                </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">User name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" readonly type="text" value="{{ Auth::user()->name }}"
+                                    name='username'>
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                                <div class="col-lg-9">
-                                    <input class="form-control"  readonly type="email" value="{{ Auth::user()->email }}"name='email'>
-                                </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" readonly type="email" value="{{ Auth::user()->email }}"
+                                    name='email'>
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Country</label>
-                                <div class="col-lg-9">
-<!--                                     <input class="form-control" type="text" value="<?php  echo($user[0]->country) ?>" placeholder="Country" name='country'>
- -->                                    <select id="country" name="country" class="form-control">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Country</label>
+                            <div class="col-lg-9">
+                                <select id="country" name="country" class="form-control">
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>
@@ -147,7 +148,8 @@
                                     <option value="Botswana">Botswana</option>
                                     <option value="Bouvet Island">Bouvet Island</option>
                                     <option value="Brazil">Brazil</option>
-                                    <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                    <option value="British Indian Ocean Territory">British Indian Ocean Territory
+                                    </option>
                                     <option value="Brunei Darussalam">Brunei Darussalam</option>
                                     <option value="Bulgaria">Bulgaria</option>
                                     <option value="Burkina Faso">Burkina Faso</option>
@@ -166,7 +168,8 @@
                                     <option value="Colombia">Colombia</option>
                                     <option value="Comoros">Comoros</option>
                                     <option value="Congo">Congo</option>
-                                    <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                                    <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic
+                                        of The</option>
                                     <option value="Cook Islands">Cook Islands</option>
                                     <option value="Costa Rica">Costa Rica</option>
                                     <option value="Cote D'ivoire">Cote D'ivoire</option>
@@ -210,7 +213,8 @@
                                     <option value="Guinea-bissau">Guinea-bissau</option>
                                     <option value="Guyana">Guyana</option>
                                     <option value="Haiti">Haiti</option>
-                                    <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                                    <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands
+                                    </option>
                                     <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
                                     <option value="Honduras">Honduras</option>
                                     <option value="Hong Kong">Hong Kong</option>
@@ -231,11 +235,13 @@
                                     <option value="Kazakhstan">Kazakhstan</option>
                                     <option value="Kenya">Kenya</option>
                                     <option value="Kiribati">Kiribati</option>
-                                    <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                    <option value="Korea, Democratic People's Republic of">Korea, Democratic People's
+                                        Republic of</option>
                                     <option value="Korea, Republic of">Korea, Republic of</option>
                                     <option value="Kuwait">Kuwait</option>
                                     <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                    <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                    <option value="Lao People's Democratic Republic">Lao People's Democratic Republic
+                                    </option>
                                     <option value="Latvia">Latvia</option>
                                     <option value="Lebanon">Lebanon</option>
                                     <option value="Lesotho">Lesotho</option>
@@ -245,7 +251,8 @@
                                     <option value="Lithuania">Lithuania</option>
                                     <option value="Luxembourg">Luxembourg</option>
                                     <option value="Macao">Macao</option>
-                                    <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                                    <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former
+                                        Yugoslav Republic of</option>
                                     <option value="Madagascar">Madagascar</option>
                                     <option value="Malawi">Malawi</option>
                                     <option value="Malaysia">Malaysia</option>
@@ -258,7 +265,8 @@
                                     <option value="Mauritius">Mauritius</option>
                                     <option value="Mayotte">Mayotte</option>
                                     <option value="Mexico">Mexico</option>
-                                    <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                    <option value="Micronesia, Federated States of">Micronesia, Federated States of
+                                    </option>
                                     <option value="Moldova, Republic of">Moldova, Republic of</option>
                                     <option value="Monaco">Monaco</option>
                                     <option value="Mongolia">Mongolia</option>
@@ -284,7 +292,8 @@
                                     <option value="Oman">Oman</option>
                                     <option value="Pakistan">Pakistan</option>
                                     <option value="Palau">Palau</option>
-                                    <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                    <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied
+                                    </option>
                                     <option value="Panama">Panama</option>
                                     <option value="Papua New Guinea">Papua New Guinea</option>
                                     <option value="Paraguay">Paraguay</option>
@@ -303,7 +312,8 @@
                                     <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
                                     <option value="Saint Lucia">Saint Lucia</option>
                                     <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-                                    <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+                                    <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines
+                                    </option>
                                     <option value="Samoa">Samoa</option>
                                     <option value="San Marino">San Marino</option>
                                     <option value="Sao Tome and Principe">Sao Tome and Principe</option>
@@ -318,7 +328,8 @@
                                     <option value="Solomon Islands">Solomon Islands</option>
                                     <option value="Somalia">Somalia</option>
                                     <option value="South Africa">South Africa</option>
-                                    <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+                                    <option value="South Georgia and The South Sandwich Islands">South Georgia and The
+                                        South Sandwich Islands</option>
                                     <option value="Spain">Spain</option>
                                     <option value="Sri Lanka">Sri Lanka</option>
                                     <option value="Sudan">Sudan</option>
@@ -347,7 +358,8 @@
                                     <option value="United Arab Emirates">United Arab Emirates</option>
                                     <option value="United Kingdom">United Kingdom</option>
                                     <option value="United States">United States</option>
-                                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                    <option value="United States Minor Outlying Islands">United States Minor Outlying
+                                        Islands</option>
                                     <option value="Uruguay">Uruguay</option>
                                     <option value="Uzbekistan">Uzbekistan</option>
                                     <option value="Vanuatu">Vanuatu</option>
@@ -360,43 +372,46 @@
                                     <option value="Yemen">Yemen</option>
                                     <option value="Zambia">Zambia</option>
                                     <option value="Zimbabwe">Zimbabwe</option>
-                                    </select>
-                                </div>
+                                </select>
                             </div>
+                        </div>
 
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Bio</label>
-                                <div class="col-lg-9">
-                                    <textarea class="form-control" value="<?php if($user[0]->bio!=null)echo($user[0]->bio);else echo('Bio goes here....'); ?>" rows="3" name='bio'></textarea>
-                                </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Bio</label>
+                            <div class="col-lg-9">
+                                <textarea class="form-control"
+                                    value="<?php if($user[0]->bio!=null)echo($user[0]->bio);else echo('Bio goes here....'); ?>"
+                                    rows="3" name='bio'></textarea>
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-9">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
 
-                                    <input type="submit" class="btn btn-primary" value="Save Changes">
-                                </div>
+                                <input type="submit" class="btn btn-primary" value="Save Changes">
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 order-lg-1 text-center">
                 @if ($user[0]->profile_image!=null)
-                <img src="<?php echo($user[0]->profile_image) ?>" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
+                <img src="<?php echo($user[0]->profile_image) ?>"
+                    style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
                 @else
-                <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block"
+                    alt="avatar">
                 @endif
-                {{--  --}}
-                <!--<h6 class="mt-2">Upload a different photo</h6>-->
+
                 <label class="custom-file">
-                <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
-                <span class="badge badge-secondary custom-file-control" >Choose photo</span>
+                    <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
+                    <span class="badge badge-secondary custom-file-control">Choose photo</span>
                 </label>
             </div>
-        </form>
-    </div>
+    </form>
+</div>
 </div>
 @endsection
