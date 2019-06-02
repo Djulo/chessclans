@@ -40,6 +40,7 @@ class ProfileController extends Controller
         //dd($user->name);
         return view('auth.report',['user'=>$user]);
     }
+
     public function reported(Request $request){
         $user = DB::table('users')->where('name',$request->name)->get();
         //dd($user->name);

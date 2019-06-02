@@ -18,14 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/broadcast', function() {
-
-    event(new TestEvent('Sent from my Laravel application'));
-
-    return 'ok';
-});
-
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
 
@@ -64,8 +56,8 @@ Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
-Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
+Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile', 'ProfileController@index')->name('profile');
