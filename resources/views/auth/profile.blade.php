@@ -1,11 +1,29 @@
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
-        @csrf
-        <div class="row my-2">
-            <div class="col-lg-8 order-lg-2">
-                <ul class="nav nav-tabs">
+
+    @extends('layouts.app')
+    @section('content')
+    <div class="container">
+            @csrf
+            <div class="row my-2">
+            <div class="col-lg-4 order-lg-1 text-center">
+                <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                    @if ($user[0]->profile_image!=null)
+                    <img src="<?php echo($user[0]->profile_image) ?>" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
+                    @else
+                    <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                    @endif
+                    {{--  --}}
+                    <!--<h6 class="mt-2">Upload a different photo</h6>-->
+                    <label class="custom-file">
+                    <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
+                    <span class="badge badge-secondary custom-file-control" >Choose photo</span>
+                    </label>
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-primary" value="Save Changes">
+                </form>
+
+            </div>
+                <div class="col-lg-8 order-lg-2">
+                    <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
                     </li>
@@ -88,10 +106,11 @@
                             @endif
                             <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            <form action="{{ route('profile.report') }}" method="POST" role="form"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('profile.report') }}" method="POST" role="form" enctype="multipart/form-data">
+                            <input href='' type="submit" class="btn btn-danger" value="Report">
+                            <input type='hidden' name='userid' value='{{$user[0]->id}}'>
+
                                 {{ csrf_field() }}
-                                <input href='' type="submit" class="btn btn-danger" value="Report">
                                 <input type='hidden' name='userid' value='{{$user[0]->id}}'>
 
 
@@ -100,10 +119,9 @@
                             @endif
                             <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            <form action="{{ route('profile.add') }}" method="POST" role="form"
-                                enctype="multipart/form-data">
-                                <input type="submit" class="btn btn-primary" value="Add friend">
-                                {{ csrf_field() }}
+                            <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
+                              <input type="submit" class="btn btn-primary" value="Add friend">
+                              {{ csrf_field() }}
                             </form>
                             @endif
                         </div>
@@ -436,39 +454,14 @@
                                         rows="3" name='bio'></textarea>
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label"></label>
-                                <div class="col-lg-9">
-
-                                    <input type="submit" class="btn btn-primary" value="Save Changes">
-                                </div>
-                                {{ csrf_field() }}
-                        </form>
+                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                            </div>
+                            {{ csrf_field() }}
+                    </form>
                     </div>
 
                 </div>
             </div>
-            <div class="col-lg-4 order-lg-1 text-center">
-                <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
-                    @if ($user[0]->profile_image!=null)
-                    <img src="<?php echo($user[0]->profile_image) ?>"
-                        style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
-                    @else
-                    <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block"
-                        alt="avatar">
-                    @endif
-                    {{--  --}}
-                    <!--<h6 class="mt-2">Upload a different photo</h6>-->
-                    <label class="custom-file">
-                        <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
-                        <span class="badge badge-secondary custom-file-control">Choose photo</span>
-                    </label>
-                    {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="Save Changes">
-                </form>
-
-            </div>
-        </div>
+    </div>
 </div>
 @endsection

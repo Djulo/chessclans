@@ -54,7 +54,6 @@ Route::post('/game/{id}/move', 'GameController@insertMove');
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
@@ -62,5 +61,7 @@ Route::post('/profile/reported', 'ProfileController@reported')->name('profile.re
 Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+
+
 
 

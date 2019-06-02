@@ -20,9 +20,10 @@
                         @csrf
                         <div id=startGame>
                             <button type="submit" class="btn btn-primary">Start game</button>
-                            <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
                         </div>
                     <form>
+                        <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
+
                      <br>
                 </div>
 
