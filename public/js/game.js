@@ -53,15 +53,19 @@ if (document.getElementById("board")) {
 
         var moveColor = 'White';
         if (game.turn() === 'b') {
-            moveColor = 'Black';
+          moveColor = 'Black';
+         document.getElementById("p1").click();
         }
+        else document.getElementById("p2").click();
         // checkmate?
         if (game.in_checkmate() === true) {
             status = 'Game over, ' + moveColor + ' is in checkmate.';
+            alert(status);
         }
         // draw?
         else if (game.in_draw() === true) {
             status = 'Game over, drawn position';
+            alert(status);
         }
         // game still on
         else {
