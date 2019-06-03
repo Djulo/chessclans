@@ -42,7 +42,7 @@ if (document.getElementById("board")) {
         if (move === null) return 'snapback';
 
         updateStatus();
-        //state = game.fen();
+        state = game.fen();
     };
 
     // update the board position after the piece snap
@@ -120,31 +120,31 @@ if (document.getElementById("board")) {
     var i = 0;
 
     function next() {
-        moves = document.getElementById('fen').value;
-        moves = moves.split(',');
-        i++;
-        game.load(moves[i]);
-        board.position(moves[i]);
-        // let url = "" + window.location;
-        // let id = url.split('/')[3];
-        // $.ajax({
-        //     url: 'analyse/' + id + 'next',
-        //     type: 'post',
-        //     data: { next:i, id:i },
-        //     success: function (response) {
-        //         //console.log(response);
-        //         board.position(response);
-        //     }
-        // });
+        ++i;
+        let url = "" + window.location;
+        let id = url.split('/')[3];
+        $.ajax({
+            url: 'analyse/' + id + 'next',
+            type: 'post',
+            data: { next:i, id:i },
+            success: function (response) {
+                //console.log(response);
+                board.position(response);
+            }
+        });
     }
 
     function prev() {
-        //alert(moves);
-        moves = document.getElementById('fen').value;
-        moves = moves.split(',');
-        i--;
-        game.load(moves[i]);
-        board.position(moves[i]);
+        --i;
+        $.ajax({
+            url: 'analyse/' + id + 'next',
+            type: 'post',
+            data: { next:i, id:i},
+            success: function (response) {
+                //console.log(response);
+                board.position(response);
+            }
+        });
     }
 
 }

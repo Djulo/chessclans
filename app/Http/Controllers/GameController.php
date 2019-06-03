@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Move;
 use App\Events\GameCreated;
 use App\Events\MoveCreated;
-use App\Events\JoinedSuccessfully;
 
 class GameController extends Controller
 {
@@ -62,6 +61,7 @@ class GameController extends Controller
             event(new JoinedSuccessfully($game));
         }
 
+        event(new GameCreated($game));
 
         return redirect()->route('game.show', $game->id);
     }
