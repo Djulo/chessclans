@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Move;
-
+use Illuminate\Support\Facades\DB;
+use App\Game;
 class AnalyseController extends Controller
 {
-    //
+
     public function index()
     {
-        return view("analyse");
+        $games = DB::table('games')->get();
+
+        return view('analyse',['games'=>$games]);
     }
 
     public function nextMove(Request $request)
@@ -21,9 +24,18 @@ class AnalyseController extends Controller
         return $fen;
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->id;
         $game = Game::findOrFail($id);
-        return view('analyse')->withGame($game);
+        $moves = DB::table('moves')->where('game_id', $id)->get();
+
+        $moves = $moves->map(function($move) {
+            return $move->fen;
+        });
+
+        // $moves->toJson();
+        return view('analyse-game', ['game' => $game,
+            'moves' => $moves->implode(',')]);
     }
 }

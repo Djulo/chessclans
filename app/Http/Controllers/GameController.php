@@ -34,8 +34,19 @@ class GameController extends Controller
 
             $game = Game::latest()->first();
             event(new GameCreated($game));
+<<<<<<< HEAD
         } else {
             if (Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+=======
+            $initalMove = new Move;
+            $initalMove->game_id = $game->id;
+            $initalMove->fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+            $initalMove->save();
+
+        }
+        else{
+            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+>>>>>>> 9ac50f78a1b702b11551bb943fa2f2cc214f58e3
             $game->black = Auth::user()->id;
             $game->save();
 
@@ -58,8 +69,25 @@ class GameController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function gameEnd(Request $request)
     {
         dd($request->winner);
     }
+=======
+    public function turn(Request $request)
+    {
+        $game = Game::findOrFail($request->id);
+        $id = (Auth::user()->id === $game->white) ? 'w' : 'b';
+
+        return response()->json($id);
+    }
+
+    public function state(Request $request)
+    {
+        $fen = Move::where('game_id', $request->id)->latest()->first()->fen;
+        return response()->json($fen);
+    }
+
+>>>>>>> 9ac50f78a1b702b11551bb943fa2f2cc214f58e3
 }

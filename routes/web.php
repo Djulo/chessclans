@@ -22,6 +22,8 @@ Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
 
 Route::post('/timer', 'TimerController@update')->name('timer.update');
+Route::post('/turn', 'GameController@turn');
+Route::post('/state', 'GameController@state');
 
 Auth::routes();
 Auth::routes(['verify' => true]);
@@ -36,13 +38,19 @@ Route::prefix('admin')->group(function(){
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-
+    Route::post('/delete/profile', 'AdminController@deleteProfile')->name('admin.delete.profile');
+    Route::post('/mute/profile', 'AdminController@muteProfile')->name('admin.mute.profile');
     // Password reset routes
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
+
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+Route::get('/analyse/{id}', 'AnalyseController@show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
@@ -56,10 +64,6 @@ Route::post('/game/{id}/move', 'GameController@insertMove');
 //Route::get('/gameEnd', 'GameController@gameEnd')->name('gameEnd');
 Route::post('/gameEnd', 'GameController@gameEnd')->name('game.end');
 
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
-Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
-Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
-
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
@@ -69,6 +73,7 @@ Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+
 
 
 

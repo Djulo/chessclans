@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" defer></script>
-    <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
+    <script src="https://kit.fontawesome.com/c3f33bd535.js"></script>
     <script src="{{ asset('js/chessboard-0.3.0.min.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/game.js') }}" defer></script>
@@ -84,11 +84,22 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" role="menu">
+                                @if (Auth::guard('admin')->check())
+                                
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Profile</a>
+                            
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                @else
                                 <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                            
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf

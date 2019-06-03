@@ -16,6 +16,6 @@ class TimerController extends Controller
         $timer = $request->timer;
         broadcast(new TimerClicked($game, $timer))->toOthers();
 
-        return response();
+        return response('ok', 200);
     }
 }

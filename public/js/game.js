@@ -10,36 +10,54 @@ if (document.getElementById("board")) {
         game = new Chess(),
         statusEl = $('#status'),
         fenEl = $('#fen'),
-        pgnEl = $('#pgn');
+        pgnEl = $('#pgn'),
+        color;
 
     var state = game.fen();
 
     let url = "" + window.location;
     let id = url.split('/')[3];
-    let format = "" + document.getElementById('format').value;
-    format = format.split('+');
+    let format;
 
-    Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+    if(document.getElementById('format')){
+        format = "" + document.getElementById('format').value;
+        format = format.split('+');
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
             game.load(e['move'].fen);
             board.position(e['move'].fen);
         });
 
-    Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.timer.clicked', (e) => {
             // alert(e);
             document.getElementById(e.timer).click();
         })
 
+        $.ajax({
+            url: '/turn',
+            type: 'POST',
+            async: false,
+            data: { id: id },
+            success: function (response) {
+                color = response;
+                console.log(color);
+            }
+        });
+
+    }
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
     var onDragStart = function (source, piece, position, orientation) {
+
         if (game.game_over() === true ||
+            game.turn() !== color ||
             (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
             (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
             return false;
         }
+
     };
 
     var onDrop = function (source, target) {
@@ -144,38 +162,46 @@ if (document.getElementById("board")) {
         position: state,
         onDragStart: onDragStart,
         onDrop: onDrop,
-        onSnapEnd: onSnapEnd
+        onSnapEnd: onSnapEnd,
+        orientation: (color === 'b') ? 'black' : 'white'
     };
     board = ChessBoard('board', cfg);
 
-    var i = 0;
-
-    function next() {
-        ++i;
-        let url = "" + window.location;
-        let id = url.split('/')[3];
+    if(document.getElementById('format')){
         $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next:i, id:i },
+            url: '/state',
+            type: 'POST',
+            async: false,
+            data: { id: id },
             success: function (response) {
-                //console.log(response);
+                game.load(response);
                 board.position(response);
             }
         });
     }
 
+    var i = 0;
+
+    function next() {
+        // console.log('ulaz next id: ' + i);
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        if(i >= moves.length -1) return;
+        i++;
+        game.load(moves[i]);
+        board.position(moves[i]);
+        // console.log('izlaz next id: ' +i);
+    }
+
     function prev() {
-        --i;
-        $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next:i, id:i},
-            success: function (response) {
-                //console.log(response);
-                board.position(response);
-            }
-        });
+        if(i <= 0) return;
+        i--;
+        // console.log('ulaz prev id: ' + i);
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        game.load(moves[i]);
+        board.position(moves[i]);
+        // console.log('izlaz prev id: ' + i);
     }
 
 }
