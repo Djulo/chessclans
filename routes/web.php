@@ -21,6 +21,8 @@ Route::get('/', function () {
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
 
+Route::post('/timer', 'TimerController@update')->name('timer.update');
+
 Auth::routes();
 Auth::routes(['verify' => true]);
 
