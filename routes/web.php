@@ -18,14 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/broadcast', function() {
-
-    event(new TestEvent('Sent from my Laravel application'));
-
-    return 'ok';
-});
-
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
 
@@ -54,24 +46,30 @@ Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
-Route::get('/game', 'GameController@index')->name('game');
+Route::get('/game', 'GameController@store')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
+Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
 Route::post('/game/{id}/move', 'GameController@insertMove');
 
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
+<<<<<<< HEAD
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
+=======
+>>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
+Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+
+
 
 

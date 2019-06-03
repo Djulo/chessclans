@@ -1,3 +1,4 @@
-function proba(min,sec){
-    alert(sec);
+function proba(time,incr){
+    alert(time);
+    document.getElementById("time-input2").value = time;
 }

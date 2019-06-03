@@ -11,10 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" defer></script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script> --}}
-    {{-- <script src="https://js.pusher.com/4.4/pusher.min.js"></script> --}}
     <script src="{{ asset('js/chessboard-0.3.0.min.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/game.js') }}" defer></script>
@@ -28,7 +25,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/chessboard-0.3.0.min.css') }}">
-    {{-- <link rel="stylesheet" href="//cdn.jsdelivr.net/flat-ui/2.0/css/flat-ui.css" /> --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 

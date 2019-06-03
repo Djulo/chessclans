@@ -12,7 +12,6 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
                     @component('components.who')
                     <h1>SVETAA</h1>
                     @endcomponent
