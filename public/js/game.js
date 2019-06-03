@@ -1,5 +1,6 @@
 Pusher.logToConsole = true;
 
+
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -12,16 +13,10 @@ if (document.getElementById("board")) {
     let url = "" + window.location;
     let id = url.split('/')[3];
     Echo.channel(`game.${id}`)
-            .listen('.move.played', (e) => {
-                game.load(e['move'].fen);
-                board.position(e['move'].fen);
-            })
-            .listen('.game.created', (e) => {
-                alert('New game created');
-            })
-            .listen('.joined.successfully', (e) => {
-                alert("Player two joined game");
-            })
+        .listen('.move.played', (e) => {
+            game.load(e['move'].fen);
+            board.position(e['move'].fen);
+        });
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
@@ -57,19 +52,29 @@ if (document.getElementById("board")) {
     var updateStatus = function () {
         var status = '';
 
+
         var moveColor = 'White';
         if (game.turn() === 'b') {
             moveColor = 'Black';
-        }else{
-            moveColor = 'White';
+       //     board.orientation('black');
+            document.getElementById("p1").click();
+        }
+        else {
+           document.getElementById("p2").click();
+
+         //   board.orientation('white');
+
+
         }
         // checkmate?
         if (game.in_checkmate() === true) {
             status = 'Game over, ' + moveColor + ' is in checkmate.';
+            alert(status);
         }
         // draw?
         else if (game.in_draw() === true) {
             status = 'Game over, drawn position';
+            alert(status);
         }
         // game still on
         else {
@@ -102,6 +107,7 @@ if (document.getElementById("board")) {
                 console.log('response');
             }
         });
+
     };
 
     var cfg = {
@@ -142,4 +148,5 @@ if (document.getElementById("board")) {
         game.load(moves[i]);
         board.position(moves[i]);
     }
+
 }

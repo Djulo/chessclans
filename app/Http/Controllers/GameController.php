@@ -35,6 +35,7 @@ class GameController extends Controller
 
     public function store(Request $request)
     {
+        $vals=$request->route()->parameters();
 
         $game = Game::where('black',null)->first();
         //dd($game);
@@ -49,7 +50,7 @@ class GameController extends Controller
 
         }
         else{
-            if(Auth::user()->id == $game->white) $this->show($game->id);
+            if(Auth::user()->id == $game->white) $this->show($game->id)->with('vals', $vals);
             $game->black = Auth::user()->id;
             $game->save();
 
@@ -59,13 +60,15 @@ class GameController extends Controller
         }
 
 
-        return redirect()->route('game.show', $game->id);
+        return redirect()->route('game.show', $game->id)->with('vals', $vals);
     }
 
     public function show($id)
     {
+        $vals = session('vals');
         $game = Game::findOrFail($id);
-        return view('game')->withGame($game);
+        return view('game', ['game' => $game,
+        'vals' => $vals]);
     }
 
 }

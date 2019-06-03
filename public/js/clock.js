@@ -21,7 +21,8 @@
         // props
         $("#left .toggle").prop("disabled", false);
         $("#right .toggle").prop("disabled", true);
-  
+        //AE OVDE ZA VREME
+        // moment.duration(
         // classes
         $("#right .toggle").addClass("btn-default btn-disabled");
         $("#right .toggle").removeClass("btn-primary");
@@ -52,27 +53,37 @@
     displayTime = function (elem, time) {
       return $(elem).html(getTimeString(time));
     };
-  
-  
+
+    var leftTimer, resetAll, rightTimer, t1, t2,increment;
     // doc ready
     jQuery(function ($) {
-      var leftTimer, resetAll, rightTimer, t1, t2;
+       
+
       // init timers
-      t1 = moment.duration(20, "minutes");
-      t2 = moment.duration(20, "minutes");
+      t1 = moment.duration(parseInt($('#time-input').val()), "minutes");
+      t2 = moment.duration(parseInt($('#time-input').val()), "minutes");
+      increment = moment.duration(parseInt($('#increment-input').val()), "seconds");
       displayTime("#left .time", t1);
       displayTime("#right .time", t2);
   
+        
+
       // set right timer
       rightTimer = $('#right .toggle').on('click', function () {
 
-       // alert("Desni tajmer");
+       
+     //   alert("GORNJI tajmer");
        //alert(  t1.minutes()*60+t1.seconds());
-     
+       t1.add(moment.duration(increment,'s'));
+       displayTime("#left .time", t1);
+       //alert(  t1.minutes()*60+t1.seconds());
        //ovde dodao da poveca vreme..
-      //  t1.add(moment.duration(5,'s'));
+       // t1.add(moment.duration(5,'s'));
       //  t2.add(moment.duration(5,'s'));
         // pause other timer
+       // t1.add(moment.duration(5,'s'));
+       // t2.add(moment.duration(5,'s'));
+    //   alert(t1);
         if (leftTimer) {
           clearInterval(leftTimer);
           toggleButtons("right");
@@ -91,9 +102,15 @@
   
       // set left timer
       leftTimer = $('#left .toggle').on('click', function () {
+       // alert("Donji tajmer");
+        //t1.add(moment.duration(5,'s'));
+        // t2.add(moment.duration(5,'s'));
+        t2.add(moment.duration(increment,'s'));
+        displayTime("#right .time", t2);
         if (rightTimer) {
           clearInterval(rightTimer);
           toggleButtons("left");
+          //t1.add(moment.duration(5,'s'));
       
          
         }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePrijateljisTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePrijateljisTable extends Migration
      */
     public function up()
     {
-        Schema::create('prijateljis', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('id_friend');
+            $table->integer('to_id');
+			$table->integer('from_id');
         });
     }
 
@@ -27,6 +28,6 @@ class CreatePrijateljisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prijateljis');
+        Schema::dropIfExists('requests');
     }
 }
