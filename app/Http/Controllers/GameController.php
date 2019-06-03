@@ -58,4 +58,12 @@ class GameController extends Controller
         'vals' => $game->format]);
     }
 
+    public function turn(Request $request)
+    {
+        $game = Game::findOrFail($request->id);
+        $id = (Auth::user()->id === $game->white) ? 'w' : 'b';
+
+        return response()->json($id);
+    }
+
 }
