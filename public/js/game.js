@@ -63,13 +63,17 @@ if (document.getElementById("board")) {
         board.position(game.fen());
     };
 
+    
+
     var updateStatus = function () {
+        
         var status = '';
         var fen = game.fen();
         let url = "" + window.location;
         let id = url.split('/')[3];
 
         var moveColor = 'White';
+        
         if (game.turn() === 'b') {
             moveColor = 'Black';
             document.getElementById("p1").click();
@@ -93,15 +97,21 @@ if (document.getElementById("board")) {
             }
         });
         }
+        
         // checkmate?
         if (game.in_checkmate() === true) {
-            status = 'Game over, ' + moveColor + ' is in checkmate.';
-            alert(status);
+            status = 'Game over, ' + moveColor + ' is in checkmate.'
+            document.getElementById("setResults").innerHTML=status;
+           
+            document.getElementById("pause").click();
+           // alert(status);
         }
         // draw?
         else if (game.in_draw() === true) {
             status = 'Game over, drawn position';
-            alert(status);
+            document.getElementById("setResults").innerHTML=status;
+           
+            document.getElementById("pause").click();
         }
         // game still on
         else {
@@ -116,6 +126,7 @@ if (document.getElementById("board")) {
         fenEl.html(game.fen());
         pgnEl.html(game.pgn());
         state = game.fen();
+        document.getElementById("setResults").innerHTML=status;
         //ovo je moje da posaljem potez
         $.ajax({
             url: '/move',

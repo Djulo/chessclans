@@ -1,13 +1,17 @@
 /* @import url("https://fonts.googleapis.com/css?family=Roboto"); */
 
 .flex-container {
-  /* display: flex;
-  flex-direction: row;
+   /* display: flex; */
+  /* flex-direction: row; */
+  float:right;
   align-items: center;
   justify-content: space-around;
   height: 100%;
   text-align: center;
-  flex-wrap: wrap; */
+  flex-wrap: wrap; 
+  padding-left:30;
+  padding-top:18;
+ 
 }
 .form-group,
 .time-container {

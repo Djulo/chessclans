@@ -94,7 +94,13 @@
             t2.subtract(moment.duration(1, 's'));
             return displayTime("#right .time", t2);
           } else {
-            alert("Isteklo je vreme belom igracu");
+          //  window.location.href = "/gameEnd";
+            //alert("Isteklo je vreme belom igracu");
+            document.getElementById("setResults").innerHTML="Time expired for white player";
+            //exit();
+            clearInterval(rightTimer);
+            clearInterval(leftTimer);
+            return;
             return clearInterval(self);
           }
         }, 1000);
@@ -119,7 +125,11 @@
             t1.subtract(moment.duration(1, 's'));
             return displayTime("#left .time", t1);
           } else {
-            alert("Isteklo je vreme crnom igracu");
+            document.getElementById("setResults").innerHTML="Time expired for black player";
+            //exit();
+            clearInterval(rightTimer);
+            clearInterval(leftTimer);
+            return;
             return clearInterval(self);
           }
         }, 1000);

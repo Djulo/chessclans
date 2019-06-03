@@ -25,10 +25,10 @@
             {{ csrf_token() }}
     </button>
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="">
             <div id="board" class="container board" style="width: 400px"></div>
         </div>
-        <div class=" col-md-2 flex-container ">
+        <div class="  flex-container ">
         <h3>time:</h3>
             <div class="time-container" id="left">
                 <input style="display:none" id=p1 class="toggle btn btn-lg btn-primary btn-block" type="button" value="Player 1" /><span
@@ -44,8 +44,8 @@
                         <br><br><br><br><br><br><br><br>
                         <input style="display:none" class="form-control" id="increment-input" type="number"  min="1"
                         value="<?php echo($minuti[1]) ?>" />
-                    <input style="display:none" class="form-control btn btn-block btn-default" id="pause" type="button" value="Pause" />
-                    <input style="display:none" class="btn btn-block btn-danger" id="reset" type="button" value="Reset" />
+                    <input  style="display:none" class="form-control btn btn-block btn-default" id="pause" type="button" value="Pause" />
+                    <input  style="display:none" class="btn btn-block btn-danger" id="reset" type="button" value="Reset" />
                 </div>
 
             </div>
@@ -55,6 +55,15 @@
                     class="time h1"></span>
             </div>
         </div>
+        <div  class=" alert alert-info col-sm-12  text-center pt-3 pb-3 mt-3 " style="display: block;" id="setResults">
+            White to move
+        </div>
+        <!-- <input  style="display:none" class="btn btn-block btn-danger" id="gameEnd" type="button" value="Reset"/> -->
+        <form action="{{ route('game.end') }}" method="POST" role="form" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="submit" class="btn btn-primary" value="cepaj">
+                            <input type='hidden' name='winner' value='1'>
+                        </form>
 
 
     </div>

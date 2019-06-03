@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Events\JoinedSuccessfully;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,11 @@ class GameController extends Controller
 
     public function store(Request $request)
     {
-        $vals=$request->route()->parameters()['value'];
+        $vals = $request->route()->parameters()['value'];
 
-        $game = Game::where('black',null)->where('format',$vals)->first();
+        $game = Game::where('black', null)->where('format', $vals)->first();
         //dd($game);
-        if($game == null){
+        if ($game == null) {
             $game = new Game;
             $game->white = Auth::user()->id;
             $game->black = null;
@@ -33,10 +34,8 @@ class GameController extends Controller
 
             $game = Game::latest()->first();
             event(new GameCreated($game));
-
-        }
-        else{
-            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+        } else {
+            if (Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
             $game->black = Auth::user()->id;
             $game->save();
 
@@ -53,8 +52,14 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::findOrFail($id);
-        return view('game', ['game' => $game,
-        'vals' => $game->format]);
+        return view('game', [
+            'game' => $game,
+            'vals' => $game->format
+        ]);
     }
 
+    public function gameEnd(Request $request)
+    {
+        dd($request->winner);
+    }
 }

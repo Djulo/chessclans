@@ -53,6 +53,8 @@ Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
 Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
 Route::post('/game/{id}/move', 'GameController@insertMove');
+//Route::get('/gameEnd', 'GameController@gameEnd')->name('gameEnd');
+Route::post('/gameEnd', 'GameController@gameEnd')->name('game.end');
 
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
