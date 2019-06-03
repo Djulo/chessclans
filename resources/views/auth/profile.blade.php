@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
     @extends('layouts.app')
     @section('content')
@@ -18,25 +17,6 @@
                     {{--  --}}
                     <!--<h6 class="mt-2">Upload a different photo</h6>-->
                     <label class="custom-file">
-=======
-@extends('layouts.app')
-@section('content')
-<div class="container">
-    @csrf
-    <div class="row my-2">
-        <div class="col-lg-4 order-lg-1 text-center">
-            <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
-                @if ($user[0]->profile_image!=null)
-                <img src="<?php echo($user[0]->profile_image) ?>"
-                    style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
-                @else
-                <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block"
-                    alt="avatar">
-                @endif
-                {{--  --}}
-                <!--<h6 class="mt-2">Upload a different photo</h6>-->
-                <label class="custom-file">
->>>>>>> c5c2092dab24b32f25983f1f74c72ee7eb37d2ce
                     <input type="file" id="profile_image" class="custom-file-input" name="profile_image">
                     <span class="badge badge-secondary custom-file-control">Choose photo</span>
                 </label>
