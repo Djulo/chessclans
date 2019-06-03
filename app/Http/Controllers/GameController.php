@@ -34,6 +34,10 @@ class GameController extends Controller
 
             $game = Game::latest()->first();
             event(new GameCreated($game));
+            $initalMove = new Move;
+            $initalMove->game_id = $game->id;
+            $initalMove->fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+            $initalMove->save();
 
         }
         else{
@@ -64,6 +68,12 @@ class GameController extends Controller
         $id = (Auth::user()->id === $game->white) ? 'w' : 'b';
 
         return response()->json($id);
+    }
+
+    public function state(Request $request)
+    {
+        $fen = Move::where('game_id', $request->id)->latest()->first()->fen;
+        return response()->json($fen);
     }
 
 }

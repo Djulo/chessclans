@@ -23,6 +23,7 @@ Route::post('/move', 'MoveController@store')->name('move.store');
 
 Route::post('/timer', 'TimerController@update')->name('timer.update');
 Route::post('/turn', 'GameController@turn');
+Route::post('/state', 'GameController@state');
 
 Auth::routes();
 Auth::routes(['verify' => true]);
@@ -45,6 +46,11 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+Route::get('/analyse/{id}', 'AnalyseController@show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
+
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
@@ -54,10 +60,6 @@ Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
 Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
 Route::post('/game/{id}/move', 'GameController@insertMove');
-
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
-Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
-Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
