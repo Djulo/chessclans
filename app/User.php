@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Message;
+use App\Report;
+use App\Game;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +53,10 @@ class User extends Authenticatable
     public function games()
     {
         return $this->hasMany(Game::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 }
