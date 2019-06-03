@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Game;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -9,19 +10,23 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class TestEvent
+class TimerClicked implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $game;
+    public $timer;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Game $game, $timer)
     {
-        //
+        $this->game = $game;
+        $this->timer = $timer;
     }
 
     /**
@@ -31,13 +36,12 @@ class TestEvent
      */
     public function broadcastOn()
     {
-        return new Channel('test');
+        $str = explode('+',$this->game->format);
+        return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function broadcastAs()
-{
-    return 'test_event';
+    {
+        return 'timer.clicked';
+    }
 }
-}
-
-
