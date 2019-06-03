@@ -31,18 +31,21 @@ class GameController extends Controller
         $move->save();
 
         event(new MoveCreated($move));
+
+        return response();
     }
 
     public function store(Request $request)
     {
-        $vals=$request->route()->parameters();
+        $vals=$request->route()->parameters()['value'];
 
-        $game = Game::where('black',null)->first();
+        $game = Game::where('black',null)->where('format',$vals)->first();
         //dd($game);
         if($game == null){
             $game = new Game;
             $game->white = Auth::user()->id;
             $game->black = null;
+            $game->format = $vals;
             $game->save();
 
             $game = Game::latest()->first();
@@ -50,7 +53,7 @@ class GameController extends Controller
 
         }
         else{
-            if(Auth::user()->id == $game->white) $this->show($game->id)->with('vals', $vals);
+            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
             $game->black = Auth::user()->id;
             $game->save();
 
@@ -60,15 +63,14 @@ class GameController extends Controller
         }
 
 
-        return redirect()->route('game.show', $game->id)->with('vals', $vals);
+        return redirect()->route('game.show', $game->id);
     }
 
     public function show($id)
     {
-        $vals = session('vals');
         $game = Game::findOrFail($id);
         return view('game', ['game' => $game,
-        'vals' => $vals]);
+        'vals' => $game->format]);
     }
 
 }

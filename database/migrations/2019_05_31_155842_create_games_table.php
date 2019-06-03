@@ -17,12 +17,13 @@ class CreateGamesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('white')->unsigned();
             $table->bigInteger('black')->unsigned()->nullable();
+            $table->string('format');
             $table->timestamps();
         });
 
         Schema::table('games', function (Blueprint $table) {
-            //$table->foreign('white')->references('id')->on('users');
-            //$table->foreign('black')->references('id')->on('users');
+            $table->foreign('white')->references('id')->on('users');
+            $table->foreign('black')->references('id')->on('users');
         });
     }
 

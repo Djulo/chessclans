@@ -36,7 +36,8 @@ class MoveCreated implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('game.' . $this->move->game_id);
+        $str = explode('+',$this->move->game()->format);
+        return new Channel('game.' . $this->move->game_id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function broadcastAs()

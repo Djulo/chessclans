@@ -1,6 +1,4 @@
 Pusher.logToConsole = true;
-
-
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -12,8 +10,12 @@ if (document.getElementById("board")) {
 
     let url = "" + window.location;
     let id = url.split('/')[3];
-    Echo.channel(`game.${id}`)
+    let format = "" + document.getElementById('format').value;
+    format = format.split('+');
+
+    Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
+            alert(e);
             game.load(e['move'].fen);
             board.position(e['move'].fen);
         });
@@ -52,7 +54,6 @@ if (document.getElementById("board")) {
     var updateStatus = function () {
         var status = '';
 
-
         var moveColor = 'White';
         if (game.turn() === 'b') {
             moveColor = 'Black';
@@ -63,8 +64,6 @@ if (document.getElementById("board")) {
            document.getElementById("p2").click();
 
          //   board.orientation('white');
-
-
         }
         // checkmate?
         if (game.in_checkmate() === true) {
@@ -103,7 +102,6 @@ if (document.getElementById("board")) {
             type: 'POST',
             data: { fen: fen, id: id },
             success: function (response) {
-                //alert('success');
                 console.log('response');
             }
         });
