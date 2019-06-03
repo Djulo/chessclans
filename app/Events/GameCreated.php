@@ -26,6 +26,8 @@ class GameCreated implements ShouldBroadcastNow
     public function __construct(Game $game)
     {
         $this->game = $game;
+        // $str = explode('+', $this->game->format);
+        // dd('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     /**
@@ -36,7 +38,8 @@ class GameCreated implements ShouldBroadcastNow
     public function broadcastOn()
     {
         //dd($this->game);
-        return new Channel('game.' . $this->game->id);
+        $str = explode('+', $this->game->format);
+        return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function boradcastAs()

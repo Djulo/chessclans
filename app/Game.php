@@ -9,7 +9,8 @@ class Game extends Model
 
     protected $fillable = [
         'white',
-        'black'
+        'black',
+        'format',
     ];
 
     public function moves()

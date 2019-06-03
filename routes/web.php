@@ -46,10 +46,6 @@ Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
-Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
-Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
-
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');

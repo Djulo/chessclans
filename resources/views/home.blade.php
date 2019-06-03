@@ -20,11 +20,10 @@
                         @csrf
                         <div id=startGame>
                             <button type="submit" class="btn btn-primary">Start game</button>
+                            <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
                         </div>
-                    <form>
-                        <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
-
-                     <br>
+                        <form>
+                            <br>
                 </div>
 
             </div>
@@ -51,93 +50,77 @@
             </div>
             <div class="main-area-container">
                 <div class="main-area">
-                
                     <div class="game-mode-container">
-                        
                         <div class="game-mode">
-
-                        <a  href="game/home/{{ '1+0' }}">
+                            <a href="game/home/{{ '1+0' }}">
                                 <h1>1 + 0</h1>
                                 <h4>Bullet</h4>
-                                
                             </a>
-                            
-                        </div>
-
-                    </div>
-                
-                    
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '2+1' }}">
-                                <h1>2 + 1</h1>
-                                <h4>Bullet</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '3+0' }}">
-                                <h1>3 + 0</h1>
-                                <h4>Blitz</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '3+2' }}">
-                                <h1>3 + 2</h1>
-                                <h4>Blitz</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '5+0' }}">
-                                <h1>5 + 0</h1>
-                                <h4>Blitz</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '5+3' }}">
-                                <h1>5 + 3</h1>
-                                <h4>Blitz</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '10+0' }}">
-                                <h1>10 + 0</h1>
-                                <h4>Rapid</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '10+5' }}">
-                                <h1>10 + 5</h1>
-                                <h4>Classical</h4>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="game-mode-container">
-                        <div class="game-mode">
-                        <a  href="game/home/{{ '15+15' }}">
-                                <h1>15 + 15</h1>
-                                <h4>Classical</h4>
-                            </a>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="right-container">
-                <div class="right-content">
-                    <a href="game.html">dugme 1</a>
-                    <a href="game.html">dugme 2</a>
-                    <a href="game.html">dugme 3</a>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '2+1' }}">
+                            <h1>2 + 1</h1>
+                            <h4>Bullet</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '3+0' }}">
+                            <h1>3 + 0</h1>
+                            <h4>Blitz</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '3+2' }}">
+                            <h1>3 + 2</h1>
+                            <h4>Blitz</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '5+0' }}">
+                            <h1>5 + 0</h1>
+                            <h4>Blitz</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '5+3' }}">
+                            <h1>5 + 3</h1>
+                            <h4>Blitz</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '10+0' }}">
+                            <h1>10 + 0</h1>
+                            <h4>Rapid</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '10+5' }}">
+                            <h1>10 + 5</h1>
+                            <h4>Classical</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="game-mode-container">
+                    <div class="game-mode">
+                        <a href="game/home/{{ '15+15' }}">
+                            <h1>15 + 15</h1>
+                            <h4>Classical</h4>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Events\JoinedSuccessfully;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Game;
@@ -18,43 +18,43 @@ class GameController extends Controller
         return redirect()->back();
     }
 
-    public function insertMove(Request $request)
-    {
-        //dd('test');
-        $fen = $request->fen;
-        $id = $request->id;
-
-        $move = new Move;
-        $move->fen = $fen;
-        $move->game_id = $id;
-        $move->save();
-
-        event(new MoveCreated($move));
-    }
-
     public function store(Request $request)
     {
-        $vals=$request->route()->parameters();
-        //dd($vals);
-        $game = new Game;
-        $game->white = 1;
-        $game->black = 2;
+        $vals=$request->route()->parameters()['value'];
 
-        $game->save();
+        $game = Game::where('black',null)->where('format',$vals)->first();
+        //dd($game);
+        if($game == null){
+            $game = new Game;
+            $game->white = Auth::user()->id;
+            $game->black = null;
+            $game->format = $vals;
+            $game->save();
 
-        $game = Game::latest()->first();
+            $game = Game::latest()->first();
+            event(new GameCreated($game));
+
+        }
+        else{
+            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+            $game->black = Auth::user()->id;
+            $game->save();
+
+            $game = Game::find($game->id);
+            // dd($game);
+            event(new JoinedSuccessfully($game));
+        }
 
         event(new GameCreated($game));
 
-        return redirect()->route('game.show', $game->id)->with('vals', $vals);
+        return redirect()->route('game.show', $game->id);
     }
 
     public function show($id)
     {
-        $vals = session('vals');
         $game = Game::findOrFail($id);
         return view('game', ['game' => $game,
-        'vals' => $vals]);
+        'vals' => $game->format]);
     }
 
 }

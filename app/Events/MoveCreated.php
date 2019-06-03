@@ -18,15 +18,17 @@ class MoveCreated implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $move;
+    public $format;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Move $move)
+    public function __construct(Move $move, $format)
     {
         $this->move = $move;
+        $this->format = $format;
     }
 
     /**
@@ -36,7 +38,8 @@ class MoveCreated implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('game.' . $this->move->game_id);
+        $str = explode('+',$this->format);
+        return new Channel('game.' . $this->move->game_id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function broadcastAs()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Move;
+use App\Game;
 use Illuminate\Http\Request;
 use App\Events\MoveCreated;
 use SebastianBergmann\Environment\Console;
@@ -28,7 +29,8 @@ class MoveController extends Controller
         $move->save();
 
         $move = Move::latest()->first();
-        broadcast(new MoveCreated($move))->toOthers();
+        $format = Game::findOrFail($id)->format;
+        broadcast(new MoveCreated($move, $format))->toOthers();
 
         return response()->json($move);
     }

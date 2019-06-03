@@ -35,7 +35,8 @@ class JoinedSuccessfully implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('game.' . $this->game->id);
+        $str = explode('+', $this->game->format);
+        return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function boradcastAs()
