@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Move;
 use App\Events\GameCreated;
 use App\Events\MoveCreated;
+use App\Events\JoinedSuccessfully;
 
 class GameController extends Controller
 {
@@ -35,16 +36,29 @@ class GameController extends Controller
     public function store(Request $request)
     {
         $vals=$request->route()->parameters();
-        //dd($vals);
-        $game = new Game;
-        $game->white = 1;
-        $game->black = 2;
 
-        $game->save();
+        $game = Game::where('black',null)->first();
+        //dd($game);
+        if($game == null){
+            $game = new Game;
+            $game->white = Auth::user()->id;
+            $game->black = null;
+            $game->save();
 
-        $game = Game::latest()->first();
+            $game = Game::latest()->first();
+            event(new GameCreated($game));
 
-        event(new GameCreated($game));
+        }
+        else{
+            if(Auth::user()->id == $game->white) $this->show($game->id)->with('vals', $vals);
+            $game->black = Auth::user()->id;
+            $game->save();
+
+            $game = Game::find($game->id);
+            // dd($game);
+            event(new JoinedSuccessfully($game));
+        }
+
 
         return redirect()->route('game.show', $game->id)->with('vals', $vals);
     }

@@ -16,13 +16,13 @@ class CreateGamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('white')->unsigned();
-            $table->bigInteger('black')->unsigned();
+            $table->bigInteger('black')->unsigned()->nullable();
             $table->timestamps();
         });
 
         Schema::table('games', function (Blueprint $table) {
-            $table->foreign('white')->references('id')->on('users');
-            $table->foreign('black')->references('id')->on('users');
+            //$table->foreign('white')->references('id')->on('users');
+            //$table->foreign('black')->references('id')->on('users');
         });
     }
 

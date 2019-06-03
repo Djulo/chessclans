@@ -9,7 +9,7 @@ if (document.getElementById("board")) {
         pgnEl = $('#pgn');
 
     var state = game.fen();
-   
+
     let url = "" + window.location;
     let id = url.split('/')[3];
     Echo.channel(`game.${id}`)
@@ -40,7 +40,7 @@ if (document.getElementById("board")) {
         if (move === null) return 'snapback';
 
         updateStatus();
-        state = game.fen();
+        //state = game.fen();
     };
 
     // update the board position after the piece snap
@@ -51,7 +51,7 @@ if (document.getElementById("board")) {
 
     var updateStatus = function () {
         var status = '';
-      
+
 
         var moveColor = 'White';
         if (game.turn() === 'b') {
@@ -63,8 +63,8 @@ if (document.getElementById("board")) {
            document.getElementById("p2").click();
 
          //   board.orientation('white');
-          
-         
+
+
         }
         // checkmate?
         if (game.in_checkmate() === true) {
@@ -122,31 +122,31 @@ if (document.getElementById("board")) {
     var i = 0;
 
     function next() {
-        ++i;
-        let url = "" + window.location;
-        let id = url.split('/')[3];
-        $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next: i, id: i },
-            success: function (response) {
-                //console.log(response);
-                board.position(response);
-            }
-        });
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        i++;
+        game.load(moves[i]);
+        board.position(moves[i]);
+        // let url = "" + window.location;
+        // let id = url.split('/')[3];
+        // $.ajax({
+        //     url: 'analyse/' + id + 'next',
+        //     type: 'post',
+        //     data: { next:i, id:i },
+        //     success: function (response) {
+        //         //console.log(response);
+        //         board.position(response);
+        //     }
+        // });
     }
 
     function prev() {
-        --i;
-        $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next: i, id: i },
-            success: function (response) {
-                //console.log(response);
-                board.position(response);
-            }
-        });
+        //alert(moves);
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        i--;
+        game.load(moves[i]);
+        board.position(moves[i]);
     }
 
 }
