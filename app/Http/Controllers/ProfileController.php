@@ -104,11 +104,7 @@ class ProfileController extends Controller
         return view('auth.report',['user'=>$user]);
         
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
     public function reported(Request $request){
         $user = DB::table('users')->where('name',$request->name)->get();
         //dd($user->name)

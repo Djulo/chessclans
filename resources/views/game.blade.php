@@ -31,7 +31,6 @@
             </div>
             <div class="time-container" id="controls">
                 <h1>Chess Clock</h1>
-   
                 <div class="form-group">
                     <input style="display:none"class="form-control" id="time-input" type="number"  min="1"
                         value="<?php echo($minuti[0]) ?>" />

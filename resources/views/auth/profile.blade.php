@@ -444,12 +444,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bio</label>
                                 <div class="col-lg-9">
-<<<<<<< HEAD
-<!--                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
- -->                                    <textarea class="form-control" value="" rows="3" name='bio'></textarea>
-=======
                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
 
                                 </div>
                             </div>
@@ -500,23 +495,12 @@
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-<<<<<<< HEAD
                         
 
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
 
-=======
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label form-control-label">Bio</label>
-                                <div class="col-lg-9">
-                                    <textarea class="form-control"
-                                        value="<?php if($user[0]->bio!=null)echo($user[0]->bio);else echo('Bio goes here....'); ?>"
-                                        rows="3" name='bio'></textarea>
-                                </div>
-                            </div>
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
                                 <input type="submit" class="btn btn-primary" value="Save Changes">
                             </div>
                             {{ csrf_field() }}

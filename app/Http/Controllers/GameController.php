@@ -35,6 +35,7 @@ class GameController extends Controller
     public function store(Request $request)
     {
         $vals=$request->route()->parameters();
+
         //dd($vals);
         $game = new Game;
         $game->white = 1;
@@ -46,11 +47,13 @@ class GameController extends Controller
 
         event(new GameCreated($game));
 
+        
         return redirect()->route('game.show', $game->id)->with('vals', $vals);
     }
 
     public function show($id)
     {
+        
         $vals = session('vals');
         $game = Game::findOrFail($id);
         return view('game', ['game' => $game,

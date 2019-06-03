@@ -56,11 +56,8 @@ Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
-<<<<<<< HEAD
-Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
+
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
-=======
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
