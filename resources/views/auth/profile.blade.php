@@ -1,6 +1,9 @@
 
     @extends('layouts.app')
     @section('content')
+    <head>
+    <script src="https://kit.fontawesome.com/c3f33bd535.js"></script>
+    </head>
     <div class="container">
             @csrf
             <div class="row my-2">
@@ -172,6 +175,7 @@
                                 <label class="col-lg-3 col-form-label form-control-label">Country</label>
                                 <div class="col-lg-9">
                                     <select id="country" name="country" class="form-control">
+                                        <option selected='selected' value="Choose">Choose</option>
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Åland Islands">Åland Islands</option>
                                         <option value="Albania">Albania</option>
