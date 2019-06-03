@@ -51,19 +51,13 @@
             <div class="main-area-container">
                 <div class="main-area">
                     <div class="game-mode-container">
-                        <<div class="game-mode">
-
+                        <div class="game-mode">
                             <a href="game/home/{{ '1+0' }}">
                                 <h1>1 + 0</h1>
                                 <h4>Bullet</h4>
-
                             </a>
-
                     </div>
-
                 </div>
-
-
                 <div class="game-mode-container">
                     <div class="game-mode">
                         <a href="game/home/{{ '2+1' }}">

@@ -124,24 +124,24 @@
                             @endif
                             <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            
+
                                 @if(strval($are_friends)=='no')
                                 <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
                                  {{ csrf_field() }}
                                 <input type="submit" class="btn btn-primary" value="Add friend">
                                 <input type='hidden' name='userid' value='{{$user[0]->id}}'>
-                                </form> 
+                                </form>
                                 @else
                                 <form action="{{ route('profile.unfriend') }}" method="POST" role="form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="submit" class="btn btn-primary" value="Unfriend">
                                 <input type='hidden' name='userid' value='{{$user[0]->id}}'>
-                                </form> 
+                                </form>
 
                                 @endif
 <!--                               <input type='hidden' name='userid' value='{{$user[0]->id}}'>
  -->                              {{ csrf_field() }}
-                            
+
                             @endif
                         </div>
                         <!--/row-->
@@ -444,12 +444,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bio</label>
                                 <div class="col-lg-9">
-<<<<<<< HEAD
-<!--                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
- -->                                    <textarea class="form-control" value="" rows="3" name='bio'></textarea>
-=======
                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
 
                                 </div>
                             </div>
@@ -467,7 +462,7 @@
                     @endif
                     @if($user[0]->id==auth()->user()->id)
                     <div class="tab-pane" id="requests">
-                  
+
                     {{ csrf_field() }}
 
                         <table class="table table-sm table-hover table-striped">
@@ -477,22 +472,22 @@
                             @if(auth()->user()->id!=$user->id)
                             <tr>
                                 <td>
-                                        
+
                                         <a href="profile/{{ $user->id }}"
                                             style="text-decoration:none; color:blue"><?php echo $user->name;?></a>
                                             requested to be your friend
                                             <a href="profile/accept/{{$user->id}}" type="button" class="btn btn-success" value="Accept">Accept</a>
                                             <a href="profile/decline/{{$user->id}}" type="button" class="btn btn-danger" value="Decline">Decline</a>
-                                       
+
                                 <td>
                             </tr>
                             @endif
                             @endforeach
-                                
+
                             </tbody>
                         </table>
                     {{ csrf_field() }}
-                  
+
                     </div>
                     @endif
                     <div class="tab-pane" id="admin">
@@ -500,26 +495,11 @@
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-<<<<<<< HEAD
-                        
-
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-
-=======
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bio</label>
-                                <div class="col-lg-9">
-                                    <textarea class="form-control"
-                                        value="<?php if($user[0]->bio!=null)echo($user[0]->bio);else echo('Bio goes here....'); ?>"
-                                        rows="3" name='bio'></textarea>
-                                </div>
                             </div>
->>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
                                 <input type="submit" class="btn btn-primary" value="Save Changes">
                             </div>
-                            {{ csrf_field() }}
                     </form>
                     </div>
 
