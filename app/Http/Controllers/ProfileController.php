@@ -131,7 +131,34 @@ class ProfileController extends Controller
     }
 
     public function unfriend(Request $request){
-        //dd('unfriend');
+        $userid= Auth::user()->id;
+        $id = $request->userid;
+        $user1 = DB::table('users')->where('id',$id)->get();
+        $user2 = DB::table('users')->where('id',auth()->user()->id)->get();
+        //dd($user2[0]->name);
+         (DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id))->delete();
+         (DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id))->delete();
+         
+
+                 //////////// code za return
+        $requests = DB::table('requests')->where('to_id',auth()->user()->id)->get();
+        $user = $user1;
+        $frequests[]=$user[0];
+        foreach($requests as $req){
+            $freq=DB::table('users')->where('id',$req->from_id)->get();
+            array_push($frequests,(object)$freq[0]);
+        }
+
+        $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id)->get();
+        $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id)->get();
+
+        $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
+        if(count($af1)==0&&count($af2)==0){
+            return redirect()->route('profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
+        }
+    return redirect()->route('profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
+
+
     }
     public function accept(Request $request){
         $userid= Auth::user()->id;
@@ -189,9 +216,9 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         if(count($af1)==0&&count($af2)==0){
-            return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
+            return redirect()->route('profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
         }
-    return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
+    return redirect()->route('profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
 
 
 
@@ -207,11 +234,11 @@ class ProfileController extends Controller
 
 
         // Get current user
-        if($request->has('country')){
+        if($request->has('country')&&$request->country!='Choose'){
             $user->country=$request->country;
         }
         $user->save();
-        if($request->has('bio')){
+        if($request->has('bio')&&$request->bio!=""){
             $user->bio=$request->bio;
             //dd($request->bio);
         }
