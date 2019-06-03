@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Move;
 use App\Events\GameCreated;
 use App\Events\MoveCreated;
+use App\Events\JoinedSuccessfully;
 
 class GameController extends Controller
 {
@@ -18,46 +19,43 @@ class GameController extends Controller
         return redirect()->back();
     }
 
-    public function insertMove(Request $request)
-    {
-        //dd('test');
-        $fen = $request->fen;
-        $id = $request->id;
-
-        $move = new Move;
-        $move->fen = $fen;
-        $move->game_id = $id;
-        $move->save();
-
-        event(new MoveCreated($move));
-    }
-
     public function store(Request $request)
     {
-        $vals=$request->route()->parameters();
+        $vals=$request->route()->parameters()['value'];
 
-        //dd($vals);
-        $game = new Game;
-        $game->white = 1;
-        $game->black = 2;
+        $game = Game::where('black',null)->where('format',$vals)->first();
+        //dd($game);
+        if($game == null){
+            $game = new Game;
+            $game->white = Auth::user()->id;
+            $game->black = null;
+            $game->format = $vals;
+            $game->save();
 
-        $game->save();
+            $game = Game::latest()->first();
+            event(new GameCreated($game));
 
-        $game = Game::latest()->first();
+        }
+        else{
+            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+            $game->black = Auth::user()->id;
+            $game->save();
+
+            $game = Game::find($game->id);
+            // dd($game);
+            event(new JoinedSuccessfully($game));
+        }
 
         event(new GameCreated($game));
 
-        
-        return redirect()->route('game.show', $game->id)->with('vals', $vals);
+        return redirect()->route('game.show', $game->id);
     }
 
     public function show($id)
     {
-        
-        $vals = session('vals');
         $game = Game::findOrFail($id);
         return view('game', ['game' => $game,
-        'vals' => $vals]);
+        'vals' => $game->format]);
     }
 
 }

@@ -12,7 +12,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class GameCreated implements ShouldBroadcastNow
+class JoinedSuccessfully implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -26,8 +26,6 @@ class GameCreated implements ShouldBroadcastNow
     public function __construct(Game $game)
     {
         $this->game = $game;
-        // $str = explode('+', $this->game->format);
-        // dd('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     /**
@@ -37,13 +35,12 @@ class GameCreated implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        //dd($this->game);
         $str = explode('+', $this->game->format);
         return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
     public function boradcastAs()
     {
-        return 'game.created';
+        return 'joined.successfully';
     }
 }

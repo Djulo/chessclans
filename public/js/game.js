@@ -1,6 +1,4 @@
 Pusher.logToConsole = true;
-
-
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -9,14 +7,23 @@ if (document.getElementById("board")) {
         pgnEl = $('#pgn');
 
     var state = game.fen();
-   
+
     let url = "" + window.location;
     let id = url.split('/')[3];
-    Echo.channel(`game.${id}`)
+    let format = "" + document.getElementById('format').value;
+    format = format.split('+');
+
+    Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
             game.load(e['move'].fen);
             board.position(e['move'].fen);
-        });
+        })
+        .listen('.game.created', (e) => {
+            alert('game created');
+        })
+        .listen('.joined.successfully', (e) => {
+            alert('joined successfully');
+        })
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
@@ -51,7 +58,6 @@ if (document.getElementById("board")) {
 
     var updateStatus = function () {
         var status = '';
-      
 
         var moveColor = 'White';
         if (game.turn() === 'b') {
@@ -63,8 +69,6 @@ if (document.getElementById("board")) {
            document.getElementById("p2").click();
 
          //   board.orientation('white');
-          
-         
         }
         // checkmate?
         if (game.in_checkmate() === true) {
@@ -103,7 +107,6 @@ if (document.getElementById("board")) {
             type: 'POST',
             data: { fen: fen, id: id },
             success: function (response) {
-                //alert('success');
                 console.log('response');
             }
         });
@@ -128,7 +131,7 @@ if (document.getElementById("board")) {
         $.ajax({
             url: 'analyse/' + id + 'next',
             type: 'post',
-            data: { next: i, id: i },
+            data: { next:i, id:i },
             success: function (response) {
                 //console.log(response);
                 board.position(response);
@@ -141,7 +144,7 @@ if (document.getElementById("board")) {
         $.ajax({
             url: 'analyse/' + id + 'next',
             type: 'post',
-            data: { next: i, id: i },
+            data: { next:i, id:i},
             success: function (response) {
                 //console.log(response);
                 board.position(response);

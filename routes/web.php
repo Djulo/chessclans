@@ -46,7 +46,7 @@ Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
-Route::get('/game', 'GameController@store')->name('game');
+Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
 Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
@@ -56,10 +56,9 @@ Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
-
+Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
-Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');

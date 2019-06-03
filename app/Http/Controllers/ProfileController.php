@@ -25,7 +25,7 @@ class ProfileController extends Controller
 
         $requests = DB::table('requests')->where('to_id',$user[0]->id)->get();
         $frequests=array((object)$user[0]);
-        
+
         foreach($requests as $req){
             $freq=DB::table('users')->where('id',$req->from_id)->get();
             array_push($frequests,(object)$freq[0]);
@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $user2 = DB::table('users')->where('id',auth()->user()->id)->get();
         $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user[0]->id)->get();
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
-        
+
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         if(count($af1)==0&&count($af2)==0){
             return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
@@ -50,7 +50,7 @@ class ProfileController extends Controller
         //dd($id);
         $user = DB::table('users')->where('id',$id)->get();
         $requests = DB::table('requests')->where('to_id',$request->id)->get();
-        
+
         $frequests=$user;
         foreach($requests as $req){
             $freq=DB::table('users')->where('id',$req->from_id)->get();
@@ -73,7 +73,7 @@ class ProfileController extends Controller
         $user1 = DB::table('users')->where('id',$request->userid)->get();
         $user2 = DB::table('users')->where('id',auth()->user()->id)->get();
         $requestt = DB::table('requests')->where('to_id',$request->userid)->where('from_id',auth()->user()->id)->get();
-        
+
         if (count($requestt)==0){
         DB::table('requests')->insert([
             ['to_id' => $request->userid, 'from_id' => auth()->user()->id],
@@ -102,9 +102,8 @@ class ProfileController extends Controller
         $user = DB::table('users')->where('id',$request->userid)->get();
         //dd($user->name);
         return view('auth.report',['user'=>$user]);
-        
+
     }
-    
     public function reported(Request $request){
         $user = DB::table('users')->where('name',$request->name)->get();
         //dd($user->name)
@@ -136,7 +135,7 @@ class ProfileController extends Controller
     }
     public function accept(Request $request){
         $userid= Auth::user()->id;
-        
+
 
         $id = $request->route()->parameters();
         $user1 = DB::table('users')->where('id',$id)->get();
@@ -145,7 +144,7 @@ class ProfileController extends Controller
          DB::table('friends')->insert([
              ['id_friend1' => $user1[0]->id, 'id_friend2' => auth()->user()->id],
          ]);
-         
+
          (DB::table('requests')->where('to_id',auth()->user()->id)->where('from_id',$user1[0]->id))->delete();
         (DB::table('requests')->where('from_id',auth()->user()->id)->where('to_id',$user1[0]->id))->delete();
 
@@ -157,7 +156,7 @@ class ProfileController extends Controller
             $freq=DB::table('users')->where('id',$req->from_id)->get();
             array_push($frequests,(object)$freq[0]);
         }
- 
+
         $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id)->get();
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id)->get();
 
@@ -193,7 +192,7 @@ class ProfileController extends Controller
             return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
         }
     return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
-        
+
 
 
     }

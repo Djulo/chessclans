@@ -24,8 +24,7 @@ Broadcast::channel('chat', function ($user) {
 
 use App\Move;
 
-Broadcast::channel('game.{move}', function($user, Move $move) {
-    $game = Game::find($move->game_id);
-    return (int) $user->id === (int) $game->white ||
-        (int) $user->id === (int) $game->black;
+Broadcast::channel('game.{id}.{min}.{inc}', function($user, $id, $format, $inc) {
+    dd($id);
+    return true;
 });
