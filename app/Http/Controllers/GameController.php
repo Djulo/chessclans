@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Move;
 use App\Events\GameCreated;
 use App\Events\MoveCreated;
+use App\Events\JoinedSuccessfully;
 
 class GameController extends Controller
 {
@@ -16,22 +17,6 @@ class GameController extends Controller
     public function index()
     {
         return redirect()->back();
-    }
-
-    public function insertMove(Request $request)
-    {
-        //dd('test');
-        $fen = $request->fen;
-        $id = $request->id;
-
-        $move = new Move;
-        $move->fen = $fen;
-        $move->game_id = $id;
-        $move->save();
-
-        event(new MoveCreated($move));
-
-        return response();
     }
 
     public function store(Request $request)

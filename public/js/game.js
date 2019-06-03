@@ -15,10 +15,15 @@ if (document.getElementById("board")) {
 
     Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
-            alert(e);
             game.load(e['move'].fen);
             board.position(e['move'].fen);
-        });
+        })
+        .listen('.game.created', (e) => {
+            alert('game created');
+        })
+        .listen('.joined.successfully', (e) => {
+            alert('joined successfully');
+        })
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
