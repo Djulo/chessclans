@@ -59,7 +59,7 @@
                         <a  href="game/home/{{ '1+0' }}">
                                 <h1>1 + 0</h1>
                                 <h4>Bullet</h4>
-
+                                
                             </a>
                             
                         </div>

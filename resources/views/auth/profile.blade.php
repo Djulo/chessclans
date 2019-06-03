@@ -32,6 +32,11 @@
                         <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
                     </li>
                     @endif
+                    @if($user[0]->id==auth()->user()->id)
+                    <li class="nav-item">
+                        <a href="" data-target="#requests" data-toggle="tab" class="nav-link">Requests</a>
+                    </li>
+                    @endif
                     @if (Auth::guard('admin')->check())
                     <li class="nav-item">
                         <a href="" data-target="#admin" data-toggle="tab" class="nav-link">Admin</a>
@@ -68,7 +73,7 @@
                                 <font size="4.5"><?php  echo($user[0]->ranking) ?></font>
                                 <i class="fas fa-chess-board fa-lg" size="5x"></i>
                                 <hr>
-                                <span class="badge text-control" role="button"><i class="fas fa-user"></i> 5
+                                <span class="badge text-control" role="button"><i class="fas fa-user"></i> {{$numfriends}}
                                     Friends</span>
                                 <span class="badge text-control"><i class="fas fa-chess-rook"></i> 43 Games</span>
                                 <span class="badge text-control"><i class="fas fa-trophy"></i> 55% Wins </span>
@@ -119,10 +124,24 @@
                             @endif
                             <span style="display:inline-block; width: 20px;"></span>
                             @if($user[0]->id!=auth()->user()->id)
-                            <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
-                              <input type="submit" class="btn btn-primary" value="Add friend">
-                              {{ csrf_field() }}
-                            </form>
+                            
+                                @if(strval($are_friends)=='no')
+                                <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
+                                 {{ csrf_field() }}
+                                <input type="submit" class="btn btn-primary" value="Add friend">
+                                <input type='hidden' name='userid' value='{{$user[0]->id}}'>
+                                </form> 
+                                @else
+                                <form action="{{ route('profile.unfriend') }}" method="POST" role="form" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-primary" value="Unfriend">
+                                <input type='hidden' name='userid' value='{{$user[0]->id}}'>
+                                </form> 
+
+                                @endif
+<!--                               <input type='hidden' name='userid' value='{{$user[0]->id}}'>
+ -->                              {{ csrf_field() }}
+                            
                             @endif
                         </div>
                         <!--/row-->
@@ -425,7 +444,12 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bio</label>
                                 <div class="col-lg-9">
+<<<<<<< HEAD
+<!--                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
+ -->                                    <textarea class="form-control" value="" rows="3" name='bio'></textarea>
+=======
                                     <textarea class="form-control" value="" rows="3" name='bio'></textarea>
+>>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
 
                                 </div>
                             </div>
@@ -441,11 +465,49 @@
                         </form>
                     </div>
                     @endif
+                    @if($user[0]->id==auth()->user()->id)
+                    <div class="tab-pane" id="requests">
+                  
+                    {{ csrf_field() }}
+
+                        <table class="table table-sm table-hover table-striped">
+                            <tbody>
+                            @foreach ($frequests as $user)
+
+                            @if(auth()->user()->id!=$user->id)
+                            <tr>
+                                <td>
+                                        
+                                        <a href="profile/{{ $user->id }}"
+                                            style="text-decoration:none; color:blue"><?php echo $user->name;?></a>
+                                            requested to be your friend
+                                            <a href="profile/accept/{{$user->id}}" type="button" class="btn btn-success" value="Accept">Accept</a>
+                                            <a href="profile/decline/{{$user->id}}" type="button" class="btn btn-danger" value="Decline">Decline</a>
+                                       
+                                <td>
+                            </tr>
+                            @endif
+                            @endforeach
+                                
+                            </tbody>
+                        </table>
+                    {{ csrf_field() }}
+                  
+                    </div>
+                    @endif
                     <div class="tab-pane" id="admin">
                         <form action="{{ route('profile.update') }}" method="POST" role="form"
                             enctype="multipart/form-data">
                             {{ csrf_field() }}
 
+<<<<<<< HEAD
+                        
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+
+=======
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label form-control-label">Bio</label>
                                 <div class="col-lg-9">
@@ -454,6 +516,7 @@
                                         rows="3" name='bio'></textarea>
                                 </div>
                             </div>
+>>>>>>> b7fdd6cc70aea5c84823e73bdd8358abb519b3a8
                                 <input type="submit" class="btn btn-primary" value="Save Changes">
                             </div>
                             {{ csrf_field() }}
