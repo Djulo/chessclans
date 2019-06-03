@@ -22,6 +22,7 @@
     ?>
     <div class="row justify-content-center">
         <div class="col-md-6">
+            <!-- random kom -->
             <div id="board" class="container board" style="width: 400px"></div>
         </div>
         <div class=" col-md-2 flex-container ">
