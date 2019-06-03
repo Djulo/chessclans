@@ -1,4 +1,10 @@
 Pusher.logToConsole = true;
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -17,13 +23,14 @@ if (document.getElementById("board")) {
         .listen('.move.played', (e) => {
             game.load(e['move'].fen);
             board.position(e['move'].fen);
+        });
+
+    Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        .listen('.timer.clicked', (e) => {
+            // alert(e);
+            document.getElementById(e.timer).click();
         })
-        .listen('.game.created', (e) => {
-            alert('game created');
-        })
-        .listen('.joined.successfully', (e) => {
-            alert('joined successfully');
-        })
+
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
@@ -58,17 +65,33 @@ if (document.getElementById("board")) {
 
     var updateStatus = function () {
         var status = '';
+        var fen = game.fen();
+        let url = "" + window.location;
+        let id = url.split('/')[3];
 
         var moveColor = 'White';
         if (game.turn() === 'b') {
             moveColor = 'Black';
-       //     board.orientation('black');
             document.getElementById("p1").click();
+            $.ajax({
+                url: '/timer',
+                type: 'POST',
+                data: { id: id, timer: "p1"},
+                success: function (response) {
+                    // console.log('timer response');
+                }
+            });
         }
         else {
            document.getElementById("p2").click();
-
-         //   board.orientation('white');
+           $.ajax({
+            url: '/timer',
+            type: 'POST',
+            data: { id: id, timer: "p2"},
+            success: function (response) {
+                // console.log('timer response');
+            }
+        });
         }
         // checkmate?
         if (game.in_checkmate() === true) {
@@ -94,20 +117,12 @@ if (document.getElementById("board")) {
         pgnEl.html(game.pgn());
         state = game.fen();
         //ovo je moje da posaljem potez
-        var fen = game.fen();
-        let url = "" + window.location;
-        let id = url.split('/')[3];
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $.ajax({
             url: '/move',
             type: 'POST',
             data: { fen: fen, id: id },
             success: function (response) {
-                console.log('response');
+                // console.log('response');
             }
         });
 
