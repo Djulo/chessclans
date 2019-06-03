@@ -55,7 +55,7 @@
                             <a href="/game" onclick="proba(1,5)">
                                 <h1>1 + 0</h1>
                                 <h4>Bullet</h4>
-
+                                
                             </a>
                         </div>
                     </div>
