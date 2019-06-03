@@ -23,6 +23,7 @@ class CreateUsersTable2	 extends Migration
 			$table->string('country')->nullable()->default(null);
             $table->integer('ranking')->default(1500);
             $table->string('bio')->nullable()->default(null);
+            $table->integer('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
 			

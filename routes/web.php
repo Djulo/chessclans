@@ -38,7 +38,8 @@ Route::prefix('admin')->group(function(){
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
-
+    Route::post('/delete/profile', 'AdminController@deleteProfile')->name('admin.delete.profile');
+    Route::post('/mute/profile', 'AdminController@muteProfile')->name('admin.mute.profile');
     // Password reset routes
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
@@ -70,6 +71,7 @@ Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+
 
 
 
