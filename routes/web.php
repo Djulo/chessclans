@@ -46,14 +46,14 @@ Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
 
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
+
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
 Route::post('/game/{id}/move', 'GameController@insertMove');
-
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
-Route::get('/analyse/{id}', 'AnalyseController@show')->name('analyse.show');
-Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');

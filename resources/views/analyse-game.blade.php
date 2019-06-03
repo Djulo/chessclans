@@ -16,27 +16,14 @@
                     <h1>SVETAA</h1>
                     @endcomponent
 
-                    <form id="analyse-from" action="{{ route('analyse.show') }}" method="POST">
-                        @csrf
-                        <ul class="list-group">
-                        @foreach ($games as $game)
-                                <input type="hidden" name="id" value="{{ $game->id }}">
-                                <button type="submit" class="list-group-item">White: <?= $game->white;?> Black:
-                                    <?= $game->black; ?></button>
-                        @endforeach
-                        </ul>
-                    </form>
 
-                    <form id="analyse-from" action="{{ route('analyse.show') }}" method="POST"
-                        style="display: none;">
-                        @csrf
-                    </form>
-                    {{-- <div id=startGame>
+                    <div id=startGame>
                         <div id="board" class="container board" style="width: 400px"></div>
+                        <button id="fen" value="<?=$moves?>" style="display: none">
                         <button type="button" class="btn btn-primary" onclick=prev()>Prev</button>
                         <button type="button" class="btn btn-primary" onclick=next()>Next</button>
 
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -25,9 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = DB::table('users')->get();
-        //foreach ($users as $user) {
-       //     echo $user->name;
-        //}
+
         return view('home',['users'=>$users]);
     }
 }

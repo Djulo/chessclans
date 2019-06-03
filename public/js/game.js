@@ -15,7 +15,13 @@ if (document.getElementById("board")) {
             .listen('.move.played', (e) => {
                 game.load(e['move'].fen);
                 board.position(e['move'].fen);
-            });
+            })
+            .listen('.game.created', (e) => {
+                alert('New game created');
+            })
+            .listen('.joined.successfully', (e) => {
+                alert("Player two joined game");
+            })
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
@@ -39,7 +45,7 @@ if (document.getElementById("board")) {
         if (move === null) return 'snapback';
 
         updateStatus();
-        state = game.fen();
+        //state = game.fen();
     };
 
     // update the board position after the piece snap
@@ -54,6 +60,8 @@ if (document.getElementById("board")) {
         var moveColor = 'White';
         if (game.turn() === 'b') {
             moveColor = 'Black';
+        }else{
+            moveColor = 'White';
         }
         // checkmate?
         if (game.in_checkmate() === true) {
@@ -108,30 +116,30 @@ if (document.getElementById("board")) {
     var i = 0;
 
     function next() {
-        ++i;
-        let url = "" + window.location;
-        let id = url.split('/')[3];
-        $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next:i, id:i },
-            success: function (response) {
-                //console.log(response);
-                board.position(response);
-            }
-        });
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        i++;
+        game.load(moves[i]);
+        board.position(moves[i]);
+        // let url = "" + window.location;
+        // let id = url.split('/')[3];
+        // $.ajax({
+        //     url: 'analyse/' + id + 'next',
+        //     type: 'post',
+        //     data: { next:i, id:i },
+        //     success: function (response) {
+        //         //console.log(response);
+        //         board.position(response);
+        //     }
+        // });
     }
 
     function prev() {
-        --i;
-        $.ajax({
-            url: 'analyse/' + id + 'next',
-            type: 'post',
-            data: { next:i, id:i},
-            success: function (response) {
-                //console.log(response);
-                board.position(response);
-            }
-        });
+        //alert(moves);
+        moves = document.getElementById('fen').value;
+        moves = moves.split(',');
+        i--;
+        game.load(moves[i]);
+        board.position(moves[i]);
     }
 }
