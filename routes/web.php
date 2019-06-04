@@ -69,6 +69,9 @@ Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.un
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
+
+
+
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
