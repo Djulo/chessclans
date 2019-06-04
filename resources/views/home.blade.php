@@ -21,6 +21,7 @@
                         <div id=startGame>
                             <button type="submit" class="btn btn-primary">Start game</button>
                             <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
+                            <a type="button" href="/ranking" class="btn btn-primary">Ranking</a>
                         </div>
                         <form>
                             <br>

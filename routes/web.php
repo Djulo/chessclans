@@ -17,6 +17,7 @@ use App\Events\TestEvent;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ranking', 'AnalyseController@ranking')->name('gameR');
 
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
@@ -73,8 +74,4 @@ Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
-
-
-
-
 
