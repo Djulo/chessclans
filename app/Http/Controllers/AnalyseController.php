@@ -34,8 +34,12 @@ class AnalyseController extends Controller
             return $move->fen;
         });
 
+        $white = User::findOrFail($game->white);
+        $black = User::findOrFail($game->black);
         // $moves->toJson();
         return view('analyse-game', ['game' => $game,
-            'moves' => $moves->implode(',')]);
+            'moves' => $moves->implode(','),
+            'white' => $white,
+            'black' => $black]);
     }
 }

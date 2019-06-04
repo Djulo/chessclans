@@ -15,9 +15,9 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        // $this->middleware('auth:admin');
         $this->middleware('auth');
-        
+
     }
 
     public function index()
@@ -44,7 +44,7 @@ class ProfileController extends Controller
         if(count($af1)==0&&count($af2)==0){
             return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends]);
         }
-    return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
+        return view('auth.profile',['user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends]);
 
     }
     public function show(Request $request)
@@ -141,7 +141,7 @@ class ProfileController extends Controller
         //dd($user2[0]->name);
          (DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id))->delete();
          (DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id))->delete();
-         
+
 
                  //////////// code za return
         $requests = DB::table('requests')->where('to_id',auth()->user()->id)->get();
