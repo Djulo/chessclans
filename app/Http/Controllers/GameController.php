@@ -128,9 +128,6 @@ class GameController extends Controller
             $winPlayerWins = $winPlayerWins + 1;
             DB::table('users')->where('id', $winPlayer[0]->id)->update(['draws' => $winPlayerWins]);
 
-           
-
-
          }
     }
 }

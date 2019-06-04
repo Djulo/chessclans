@@ -22,6 +22,7 @@ if (document.getElementById("board")) {
     if(document.getElementById('format')){
         format = "" + document.getElementById('format').value;
         format = format.split('+');
+
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
             game.load(e['move'].fen);
@@ -81,33 +82,20 @@ if (document.getElementById("board")) {
         board.position(game.fen());
     };
 
-    
 
-    var updateStatus = function () {
-        
-        var status = '';
-        var fen = game.fen();
+
+    let updateStatus = function () {
+
+        let status = '';
+        let fen = game.fen();
         let url = "" + window.location;
         let id = url.split('/')[3];
-      
+
      //   document.getElementById("nesto").innerHTML=id;
-        var moveColor = 'White';
-        
-        if (game.turn() === 'b') {
-            moveColor = 'Black';
-            document.getElementById("p1").click();
-            $.ajax({
-                url: '/timer',
-                type: 'POST',
-                data: { id: id, timer: "p1"},
-                success: function (response) {
-                    // console.log('timer response');
-                }
-            });
-        }
-        else {
-           document.getElementById("p2").click();
-           $.ajax({
+        let moveColor = (game.turn() == 'w') ? 'White' : 'Black';
+
+        document.getElementById("p1").click();
+        $.ajax({
             url: '/timer',
             type: 'POST',
             data: { id: id, timer: "p2"},
@@ -115,8 +103,7 @@ if (document.getElementById("board")) {
                 // console.log('timer response');
             }
         });
-        }
-        
+
         // checkmate?
         if (game.in_checkmate() === true) {
             status = 'Game over, ' + moveColor + ' is in checkmate.'
