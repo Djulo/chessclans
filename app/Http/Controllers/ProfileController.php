@@ -55,6 +55,7 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
+        //dd($games);
         if(count($af1)==0&&count($af2)==0){
             return view('auth.profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -82,8 +83,8 @@ class ProfileController extends Controller
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $game=null;
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -121,8 +122,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -161,8 +162,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -202,8 +203,8 @@ class ProfileController extends Controller
 
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -251,8 +252,8 @@ class ProfileController extends Controller
 
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -288,8 +289,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
