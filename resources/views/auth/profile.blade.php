@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<head>
-    <script src="https://kit.fontawesome.com/c3f33bd535.js"></script>
-</head>
+
 <div class="container">
     @csrf
     <div class="row my-2">
@@ -70,8 +68,8 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
                         </div>
                         <div class="col-md-6">
-                            <h5>Ranking:</h5>
-                            <font size="4.5"><?php echo ($user[0]->ranking) ?></font>
+                            <h5>CCpoints:</h5>
+                            <font size="4.5"><?php echo ($user[0]->CCpoints) ?></font>
                             <i class="fas fa-chess-board fa-lg" size="5x"></i>
                             <hr>
                             <span class="badge text-control" role="button"><i class="fas fa-user"></i> {{$numfriends}}
@@ -88,17 +86,23 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                    @foreach($games as $game)
                                     <tr>
                                         <td>
-                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
+                                            
+                                            <form action="{{ route('analyse.show') }}" method="POST" id='my_form' name='my_form' role="form" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id-1]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
                                             <span style="color: lightgrey; font-size: 1.1rem;">
                                             <i class="fas fa-chess" color="Mediumslateblue"></i>
                                             </span>
                                             <span style="display:inline-block; width: 20px;"></span>
-                                            <font style=" font-size: 1.1rem;"> 1-0 </font>
+                                            <font style=" font-size: 1.1rem;"><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"> {{$game->winner}} </a></font>
+                                            <input type="hidden" name="id" value='{{$game->id}}'>
                                             <span style="display:inline-block; width: 20px;"></span>
-                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$game->id]->name; ?></a>
+                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$game->id-1]->name; ?></a>
                                             <span style="color: black; font-size: 1.1rem;">
                                             <i class="fas fa-chess"></i>
                                             </span>
+                                            </form>
+                                            
                                         </td>
                                     </tr>
                                    @endforeach
