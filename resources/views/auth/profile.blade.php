@@ -68,8 +68,8 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
                         </div>
                         <div class="col-md-6">
-                            <h5>Ranking:</h5>
-                            <font size="4.5"><?php echo ($user[0]->ranking) ?></font>
+                            <h5>CCpoints:</h5>
+                            <font size="4.5"><?php echo ($user[0]->CCpoints) ?></font>
                             <i class="fas fa-chess-board fa-lg" size="5x"></i>
                             <hr>
                             <span class="badge text-control" role="button"><i class="fas fa-user"></i> {{$numfriends}}
@@ -94,7 +94,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                             <i class="fas fa-chess" color="Mediumslateblue"></i>
                                             </span>
                                             <span style="display:inline-block; width: 20px;"></span>
-                                            <font style=" font-size: 1.1rem;"><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"> 1-0 </a></font>
+                                            <font style=" font-size: 1.1rem;"><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"> {{$game->winner}} </a></font>
                                             <input type="hidden" name="id" value='{{$game->id}}'>
                                             <span style="display:inline-block; width: 20px;"></span>
                                             <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$game->id]->name; ?></a>
