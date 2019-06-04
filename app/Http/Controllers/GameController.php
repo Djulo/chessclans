@@ -38,10 +38,8 @@ class GameController extends Controller
             $initalMove->game_id = $game->id;
             $initalMove->fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
             $initalMove->save();
-
-        }
-        else{
-            if(Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
+        } else {
+            if (Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
             $game->black = Auth::user()->id;
             $game->save();
 
@@ -79,7 +77,60 @@ class GameController extends Controller
     }
     public function gameEnd(Request $request)
     {
-        dd($request->winner);
-    }
+        /*
+        winner: 0->draw;
+                1->white;
+                2->black
+        */
+        // dd($request->gameId);
+        $finishedGame = DB::table('games')->where('id', $request->gameId)->get();
+        $whiteId = $finishedGame[0]->white;
+        $blackId = $finishedGame[0]->black;
+        $winner = $request->winner;
+        // dd($whiteId);
+        if ($winner == 1) {
+            $winPlayer = DB::table('users')->where('id', $whiteId)->get();
+            // dd($winPlayer);
+            $winPlayerWins = $winPlayer[0]->wins;
+            $winPlayerWins = $winPlayerWins + 1;
+            DB::table('users')->where('id', $winPlayer[0]->id)->update(['wins' => $winPlayerWins]);
+            $winPlayer = DB::table('users')->where('id', $whiteId)->get();
 
+            $lostPlayer = DB::table('users')->where('id', $blackId)->get();
+            $lostPlayerLost = $lostPlayer[0]->loses;
+            $lostPlayerLost = $lostPlayerLost + 1;
+            DB::table('users')->where('id', $lostPlayer[0]->id)->update(['loses' => $lostPlayerLost]);
+
+            //  dd(  $winPlayerWins);
+        } else if ($winner == 2) {
+            $winPlayer = DB::table('users')->where('id', $blackId)->get();
+            // dd($winPlayer);
+            $winPlayerWins = $winPlayer[0]->wins;
+            $winPlayerWins = $winPlayerWins + 1;
+            DB::table('users')->where('id', $winPlayer[0]->id)->update(['wins' => $winPlayerWins]);
+
+
+            $lostPlayer = DB::table('users')->where('id', $whiteId)->get();
+            $lostPlayerLost = $lostPlayer[0]->loses;
+            $lostPlayerLost = $lostPlayerLost + 1;
+            DB::table('users')->where('id', $lostPlayer[0]->id)->update(['loses' => $lostPlayerLost]);
+        } else if ($winner == 0) {
+
+            $winPlayer = DB::table('users')->where('id', $whiteId)->get();
+            // dd($winPlayer);
+            $winPlayerWins = $winPlayer[0]->draws;
+            $winPlayerWins = $winPlayerWins + 1;
+            DB::table('users')->where('id', $winPlayer[0]->id)->update(['draws' => $winPlayerWins]);
+            //sve isto i za crnog sad
+            $winPlayer = DB::table('users')->where('id', $blackId)->get();
+            // dd($winPlayer);
+            $winPlayerWins = $winPlayer[0]->draws;
+            $winPlayerWins = $winPlayerWins + 1;
+            DB::table('users')->where('id', $winPlayer[0]->id)->update(['draws' => $winPlayerWins]);
+
+           
+
+
+         }
+    }
 }

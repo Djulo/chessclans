@@ -62,7 +62,10 @@
         <form action="{{ route('game.end') }}" method="POST" role="form" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="cepaj">
-                            <input type='hidden' name='winner' value='1'>
+                            <input  name='winner' id="winner">
+                            <input  id="gameId" name='gameId' >
+                            <div id="nesto">a</div>
+                            <!-- type='hidden' -->
                         </form>
 
 

@@ -89,7 +89,8 @@ if (document.getElementById("board")) {
         var fen = game.fen();
         let url = "" + window.location;
         let id = url.split('/')[3];
-
+      
+     //   document.getElementById("nesto").innerHTML=id;
         var moveColor = 'White';
         
         if (game.turn() === 'b') {
@@ -120,7 +121,15 @@ if (document.getElementById("board")) {
         if (game.in_checkmate() === true) {
             status = 'Game over, ' + moveColor + ' is in checkmate.'
             document.getElementById("setResults").innerHTML=status;
-           
+            document.getElementById("gameId").value=id;
+            //onaj ciji je moveColor je izugbio
+            //funkc vraca 0 ako su stringovi isti
+            if(moveColor.localeCompare('Black')){
+                document.getElementById("winner").value=2;
+            }
+          else {
+            document.getElementById("winner").value=1;
+          }
             document.getElementById("pause").click();
            // alert(status);
         }
@@ -128,7 +137,8 @@ if (document.getElementById("board")) {
         else if (game.in_draw() === true) {
             status = 'Game over, drawn position';
             document.getElementById("setResults").innerHTML=status;
-           
+            document.getElementById("gameId").value=id;
+            document.getElementById("winner").value=0;
             document.getElementById("pause").click();
         }
         // game still on
