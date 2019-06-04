@@ -118,6 +118,9 @@ if (document.getElementById("board")) {
             document.getElementById("winner").value=1;
           }
             document.getElementById("pause").click();
+
+            document.getElementById("completeGame").click();
+            
            // alert(status);
         }
         // draw?
@@ -127,6 +130,7 @@ if (document.getElementById("board")) {
             document.getElementById("gameId").value=id;
             document.getElementById("winner").value=0;
             document.getElementById("pause").click();
+            document.getElementById("completeGame").click();
         }
         // game still on
         else {

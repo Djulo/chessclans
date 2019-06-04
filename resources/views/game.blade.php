@@ -61,9 +61,9 @@
         <!-- <input  style="display:none" class="btn btn-block btn-danger" id="gameEnd" type="button" value="Reset"/> -->
         <form action="{{ route('game.end') }}" method="POST" role="form" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="cepaj">
-                            <input  name='winner' id="winner">
-                            <input  id="gameId" name='gameId' >
+                            <input  style="display:none" type="submit" class="btn btn-primary" id="completeGame" name="completeGame">
+                            <input    style="display:none" name='winner' id="winner">
+                            <input  style="display:none" id="gameId" name='gameId' >
                             <div id="nesto">a</div>
                             <!-- type='hidden' -->
                         </form>
