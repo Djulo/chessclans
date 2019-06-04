@@ -10,7 +10,10 @@
         <div class="col-lg-4 order-lg-1 text-center">
             <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
                 @if ($user[0]->profile_image!=null)
-                <img src="<?php echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
+                <img src="<?php
+
+
+echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
                 @else
                 <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
                 @endif
@@ -73,35 +76,32 @@
                             <hr>
                             <span class="badge text-control" role="button"><i class="fas fa-user"></i> {{$numfriends}}
                                 Friends</span>
-                            <span class="badge text-control"><i class="fas fa-chess-rook"></i> 43 Games</span>
-                            <span class="badge text-control"><i class="fas fa-trophy"></i> 55% Wins </span>
+                            <span class="badge text-control"><i class="fas fa-chess-rook"></i> {{$user[0]->wins+$user[0]->loses}} Games</span>
+                            <span class="badge text-control"><i class="fas fa-trophy"></i> {{$user[0]->wins}} Wins </span>
                         </div>
                         <div class="col-md-12">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Games
                             </h5>
+
                             <table class="table table-sm table-hover table-striped">
                                 <tbody>
+                                   @foreach($games as $game)
                                     <tr>
                                         <td>
-                                            <a><strong>OG</strong> 1-0 <strong>Alek</strong></a>
+                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
+                                            <span style="color: lightgrey; font-size: 1.1rem;">
+                                            <i class="fas fa-chess" color="Mediumslateblue"></i>
+                                            </span>
+                                            <span style="display:inline-block; width: 20px;"></span>
+                                            <font style=" font-size: 1.1rem;"> 1-0 </font>
+                                            <span style="display:inline-block; width: 20px;"></span>
+                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$game->id]->name; ?></a>
+                                            <span style="color: black; font-size: 1.1rem;">
+                                            <i class="fas fa-chess"></i>
+                                            </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a><strong>Alek</strong> 1-0 <strong>OG</strong></a> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a><strong>Milos</strong> 0-1 <strong>OG</strong></a> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a><strong>OG</strong> 1-0 <strong>Agadmator</strong></a> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a><strong>OG</strong> 1-0 <strong>Alek</strong></a> </td>
-                                    </tr>
+                                   @endforeach
                                 </tbody>
                             </table>
                         </div>
