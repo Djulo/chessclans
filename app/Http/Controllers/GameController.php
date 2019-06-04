@@ -87,47 +87,111 @@ class GameController extends Controller
         $whiteId = $finishedGame[0]->white;
         $blackId = $finishedGame[0]->black;
         $winner = $request->winner;
+        
+     
         // dd($whiteId);
         if ($winner == 1) {
             $winPlayer = DB::table('users')->where('id', $whiteId)->get();
+            $lostPlayer = DB::table('users')->where('id', $blackId)->get();
             // dd($winPlayer);
             $winPlayerWins = $winPlayer[0]->wins;
+            $winPlayerCC = $winPlayer[0]->CCpoints;
             $winPlayerWins = $winPlayerWins + 1;
-            DB::table('users')->where('id', $winPlayer[0]->id)->update(['wins' => $winPlayerWins]);
-            $winPlayer = DB::table('users')->where('id', $whiteId)->get();
 
-            $lostPlayer = DB::table('users')->where('id', $blackId)->get();
             $lostPlayerLost = $lostPlayer[0]->loses;
+            $lostPlayerCC = $lostPlayer[0]->CCpoints;
             $lostPlayerLost = $lostPlayerLost + 1;
-            DB::table('users')->where('id', $lostPlayer[0]->id)->update(['loses' => $lostPlayerLost]);
+           
+            //pobede R1=R1+ abs(R2-R1)*0.03+10 
+            $R1= $winPlayerCC;
+            $R2=$lostPlayerCC;
+
+            $winPlayerCC=$R1+($R2-$R1)*0.03 +10;
+            $lostPlayerCC=$R2+($R1-$R2)*0.03 -10;
+            DB::table('users')->where('id', $winPlayer[0]->id)->
+            update(['wins' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
+
+           
+
+
+        
+          
+            DB::table('users')->where('id', $lostPlayer[0]->id)->
+            update(['loses' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
+
 
             //  dd(  $winPlayerWins);
         } else if ($winner == 2) {
             $winPlayer = DB::table('users')->where('id', $blackId)->get();
+            $lostPlayer = DB::table('users')->where('id', $whiteId)->get();
             // dd($winPlayer);
             $winPlayerWins = $winPlayer[0]->wins;
+            $winPlayerCC = $winPlayer[0]->CCpoints;
             $winPlayerWins = $winPlayerWins + 1;
-            DB::table('users')->where('id', $winPlayer[0]->id)->update(['wins' => $winPlayerWins]);
 
-
-            $lostPlayer = DB::table('users')->where('id', $whiteId)->get();
             $lostPlayerLost = $lostPlayer[0]->loses;
+            $lostPlayerCC = $lostPlayer[0]->CCpoints;
             $lostPlayerLost = $lostPlayerLost + 1;
-            DB::table('users')->where('id', $lostPlayer[0]->id)->update(['loses' => $lostPlayerLost]);
+           
+            //pobede R1=R1+ abs(R2-R1)*0.03+10 
+            $R1= $winPlayerCC;
+            $R2=$lostPlayerCC;
+
+            $winPlayerCC=$R1+($R2-$R1)*0.03 +10;
+            $lostPlayerCC=$R2+($R1-$R2)*0.03 -10;
+            DB::table('users')->where('id', $winPlayer[0]->id)->
+            update(['wins' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
+
+           
+
+
+        
+          
+            DB::table('users')->where('id', $lostPlayer[0]->id)->
+            update(['loses' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
         } else if ($winner == 0) {
 
-            $winPlayer = DB::table('users')->where('id', $whiteId)->get();
-            // dd($winPlayer);
-            $winPlayerWins = $winPlayer[0]->draws;
-            $winPlayerWins = $winPlayerWins + 1;
-            DB::table('users')->where('id', $winPlayer[0]->id)->update(['draws' => $winPlayerWins]);
-            //sve isto i za crnog sad
             $winPlayer = DB::table('users')->where('id', $blackId)->get();
+            $lostPlayer = DB::table('users')->where('id', $whiteId)->get();
             // dd($winPlayer);
             $winPlayerWins = $winPlayer[0]->draws;
+            $winPlayerCC = $winPlayer[0]->CCpoints;
             $winPlayerWins = $winPlayerWins + 1;
-            DB::table('users')->where('id', $winPlayer[0]->id)->update(['draws' => $winPlayerWins]);
+
+            $lostPlayerLost = $lostPlayer[0]->draws;
+            $lostPlayerCC = $lostPlayer[0]->CCpoints;
+            $lostPlayerLost = $lostPlayerLost + 1;
+           
+            //R1+(R2-R1)*0.03 
+            $R1= $winPlayerCC;
+            $R2=$lostPlayerCC;
+
+            $winPlayerCC=$R1+($R2-$R1)*0.03;
+            $lostPlayerCC=$R2+($R1-$R2)*0.03;
+            DB::table('users')->where('id', $winPlayer[0]->id)->
+            update(['draws' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
+
+           
+
+
+        
+          
+            DB::table('users')->where('id', $lostPlayer[0]->id)->
+            update(['draws' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
 
          }
+         //update winner
+         if($winner==1){
+             $str="1-0";
+         }
+         
+         if($winner==2){
+            $str="0-1";
+        }
+        if($winner==0){
+            $str="1/2-1/2";
+        }
+         DB::table('games')->where('id',  $request->gameId)->update(['winner' =>  $str]);
+           return redirect()->back();
     }
 }
