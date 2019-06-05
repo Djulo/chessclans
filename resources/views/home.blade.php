@@ -1,38 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">USER Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    @component('components.who')
-
-                    @endcomponent
-                    <form method="POST" action="{{ route('game') }}">
-                        @csrf
-                        <div id=startGame>
-                            <button type="submit" class="btn btn-primary">Start game</button>
-                            <a type="button" href="/analyse" class="btn btn-primary">Analyse game</a>
-                            <a type="button" href="/ranking" class="btn btn-primary">Ranking</a>
-                        </div>
-                        <form>
-                            <br>
-                </div>
-
-            </div>
-        </div>
+          
     </div>
+    <div class=row>
+    <div class="col-sm-8">
     <section id="showcase">
         <div class="showcase-content">
-            <div class="left-content">
+            <div class=" col-sm-3 left-content">
                 <h1>ChessClans</h1>
                 <h2 class="alert-info">#users:</h2>
                 <table class="table table-sm table-hover table-striped">
@@ -48,7 +26,7 @@
                     @endforeach
                 </table>
             </div>
-            <div class="main-area-container">
+            <div class="container col-sm-9 main-area-container">
                 <div class="main-area">
                     <div class="game-mode-container">
                         <div class="game-mode">
@@ -126,6 +104,8 @@
         </div>
 
     </section>
+    </div>
+</div>
 </div>
 
 @endsection
