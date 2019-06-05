@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreated;
 use Illuminate\Http\Request;
 use App\Message;
-use Illuminate\Console\Scheduling\Event;
-use App\Events\MessageCreated;
 
 class MessageController extends Controller
 {
@@ -22,9 +21,8 @@ class MessageController extends Controller
             'body' => $request->body
         ]);
 
-        broadcast(new MessageCreated($message))->toOthers();
-
-        //event(new MessageCreated($message));
+        broadcast(new MessageCreated($message))
+                ->toOthers();
 
         return response()->json($message);
     }

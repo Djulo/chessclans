@@ -13,25 +13,40 @@
                     </div>
                     @endif
                     @component('components.who')
-                    <h1>SVETAA</h1>
                     @endcomponent
-                    <form id="analyse-from" action="{{ route('analyse.show') }}" method="POST">
-                            @csrf
-                            <ul class="list-group">
-                            @foreach ($games as $game)
-                                    <input type="hidden" name="id" value="{{ $game->id }}">
-                                    <button type="submit" class="list-group-item">White: <?= $game->white;?> Black:
-                                        <?= $game->black; ?></button>
-                            @endforeach
-                            </ul>
-                        </form>
 
-                        <form id="analyse-from" action="{{ route('analyse.show') }}" method="POST"
-                            style="display: none;">
-                            @csrf
-                        </form>
+
+                    <table class="table table-sm table-hover table-striped">
+                        <tbody>
+                            @foreach($games as $game)
+                            <tr>
+                                <td>
+                                    <a href="profile/{{ $game['white']->id }}"
+                                        style=" font-size: 1.1rem; text-decoration:none; color:black;"><?= $game['white']->name; ?>
+                                    </a>
+                                    <span style="color: lightgrey; font-size: 1.1rem;">
+                                        <i class="fas fa-chess" color="Mediumslateblue"></i>
+                                    </span>
+                                    <span style="display:inline-block; width: 20px;"></span>
+                                    <a style="font-size: 1.1rem;"> 1-0 </a>
+                                    <span style="display:inline-block; width: 20px;"></span>
+                                    <a href="profile/{{ $game['black']->id }}"
+                                        style=" font-size: 1.1rem; text-decoration:none; color:black;"><?= $game['black']->name; ?></a>
+                                    <span style="color: black; font-size: 1.1rem;">
+                                        <i class="fas fa-chess"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <form id="analyse-form" action="{{ route('analyse.show') }}" method="POST" style="display: none">
+                        @csrf
+                        <input id="game_id" name="id">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

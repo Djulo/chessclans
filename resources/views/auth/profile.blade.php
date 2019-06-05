@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-<head>
-    <script src="https://kit.fontawesome.com/c3f33bd535.js"></script>
-</head>
 <div class="container">
     @csrf
     <div class="row my-2">
@@ -88,7 +84,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                    @foreach($games as $game)
                                     <tr>
                                         <td>
-                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
+                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id]->name; ?></a>
                                             <span style="color: lightgrey; font-size: 1.1rem;">
                                             <i class="fas fa-chess" color="Mediumslateblue"></i>
                                             </span>
@@ -444,7 +440,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
                             </div>
-                    
+
                 </div>
 
 

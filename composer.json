@@ -14,7 +14,7 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
-        "pusher/pusher-php-server": "v3.4.1"
+        "pusher/pusher-php-server": "^3.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

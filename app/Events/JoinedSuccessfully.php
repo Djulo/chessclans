@@ -39,7 +39,7 @@ class JoinedSuccessfully implements ShouldBroadcastNow
         return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
-    public function boradcastAs()
+    public function broadcastAs()
     {
         return 'joined.successfully';
     }

@@ -39,10 +39,10 @@ class GameCreated implements ShouldBroadcastNow
     {
         //dd($this->game);
         $str = explode('+', $this->game->format);
-        return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
+        return new Channel('game.setup');
     }
 
-    public function boradcastAs()
+    public function broadcastAs()
     {
         return 'game.created';
     }

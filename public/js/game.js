@@ -5,6 +5,8 @@ $.ajaxSetup({
     }
 });
 
+
+
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -22,6 +24,12 @@ if (document.getElementById("board")) {
     if(document.getElementById('format')){
         format = "" + document.getElementById('format').value;
         format = format.split('+');
+
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        .listen('.joined.successfully', (e) => {
+            console.log('Opponent joined');
+            alert('Opponent joined');
+        })
 
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
@@ -81,8 +89,6 @@ if (document.getElementById("board")) {
     var onSnapEnd = function () {
         board.position(game.fen());
     };
-
-
 
     let updateStatus = function () {
 

@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
 
-    protected $fillable = [
-        'body',
-    ];
+    protected $fillable = ['body'];
 
     protected $appends = ['selfMessage'];
 
@@ -22,5 +20,4 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }
