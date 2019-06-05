@@ -9,6 +9,7 @@ use App\Admin;
 use DB;
 use App\Game;
 use Auth;
+use App\Friend;
 
 class ProfileController extends Controller
 {
@@ -41,16 +42,20 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
 
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
+        //$games[]=null;
+       // array_push($games,DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get());
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
+            //dd($u->name);
             $u=User::find(Game::find($game->id)->white);
+            //dd($u->name);
             array_push($whiteUsers,(object)$u);
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-
+        //dd($games);
         if(count($af1)==0&&count($af2)==0){
             return view('auth.profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -60,7 +65,8 @@ class ProfileController extends Controller
     public function show(Request $request)
     {
         $id = $request->route()->parameters();
-        //dd($id);
+       // dd($id);
+
         $user = DB::table('users')->where('id',$id)->get();
         $requests = DB::table('requests')->where('to_id',$request->id)->get();
 
@@ -75,16 +81,16 @@ class ProfileController extends Controller
         $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user[0]->id)->get();
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
+        $game=null;
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-
         if(count($af1)==0&&count($af2)==0){
             return view('auth.profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -116,8 +122,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -126,9 +132,9 @@ class ProfileController extends Controller
         }
 
         if(count($af1)==0&&count($af2)==0){
-            return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
+            return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
-        return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
+        return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
     }
     public function report(Request $request){
@@ -156,8 +162,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -197,8 +203,8 @@ class ProfileController extends Controller
 
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -207,9 +213,9 @@ class ProfileController extends Controller
         }
 
         if(count($af1)==0&&count($af2)==0){
-            return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
+            return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
-        return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
+        return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
 
 
@@ -222,6 +228,9 @@ class ProfileController extends Controller
         $user1 = DB::table('users')->where('id',$id)->get();
         $user2 = DB::table('users')->where('id',auth()->user()->id)->get();
         //dd($user2[0]->name);
+         $check=DB::table('friends')->where('id_friend1',$id)->where('id_friend2',auth()->user()->id)->first();
+         $check1=DB::table('friends')->where('id_friend2',$id)->where('id_friend1',auth()->user()->id)->first();
+         if($check==null&&$check1==null)
          DB::table('friends')->insert([
              ['id_friend1' => $user1[0]->id, 'id_friend2' => auth()->user()->id],
          ]);
@@ -242,8 +251,9 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id)->get();
 
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -252,9 +262,9 @@ class ProfileController extends Controller
         }
 
         if(count($af1)==0&&count($af2)==0){
-            return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
+            return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
-        return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
+        return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
 
 
@@ -279,8 +289,8 @@ class ProfileController extends Controller
         $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers[]=null;
-        $blackUsers[]=null;
+        $whiteUsers=[];
+        $blackUsers=[];
         foreach($games as $game){
             $u=User::find(Game::find($game->id)->white);
             array_push($whiteUsers,(object)$u);
@@ -289,9 +299,9 @@ class ProfileController extends Controller
         }
 
         if(count($af1)==0&&count($af2)==0){
-            return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
+            return redirect()->back()->with('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
-        return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
+        return redirect()->back()->with('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
 
     }

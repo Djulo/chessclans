@@ -21,7 +21,7 @@ class CreateUsersTable2	 extends Migration
             $table->string('profile_image')->nullable();
             $table->string('password');
 			$table->string('country')->nullable()->default(null);
-            $table->integer('ranking')->default(1500);
+            $table->integer('CCpoints')->default(1500);
             $table->integer('wins')->default(0);
             $table->integer('loses')->default(0);
             $table->integer('draws')->default(0);

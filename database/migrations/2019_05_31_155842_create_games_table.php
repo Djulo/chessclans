@@ -17,6 +17,7 @@ class CreateGamesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('white')->unsigned();
             $table->bigInteger('black')->unsigned()->nullable();
+            $table->string('winner')->default("-");
             $table->string('format');
             $table->timestamps();
         });
