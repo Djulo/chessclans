@@ -5,8 +5,6 @@ $.ajaxSetup({
     }
 });
 
-
-
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -126,7 +124,7 @@ if (document.getElementById("board")) {
             document.getElementById("pause").click();
 
             document.getElementById("completeGame").click();
-            
+
            // alert(status);
         }
         // draw?
