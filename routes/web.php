@@ -76,7 +76,11 @@ Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
-Route::get('/showprofile', 'ShowProfileController@index')->name('showprofile');
+Route::get('/profile/myprofile', 'ProfileController@showIndex')->name('profile.myprofile');
 
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
+
+
+
+Route::get('/showprofile', 'ShowProfileController@index')->name('showprofile');
 

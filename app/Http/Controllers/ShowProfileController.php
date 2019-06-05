@@ -23,7 +23,7 @@ class ShowProfileController extends Controller
 
     public function index(Request $request)
     {
-        $id = $request->session->get('profileID');
+        $id = $request->session()->get('profileID');
         dd($id);
 
         $user = DB::table('users')->where('id',$id)->get();
