@@ -54,7 +54,4 @@ window.Echo = new Echo({
     encrypted: true
 });
 
-import {chessboard} from 'vue-chessboard'
-import 'vue-chessboard/dist/vue-chessboard.css'
-
 require('./echo');

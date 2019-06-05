@@ -33,11 +33,11 @@ class GameController extends Controller
             $game->save();
 
             $game = Game::latest()->first();
-            event(new GameCreated($game));
             $initalMove = new Move;
             $initalMove->game_id = $game->id;
             $initalMove->fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
             $initalMove->save();
+            broadcast(new GameCreated($game));
         } else {
             if (Auth::user()->id == $game->white) return redirect()->route('game.show', $game->id);
             $game->black = Auth::user()->id;
@@ -45,10 +45,8 @@ class GameController extends Controller
 
             $game = Game::find($game->id);
             // dd($game);
-            event(new JoinedSuccessfully($game));
+            broadcast(new JoinedSuccessfully($game))->toOthers();
         }
-
-        event(new GameCreated($game));
 
         return redirect()->route('game.show', $game->id);
     }

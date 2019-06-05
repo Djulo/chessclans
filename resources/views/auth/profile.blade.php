@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 9ef738f8fc2175a384eae43e5a575a22c29106ae
 <div class="container">
     @csrf
     <div class="row my-2">
@@ -86,7 +89,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                    @foreach($games as $game)
                                     <tr>
                                         <td>
-                                            
+
                                             <form action="{{ route('analyse.show') }}" method="POST" id='my_form' name='my_form' role="form" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id-1]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
@@ -102,7 +105,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                             <i class="fas fa-chess"></i>
                                             </span>
                                             </form>
-                                            
+
                                         </td>
                                     </tr>
                                    @endforeach
@@ -448,7 +451,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                     <option value="Zimbabwe">Zimbabwe</option>
                                 </select>
                             </div>
-                    
+
                 </div>
 
 

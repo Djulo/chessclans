@@ -12,7 +12,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class MessageCreated implements ShouldBroadcastNow
+class MessageCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -39,7 +39,6 @@ class MessageCreated implements ShouldBroadcastNow
         ];
     }
 
-
     /**
      * Get the channels the event should broadcast on.
      *
@@ -49,5 +48,4 @@ class MessageCreated implements ShouldBroadcastNow
     {
         return new PresenceChannel('chat');
     }
-
 }

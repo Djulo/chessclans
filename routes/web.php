@@ -19,6 +19,12 @@ Route::get('/', function () {
 });
 Route::get('/ranking', 'AnalyseController@ranking')->name('gameR');
 
+Route::post('pusherAuth', 'ChatController@pusherAuth');
+
+Route::get('/chat', 'ChatController@index')->name('chat');
+Route::get('/message', 'MessageController@index')->name('message');
+Route::post('/message', 'MessageController@store')->name('message.store');
+
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');
 
@@ -53,16 +59,11 @@ Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
 Route::get('/analyse/{id}', 'AnalyseController@show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
-Route::get('/chat', 'ChatController@index')->name('chat');
-Route::get('/message', 'MessageController@index')->name('message');
-Route::post('/message', 'MessageController@store')->name('message.store');
-
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
 Route::post('/game', 'GameController@store');
 Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
 Route::post('/game/{id}/move', 'GameController@insertMove');
-//Route::get('/gameEnd', 'GameController@gameEnd')->name('gameEnd');
 Route::post('/gameEnd', 'GameController@gameEnd')->name('game.end');
 
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');

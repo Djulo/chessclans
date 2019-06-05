@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         //$this->middleware('auth:admin');
         $this->middleware('auth');
-        
+
     }
 
     public function index()
@@ -66,7 +66,7 @@ class ProfileController extends Controller
     {
         $id = $request->route()->parameters();
        // dd($id);
-        
+
         $user = DB::table('users')->where('id',$id)->get();
         $requests = DB::table('requests')->where('to_id',$request->id)->get();
 
@@ -130,7 +130,7 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-        
+
         if(count($af1)==0&&count($af2)==0){
             return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -170,7 +170,7 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-        
+
         if(count($af1)==0&&count($af2)==0){
             return redirect()->route('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -187,7 +187,7 @@ class ProfileController extends Controller
         //dd($user2[0]->name);
          (DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id))->delete();
          (DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id))->delete();
-         
+
 
                  //////////// code za return
         $requests = DB::table('requests')->where('to_id',auth()->user()->id)->get();
@@ -211,13 +211,13 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-        
+
         if(count($af1)==0&&count($af2)==0){
             return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
         return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
-        
-        
+
+
 
     }
     public function accept(Request $request){
@@ -260,7 +260,7 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-        
+
         if(count($af1)==0&&count($af2)==0){
             return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }
@@ -297,7 +297,7 @@ class ProfileController extends Controller
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);
         }
-        
+
         if(count($af1)==0&&count($af2)==0){
             return redirect()->back()->with('profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
         }

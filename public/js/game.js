@@ -84,7 +84,7 @@ if (document.getElementById("board")) {
 
     let moveColor;
     var setGameEnd = function (winner) {
-        alert(winner);
+        //alert(winner);
         document.getElementById("gameId").value=id;
         document.getElementById("winner").value=winner;
         //onaj ciji je moveColor je izugbio

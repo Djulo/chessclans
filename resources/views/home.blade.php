@@ -30,7 +30,6 @@
             </div>
         </div>
     </div>
-
     <section id="showcase">
         <div class="showcase-content">
             <div class="left-content">

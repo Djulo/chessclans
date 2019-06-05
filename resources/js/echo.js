@@ -1,5 +1,3 @@
-
-
 import Event from './event';
 
 Echo.join('chat')
@@ -15,4 +13,7 @@ Echo.join('chat')
     .listen('MessageCreated', (data) => {
         Event.$emit('added_message', data.message);
     })
-
+    .listen('.pusher:subscription_error', (data) => {
+        alert('test');
+        console.log(data);
+    });

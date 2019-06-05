@@ -22,9 +22,10 @@ Broadcast::channel('chat', function ($user) {
     ];
 });
 
-use App\Move;
+use App\Game;
 
 Broadcast::channel('game.{id}.{min}.{inc}', function($user, $id, $format, $inc) {
-    dd($id);
-    return true;
+    $game = Game::findOrFail($id);
+    return (int) $user->id === (int) $game->white ||
+            (int) $user->id === (int) $game->black;
 });
