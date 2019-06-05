@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 9ef738f8fc2175a384eae43e5a575a22c29106ae
 <div class="container">
     @csrf
     <div class="row my-2">

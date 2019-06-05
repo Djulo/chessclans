@@ -53,5 +53,5 @@ class AnalyseController extends Controller
         return view('ranking',['users'=>$users]);
     }
 
-   
+
 }
