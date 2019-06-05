@@ -16,10 +16,12 @@
                     @endcomponent
 
 
-                    <table class="table table-sm table-hover table-striped">
+                    <table class="table table-sm table-hover table-striped text-center">
                         <tbody>
                             @foreach($games as $game)
-                            <tr>
+                        <tr onclick="event.preventDefault();
+                            document.getElementById('game_id').value={{ $game['game']->id }};
+                            document.getElementById('analyse-form').submit();">
                                 <td>
                                     <a href="profile/{{ $game['white']->id }}"
                                         style=" font-size: 1.1rem; text-decoration:none; color:black;"><?= $game['white']->name; ?>
@@ -28,7 +30,7 @@
                                         <i class="fas fa-chess" color="Mediumslateblue"></i>
                                     </span>
                                     <span style="display:inline-block; width: 20px;"></span>
-                                    <a style="font-size: 1.1rem;"> 1-0 </a>
+                                    <a style="font-size: 1.1rem;"> {{ $game['game']->winner }}</a>
                                     <span style="display:inline-block; width: 20px;"></span>
                                     <a href="profile/{{ $game['black']->id }}"
                                         style=" font-size: 1.1rem; text-decoration:none; color:black;"><?= $game['black']->name; ?></a>

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Move;
 use App\Events\GameCreated;
 use App\Events\MoveCreated;
+use App\Events\StatusUpdated;
+use App\Events\GameEnded;
 
 class GameController extends Controller
 {
@@ -82,11 +84,13 @@ class GameController extends Controller
         */
         // dd($request->gameId);
         $finishedGame = DB::table('games')->where('id', $request->gameId)->get();
+        $game = Game::find($request->gameId);
+        broadcast(new GameEnded($game))->toOthers();
         $whiteId = $finishedGame[0]->white;
         $blackId = $finishedGame[0]->black;
         $winner = $request->winner;
-        
-     
+
+
         // dd($whiteId);
         if ($winner == 1) {
             $winPlayer = DB::table('users')->where('id', $whiteId)->get();
@@ -99,8 +103,8 @@ class GameController extends Controller
             $lostPlayerLost = $lostPlayer[0]->loses;
             $lostPlayerCC = $lostPlayer[0]->CCpoints;
             $lostPlayerLost = $lostPlayerLost + 1;
-           
-            //pobede R1=R1+ abs(R2-R1)*0.03+10 
+
+            //pobede R1=R1+ abs(R2-R1)*0.03+10
             $R1= $winPlayerCC;
             $R2=$lostPlayerCC;
 
@@ -109,11 +113,11 @@ class GameController extends Controller
             DB::table('users')->where('id', $winPlayer[0]->id)->
             update(['wins' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
 
-           
 
 
-        
-          
+
+
+
             DB::table('users')->where('id', $lostPlayer[0]->id)->
             update(['loses' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
 
@@ -130,8 +134,8 @@ class GameController extends Controller
             $lostPlayerLost = $lostPlayer[0]->loses;
             $lostPlayerCC = $lostPlayer[0]->CCpoints;
             $lostPlayerLost = $lostPlayerLost + 1;
-           
-            //pobede R1=R1+ abs(R2-R1)*0.03+10 
+
+            //pobede R1=R1+ abs(R2-R1)*0.03+10
             $R1= $winPlayerCC;
             $R2=$lostPlayerCC;
 
@@ -140,11 +144,11 @@ class GameController extends Controller
             DB::table('users')->where('id', $winPlayer[0]->id)->
             update(['wins' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
 
-           
 
 
-        
-          
+
+
+
             DB::table('users')->where('id', $lostPlayer[0]->id)->
             update(['loses' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
         } else if ($winner == 0) {
@@ -159,8 +163,8 @@ class GameController extends Controller
             $lostPlayerLost = $lostPlayer[0]->draws;
             $lostPlayerCC = $lostPlayer[0]->CCpoints;
             $lostPlayerLost = $lostPlayerLost + 1;
-           
-            //R1+(R2-R1)*0.03 
+
+            //R1+(R2-R1)*0.03
             $R1= $winPlayerCC;
             $R2=$lostPlayerCC;
 
@@ -169,11 +173,11 @@ class GameController extends Controller
             DB::table('users')->where('id', $winPlayer[0]->id)->
             update(['draws' => $winPlayerWins,'CCpoints'=>$winPlayerCC]);
 
-           
 
 
-        
-          
+
+
+
             DB::table('users')->where('id', $lostPlayer[0]->id)->
             update(['draws' => $lostPlayerLost,'CCpoints'=>$lostPlayerCC]);
 
@@ -182,7 +186,7 @@ class GameController extends Controller
          if($winner==1){
              $str="1-0";
          }
-         
+
          if($winner==2){
             $str="0-1";
         }
@@ -190,6 +194,16 @@ class GameController extends Controller
             $str="1/2-1/2";
         }
          DB::table('games')->where('id',  $request->gameId)->update(['winner' =>  $str]);
-           return redirect()->back();
+
+        //return redirect()->back();
+        return response('ok',200);
+    }
+
+    public function status(Request $request)
+    {
+        $game = Game::find($request->id);
+        broadcast(new StatusUpdated($game, $request->status))->toOthers();
+
+        return response('ok', 200);
     }
 }

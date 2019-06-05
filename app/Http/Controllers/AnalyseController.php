@@ -46,4 +46,12 @@ class AnalyseController extends Controller
         return view('analyse-game', ['game' => $game,
             'moves' => $moves->implode(',')]);
     }
+    public function ranking()
+    {
+        $users = DB::table('users')->get()->sortByDesc('CCpoints');
+
+        return view('ranking',['users'=>$users]);
+    }
+
+
 }

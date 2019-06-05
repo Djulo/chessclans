@@ -5,8 +5,6 @@ $.ajaxSetup({
     }
 });
 
-
-
 if (document.getElementById("board")) {
     var board,
         game = new Chess(),
@@ -26,12 +24,6 @@ if (document.getElementById("board")) {
         format = format.split('+');
 
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
-        .listen('.joined.successfully', (e) => {
-            console.log('Opponent joined');
-            alert('Opponent joined');
-        })
-
-        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.move.played', (e) => {
             game.load(e['move'].fen);
             board.position(e['move'].fen);
@@ -41,7 +33,23 @@ if (document.getElementById("board")) {
         .listen('.timer.clicked', (e) => {
             // alert(e);
             document.getElementById(e.timer).click();
-        })
+        });
+
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        .listen('.status.updated', (e) => {
+            console.log(e);
+            document.getElementById("setResults").innerHTML=e.status;
+        });
+
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        .listen('.joined.successfully', (e) => {
+            alert('Opponent joined');
+        });
+
+        Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
+        .listen('.game.ended', (e) => {
+            document.getElementById("pause").click();
+        });
 
         $.ajax({
             url: '/turn',
@@ -90,6 +98,39 @@ if (document.getElementById("board")) {
         board.position(game.fen());
     };
 
+    let moveColor;
+    var setGameEnd = function (winner) {
+        //alert(winner);
+        document.getElementById("gameId").value=id;
+        document.getElementById("winner").value=winner;
+        //onaj ciji je moveColor je izugbio
+        //funkc vraca 0 ako su stringovi isti
+
+        document.getElementById("pause").click();
+
+        //document.getElementById("completeGame").click();
+        $.ajax({
+            url: '/gameEnd',
+            type: 'POST',
+            data: { gameId: id, winner: winner},
+            success: function (response) {
+                // console.log('timer response');
+            }
+        });
+
+        $.ajax({
+            url: '/status',
+            type: 'POST',
+            data: { id: id, status:document.getElementById("setResults").innerHTML},
+            success: function (response) {
+                // console.log('timer response');
+            }
+        });
+
+        return true;
+
+    };
+
     let updateStatus = function () {
 
         let status = '';
@@ -98,7 +139,7 @@ if (document.getElementById("board")) {
         let id = url.split('/')[3];
 
      //   document.getElementById("nesto").innerHTML=id;
-        let moveColor = (game.turn() == 'w') ? 'White' : 'Black';
+        moveColor = (game.turn() == 'w') ? 'White' : 'Black';
 
         document.getElementById("p1").click();
         $.ajax({
@@ -113,30 +154,25 @@ if (document.getElementById("board")) {
         // checkmate?
         if (game.in_checkmate() === true) {
             status = 'Game over, ' + moveColor + ' is in checkmate.'
-            document.getElementById("setResults").innerHTML=status;
-            document.getElementById("gameId").value=id;
-            //onaj ciji je moveColor je izugbio
-            //funkc vraca 0 ako su stringovi isti
             if(moveColor.localeCompare('Black')){
-                document.getElementById("winner").value=2;
+              setGameEnd(2);
             }
           else {
-            document.getElementById("winner").value=1;
+            setGameEnd(1);
           }
-            document.getElementById("pause").click();
 
-            document.getElementById("completeGame").click();
-            
+
            // alert(status);
         }
         // draw?
         else if (game.in_draw() === true) {
             status = 'Game over, drawn position';
-            document.getElementById("setResults").innerHTML=status;
-            document.getElementById("gameId").value=id;
-            document.getElementById("winner").value=0;
-            document.getElementById("pause").click();
-            document.getElementById("completeGame").click();
+            if(moveColor.localeCompare('Black')){
+                setGameEnd(2);
+              }
+            else {
+              setGameEnd(1);
+            }
         }
         // game still on
         else {
@@ -152,6 +188,15 @@ if (document.getElementById("board")) {
         pgnEl.html(game.pgn());
         state = game.fen();
         document.getElementById("setResults").innerHTML=status;
+        $.ajax({
+            url: '/status',
+            type: 'POST',
+            data: { id: id, status:status},
+            success: function (response) {
+                // console.log('timer response');
+            }
+        });
+
         //ovo je moje da posaljem potez
         $.ajax({
             url: '/move',

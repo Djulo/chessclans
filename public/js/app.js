@@ -63771,9 +63771,6 @@ Echo.join('chat').here(function (users) {
   _event__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('users.left', user);
 }).listen('MessageCreated', function (data) {
   _event__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('added_message', data.message);
-}).listen('.pusher:subscription_error', function (data) {
-  alert('test');
-  console.log(data);
 });
 
 /***/ }),
