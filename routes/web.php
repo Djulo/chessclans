@@ -17,9 +17,7 @@ use App\Events\TestEvent;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/analyse', 'AnalyseController@index')->name('analyse');
-Route::get('/ranking', 'AnalyseController@ranking')->name('gameR');
-Route::post('/status', 'GameController@status');
+
 Route::post('pusherAuth', 'ChatController@pusherAuth');
 
 Route::get('/chat', 'ChatController@index')->name('chat');
@@ -55,7 +53,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
-
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
 Route::get('/analyse/{id}', 'AnalyseController@show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
@@ -78,5 +76,7 @@ Route::get('/profile/{user}', 'ProfileController@show');
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::get('/showprofile', 'ShowProfileController@index')->name('showprofile');
+
 Route::post('/profile/update', 'ProfileController@updatePicture')->name('profile.update');
 
