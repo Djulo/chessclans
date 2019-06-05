@@ -17,6 +17,7 @@ use App\Events\TestEvent;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ranking', 'AnalyseController@ranking')->name('gameR');
 
 Route::post('pusherAuth', 'ChatController@pusherAuth');
 

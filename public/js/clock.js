@@ -38,6 +38,8 @@
         return $("#right .toggle").addClass("btn-primary");
       }
     };
+    let url = "" + window.location;
+    let id = url.split('/')[3];
   
   
     // restores both toggles to original state
@@ -100,6 +102,7 @@
             //exit();
             clearInterval(rightTimer);
             clearInterval(leftTimer);
+            setGameEnd(2);
             return;
             return clearInterval(self);
           }
@@ -129,6 +132,7 @@
             //exit();
             clearInterval(rightTimer);
             clearInterval(leftTimer);
+            setGameEnd(1);
             return;
             return clearInterval(self);
           }
