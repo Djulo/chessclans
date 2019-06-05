@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/ranking', 'AnalyseController@ranking')->name('gameR');
-
+Route::post('/status', 'GameController@status');
 Route::post('pusherAuth', 'ChatController@pusherAuth');
 
 Route::get('/chat', 'ChatController@index')->name('chat');
