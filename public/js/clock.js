@@ -1,3 +1,7 @@
+/**
+ * Fajl za kontrolu tajmera za sah;
+ * Autor:Svetozar Micanovic 
+ */
 
 (function () {
     // format duration as string
