@@ -10,7 +10,12 @@ use DB;
 use App\Game;
 use Auth;
 use App\Friend;
-
+/**autor Ognjen Bogicevic 0571/2016
+ * autor Stefan Pusica 0088/2016
+ * ProfileController je klasa koja nasledjuje Controller klasu laravela
+ * odgovorna je za sve funkcije koje se mogu izvrsavati na profilu korisnika kao sto su add friend, report user, 
+ * accept request, decline request i slanje parametara stranici koje ona treba da sadrzi
+ */
 class ProfileController extends Controller
 {
     use UploadTrait;
@@ -21,7 +26,10 @@ class ProfileController extends Controller
          $this->middleware('auth');
 
     }
-
+    /**
+     * indeks funkcija se poziva svaki put kada je neophodan poziv profila korisnika
+     * Request $request je laravelov ragument preko kojeg se obracamo parametrima forme ili parametrima rute
+     */
     public function index(Request $request)
     {
         //dd($userid= $request->session()->get('profileID'));
@@ -67,12 +75,17 @@ class ProfileController extends Controller
         return view('auth.profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
     }
+    /**
+     * funkcija koja zove indeks funkciju i salje mu id trenutno ulogovanog usera
+     */
     public function showIndex(Request $request){
        $request->session()->put('profileID',auth()->user()->id);
        return redirect()->route('profile');
 
     }
-
+    /**
+     * funkcija koja poziva index i salje mu id usera ciji profil zelimo da vidimo
+     */
     public function show(Request $request)
     {
         $id = $request->route()->parameters();
@@ -86,6 +99,12 @@ class ProfileController extends Controller
 
 
     }
+
+    /**
+     * funkcija koja salje zahtev za prijateljstvo
+     * korisniku sa odabranim id-jem
+     *  
+     */
     public function add(Request $request){
        // dd('d');
         $user1 = DB::table('users')->where('id',$request->userid)->get();
@@ -97,52 +116,29 @@ class ProfileController extends Controller
             ['to_id' => $request->userid, 'from_id' => auth()->user()->id],
         ]);
         }
-        //////////// code za return
-        $user=$user1;
-        $requests = DB::table('requests')->where('to_id',$request->id)->get();
-        $frequests[]=$user[0];
-        foreach($requests as $req){
-            $freq=DB::table('users')->where('id',$req->from_id)->get();
-            array_push($frequests,(object)$freq[0]);
-
-        }
-        $user2 = DB::table('users')->where('id',auth()->user()->id)->get();
-        $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user[0]->id)->get();
-        $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user[0]->id)->get();
-        $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
-        $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers=[];
-        $blackUsers=[];
-        foreach($games as $game){
-            $u=User::find(Game::find($game->id)->white);
-            array_push($whiteUsers,(object)$u);
-            $u=User::find(Game::find($game->id)->black);
-            array_push($blackUsers,(object)$u);
-        }
-
-        if(count($af1)==0&&count($af2)==0){
-            return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
-        }
-        return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
+        
+  
+        return redirect()->back();
 
     }
-    public function reportbug(Request $request){
-        dd('a');
-        $user = DB::table('users')->where('id',$request->userid)->get();
-        //dd($user->name);
-        return view('auth.report',['user'=>$user,'bug'=>'yes']);
-
-    }
+    /**
+     * Funkcija koja pociva stranicu report.blade.php koja ima formu za reportovanje
+     */
+   
     public function report(Request $request){
         $user = DB::table('users')->where('id',$request->userid)->get();
         //dd($user->name);
         return view('auth.report',['user'=>$user,'bug'=>'no']);
 
     }
+    /**
+     * report funkcija se poziva kada se potvrdi report forma, funkcija obradi podatke, 
+     * ubaci odgovarajuce redove u bazu i te redove ce kasnije admin izlistati
+     * 
+     */
     public function reported(Request $request){
         $user = DB::table('users')->where('name',$request->name)->get();
-        //dd($user->name)
-        //dd($request->reason);
+
         DB::table('report')->insert([
             ['message' => $request->reason, 'idReporter' => auth()->user()->id,'idReported' => $user[0]->id],
         ]);
@@ -174,7 +170,9 @@ class ProfileController extends Controller
 
 
     }
-
+    /**
+     * funkcija brise iz baze prijate
+     */
     public function unfriend(Request $request){
         $userid= Auth::user()->id;
         $id = $request->userid;
@@ -184,38 +182,12 @@ class ProfileController extends Controller
          (DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id))->delete();
          (DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id))->delete();
 
-
-                 //////////// code za return
-        $requests = DB::table('requests')->where('to_id',auth()->user()->id)->get();
-        $user = $user1;
-        $frequests[]=$user[0];
-        foreach($requests as $req){
-            $freq=DB::table('users')->where('id',$req->from_id)->get();
-            array_push($frequests,(object)$freq[0]);
-        }
-
-        $af1=DB::table('friends')->where('id_friend1',auth()->user()->id)->where('id_friend2',$user1[0]->id)->get();
-        $af2=DB::table('friends')->where('id_friend2',auth()->user()->id)->where('id_friend1',$user1[0]->id)->get();
-
-        $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
-        $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
-        $whiteUsers=[];
-        $blackUsers=[];
-        foreach($games as $game){
-            $u=User::find(Game::find($game->id)->white);
-            array_push($whiteUsers,(object)$u);
-            $u=User::find(Game::find($game->id)->black);
-            array_push($blackUsers,(object)$u);
-        }
-
-        if(count($af1)==0&&count($af2)==0){
-            return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'no','numfriends'=>$numfriends,'games'=>$games]);
-        }
-        return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
-
-
+        return redirect()->back();
 
     }
+    /**
+     * funkcija koja prihvata zahtev za prijateljstvo i to prijateljstvo dodaje u bazu podataka
+     */
     public function accept(Request $request){
         $userid= Auth::user()->id;
 
@@ -265,6 +237,7 @@ class ProfileController extends Controller
 
 
     }
+
     public function decline (Request $request){
 
         $id = $request->route()->parameters();
