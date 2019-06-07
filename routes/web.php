@@ -41,9 +41,6 @@ Auth::routes(['verify' => true]);
 Route::get('/reportbug', 'HomeController@reportbug')->name('report.bug');
 Route::post('/reported', 'HomeController@reported')->name('reported.bug');
 
-Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
-Route::get('/analyse/{id}', 'AnalyseController@show');
-Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tutorials', 'HomeController@tutorials')->name('tutorials');
@@ -65,7 +62,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
-
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+Route::get('/analyse/{id}', 'AnalyseController@show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');

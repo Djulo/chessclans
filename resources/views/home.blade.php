@@ -12,7 +12,7 @@
         <div class="showcase-content">
             @if(auth()->user() != null)
             <div class=" col-sm-3 left-content">
-                <h2 class="">Online users:</h2>
+                <h2 class="">Users:</h2>
                 <table class="table table-sm table-hover table-striped">
                     @foreach ($users as $user)
                     @if(auth()->user() != null && auth()->user()->id!=$user->id)

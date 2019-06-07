@@ -1,10 +1,34 @@
+
+/**
+ * Fajl za kontrolu sahovske table;
+ * Autori:Svetozar Micanovic i Nikola Kovacevic
+ */
+
 Pusher.logToConsole = true;
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+/**
+ * Funkcija za predavanje partije;
+ */
+var resignGame= function(){
+   // alert("kraj");
+    moveColor = (game.turn() == 'w') ? 'White' : 'Black';
+    alert('You have resigned the game');
+    if(moveColor.localeCompare('Black')){
+        setGameEnd(2);
+      }
+    else {
+      setGameEnd(1);
+    }
 
+}
+
+/**
+ * Glavna funkcija za kontrolu igre;
+ */
 if (document.getElementById("board")) {
     var board,
         boardEl = $('#board'),
@@ -14,7 +38,9 @@ if (document.getElementById("board")) {
         pgnEl = $('#pgn'),
         color,
         ready = false;
-
+/**
+ * funkcija koja sklanja sive kvadrate;
+ */
     var removeGreySquares = function() {
         $('#board .square-55d63').css('background', '');
         };
@@ -29,12 +55,16 @@ if (document.getElementById("board")) {
 
     squareEl.css('background', background);
     };
+    /**
+     *  funkcija koja sklanja parametre po zadatoj boji
+     * @param {*} color 
+     */
 
     var removeHighlights = function(color) {
         boardEl.find('.square-55d63')
             .removeClass('highlight-' + color);
     };
-
+  
     var state = game.fen();
 
     let url = "" + window.location;
@@ -87,9 +117,11 @@ if (document.getElementById("board")) {
 
         if(color == 'b') ready = true;
     }
+/**
+ * do not pick up pieces if the game is over
+     only pick up pieces for the side to move
+ */
 
-    // do not pick up pieces if the game is over
-    // only pick up pieces for the side to move
     var onDragStart = function (source, piece, position, orientation) {
 
         if(!ready) {
@@ -104,8 +136,13 @@ if (document.getElementById("board")) {
         }
 
     };
+    /**
+     *  get list of possible moves for this square
+     * @param {*} square 
+     * @param {*} piece 
+     */
     var onMouseoverSquare = function(square, piece) {
-        // get list of possible moves for this square
+       
         var moves = game.moves({
           square: square,
           verbose: true
@@ -127,7 +164,9 @@ if (document.getElementById("board")) {
         removeGreySquares();
       };
 
-
+/**
+ * funkcija koja obradjuje dogadjaj kada je figura spustena
+ */
     var onDrop = function (source, target) {
         removeGreySquares();
         // see if the move is legal
@@ -148,9 +187,11 @@ if (document.getElementById("board")) {
         updateStatus();
         state = game.fen();
     };
+    /**
+     *    update the board position after the piece snap
+     *    for castling, en passant, pawn promotion
+     */
 
-    // update the board position after the piece snap
-    // for castling, en passant, pawn promotion
     var onSnapEnd = function () {
         board.position(game.fen());
     };
@@ -162,7 +203,7 @@ if (document.getElementById("board")) {
         document.getElementById("winner").value=winner;
         //onaj ciji je moveColor je izugbio
         //funkc vraca 0 ako su stringovi isti
-
+        
         document.getElementById("pause").click();
 
         //document.getElementById("completeGame").click();
@@ -187,7 +228,9 @@ if (document.getElementById("board")) {
         return true;
 
     };
-
+    /**
+     * funkcija koja osvezava status igre;
+     */
     let updateStatus = function () {
 
         let status = '';
@@ -295,7 +338,9 @@ if (document.getElementById("board")) {
     }
 
     var i = 0;
-
+    /**
+     * funkcija koja vraca sledeci potez za analizu partije
+     */
     function next() {
         // console.log('ulaz next id: ' + i);
         moves = document.getElementById('fen').value;
@@ -306,7 +351,9 @@ if (document.getElementById("board")) {
         board.position(moves[i]);
         // console.log('izlaz next id: ' +i);
     }
-
+ /**
+     * funkcija koja vraca prethodni potez za analizu partije
+     */
     function prev() {
         if(i <= 0) return;
         i--;
