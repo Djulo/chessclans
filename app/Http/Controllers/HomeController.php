@@ -24,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->status==0){
+            session(['message'=>'Your account has been banned!']);
+            //dd(session('message'));
+            return redirect('/user/logout');
+        }else
+        session()->forget(['message']);
         $users = DB::table('users')->get();
         //foreach ($users as $user) {
        //     echo $user->name;
