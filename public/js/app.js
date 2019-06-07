@@ -1888,7 +1888,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.messages = response.data;
     });
     _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('added_message', function (message) {
-      _this.messages.push(message);
+      _this.messages.unshift(message);
 
       if (message.selfMessage) {
         _this.$refs.message.scrollTop = 0;
