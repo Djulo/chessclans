@@ -18,11 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('pusherAuth', 'ChatController@pusherAuth');
-
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
+
+Route::get('ranking', 'AnalyseController@ranking');
+Route::post('pusherAuth', 'ChatController@pusherAuth');
 
 Route::get('/move', 'MoveController@index')->name('move');
 Route::post('/move', 'MoveController@store')->name('move.store');

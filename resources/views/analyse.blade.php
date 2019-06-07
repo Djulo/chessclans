@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">USER Dashboard</div>
+                <div class="card-header">GUEST Dashboard</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -12,8 +12,13 @@
                         {{ session('status') }}
                     </div>
                     @endif
-                    @component('components.who')
-                    @endcomponent
+                    {{-- @component('components.who')
+                    @endcomponent --}}
+
+                    @guest
+                    <h2> No games found</h2>
+                    <h2> Register and challange yourself!</h2>
+                    @endguest
 
 
                     <table class="table table-sm table-hover table-striped text-center">

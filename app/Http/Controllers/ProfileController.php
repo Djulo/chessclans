@@ -17,8 +17,8 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
-        $this->middleware('auth');
+        //$this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
+        $this->middleware('auth:admin');
 
     }
 
@@ -72,7 +72,7 @@ class ProfileController extends Controller
        return redirect()->route('profile');
 
     }
-    
+
     public function show(Request $request)
     {
         $id = $request->route()->parameters();
@@ -83,8 +83,8 @@ class ProfileController extends Controller
         $request->session()->put('profileID',auth()->user()->id);
         $request->session()->put('profileID',$id);
         return redirect()->route('profile');
-        
-       
+
+
     }
     public function add(Request $request){
        // dd('d');

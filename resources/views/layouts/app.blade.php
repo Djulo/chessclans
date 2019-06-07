@@ -31,16 +31,16 @@
 
 
     <script>
-        window.Laravel = {
-            !!json_encode([
-                'csrfToken' => csrf_token(),
-                'user' => [
-                    'authenticated' => auth() - > check(),
-                    'id' => auth() - > check() ? auth() - > user() - > id : null,
-                    'name' => auth() - > check() ? auth() - > user() - > name : null,
+        window.Laravel = {!! json_encode([
+            'csrfToken'=> csrf_token(),
+            'user'=> [
+                'authenticated' => auth()->check(),
+                'id' => auth()->check() ? auth()->user()->id : null,
+                'name' => auth()->check() ? auth()->user()->name : null,
+                'muted' => auth()->check() ? auth()->user()->status == 2 ? true : false : false,
                 ]
-            ]) !!
-        };
+            ])
+        !!};
     </script>
 </head>
 
@@ -48,7 +48,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Chessclans') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -65,6 +65,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/tutorials">Tutorials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/chat">Chat</a>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->

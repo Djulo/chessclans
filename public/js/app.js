@@ -1820,6 +1820,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     sendMessage: function sendMessage() {
+      if (Laravel.user.muted == true) {
+        alert("You have been muted by admin");
+        this.body = null;
+        return;
+      }
+
       if (!this.body || this.body.trim() === '') {
         return;
       }
@@ -1882,7 +1888,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.messages = response.data;
     });
     _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('added_message', function (message) {
-      _this.messages.unshift(message);
+      _this.messages.push(message);
 
       if (message.selfMessage) {
         _this.$refs.message.scrollTop = 0;

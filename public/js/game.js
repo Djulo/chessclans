@@ -12,7 +12,8 @@ if (document.getElementById("board")) {
         statusEl = $('#status'),
         fenEl = $('#fen'),
         pgnEl = $('#pgn'),
-        color;
+        color,
+        ready = false;
 
     var removeGreySquares = function() {
         $('#board .square-55d63').css('background', '');
@@ -65,6 +66,7 @@ if (document.getElementById("board")) {
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.joined.successfully', (e) => {
             alert('Opponent joined');
+            ready = true;
         });
 
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
@@ -83,12 +85,17 @@ if (document.getElementById("board")) {
             }
         });
 
+        if(color == 'b') ready = true;
     }
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
     var onDragStart = function (source, piece, position, orientation) {
 
+        if(!ready) {
+            alert('Waiting for opponent');
+            return false;
+        }
         if (game.game_over() === true ||
             game.turn() !== color ||
             (game.turn() === 'w' && piece.search(/^b/) !== -1) ||

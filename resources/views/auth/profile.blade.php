@@ -11,9 +11,11 @@
                 <img src="<?php
 
 
-echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
+echo ($user[0]->profile_image) ?>"
+                    style="width: 150px; height: 150px; background-repeat: no-repeat; object-fit: cover;">
                 @else
-                <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                <img src="{{ asset('img/defaultimage.jpg    ') }}" class="mx-auto img-fluid img-circle d-block"
+                    alt="avatar">
                 @endif
                 {{-- --}}
                 <!--<h6 class="mt-2">Upload a different photo</h6>-->
@@ -47,7 +49,8 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
                     <h4 class="mb-3">
-                        <font id="Username" class="" href="#" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <font id="Username" class="" href="#" role="button" data-toggle="" aria-haspopup="true"
+                            aria-expanded="false" v-pre>
                             <span class="caret"> <?php echo ($user[0]->name) ?> </span>
                         </font>
                     </h4>
@@ -74,8 +77,10 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                             <hr>
                             <span class="badge text-control" role="button"><i class="fas fa-user"></i> {{$numfriends}}
                                 Friends</span>
-                            <span class="badge text-control"><i class="fas fa-chess-rook"></i> {{$user[0]->wins+$user[0]->loses}} Games</span>
-                            <span class="badge text-control"><i class="fas fa-trophy"></i> {{$user[0]->wins}} Wins </span>
+                            <span class="badge text-control"><i class="fas fa-chess-rook"></i>
+                                {{$user[0]->wins+$user[0]->loses}} Games</span>
+                            <span class="badge text-control"><i class="fas fa-trophy"></i> {{$user[0]->wins}} Wins
+                            </span>
                         </div>
                         <div class="col-md-12">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Games
@@ -83,43 +88,49 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
                             <table class="table table-sm table-hover table-striped">
                                 <tbody>
-                                <?php 
+                                    <?php
                                     $i=0;
                                 ?>
 
-                                   @foreach($games as $game)
+                                    @foreach($games as $game)
                                     <tr>
                                         <td>
 
-                                            <form action="{{ route('analyse.show') }}" method="POST" id='my_form' name='my_form' role="form" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$i]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
-                                            <span style="color: lightgrey; font-size: 1.1rem;">
-                                            <i class="fas fa-chess" color="Mediumslateblue"></i>
-                                            </span>
-                                            <span style="display:inline-block; width: 20px;"></span>
-                                            <font style=" font-size: 1.1rem;"><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"> {{$game->winner}} </a></font>
-                                            <input type="hidden" name="id" value='{{$game->id}}'>
-                                            <span style="display:inline-block; width: 20px;"></span>
-                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$i]->name; ?></a>
-                                            <span style="color: black; font-size: 1.1rem;">
-                                            <i class="fas fa-chess"></i>
-                                            </span>
+                                            <form action="{{ route('analyse.show') }}" method="POST" id='my_form'
+                                                name='my_form' role="form" enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <a href="profile/{{ $game->white }}"
+                                                    style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$i]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
+                                                <span style="color: lightgrey; font-size: 1.1rem;">
+                                                    <i class="fas fa-chess" color="Mediumslateblue"></i>
+                                                </span>
+                                                <span style="display:inline-block; width: 20px;"></span>
+                                                <font style=" font-size: 1.1rem;"><a href="javascript:{}"
+                                                        onclick="document.getElementById('my_form').submit(); return false;">
+                                                        {{$game->winner}} </a></font>
+                                                <input type="hidden" name="id" value='{{$game->id}}'>
+                                                <span style="display:inline-block; width: 20px;"></span>
+                                                <a href="profile/{{ $game->black }}"
+                                                    style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $blackUsers[$i]->name; ?></a>
+                                                <span style="color: black; font-size: 1.1rem;">
+                                                    <i class="fas fa-chess"></i>
+                                                </span>
                                             </form>
 
                                         </td>
                                     </tr>
-                                    <?php 
+                                    <?php
                                     $i=$i+1;
                                     ?>
-                                   @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
 
                         <span style="display:inline-block; width: 20px;"></span>
                         @if($user[0]->id!=auth()->user()->id&&!Auth::guard('admin')->check())
-                        <form action="{{ route('profile.report') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('profile.report') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             <input href='' type="submit" class="btn btn-danger" value="Report">
                             <input type='hidden' name='userid' value='{{$user[0]->id}}'>
 
@@ -134,26 +145,30 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
 
                         @if (Auth::guard('admin')->check())
-                        <form action="{{ route('admin.delete.profile') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('admin.delete.profile') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="Delete account">
                             <input type='hidden' name='userid' value='{{$user[0]->id}}'>
                         </form>
                         <span style="display:inline-block; width: 20px;"></span>
-                        <form action="{{ route('admin.mute.profile') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('admin.mute.profile') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="Mute account">
                             <input type='hidden' name='userid' value='{{$user[0]->id}}'>
                         </form>
                         @elseif(strval($are_friends)=='no'&&$user[0]->id!=auth()->user()->id)
-                        <form action="{{ route('profile.add') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('profile.add') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="Add friend">
                             <input type='hidden' name='userid' value='{{$user[0]->id}}'>
                         </form>
                         @elseif($user[0]->id!=auth()->user()->id)
 
-                        <form action="{{ route('profile.unfriend') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('profile.unfriend') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="Unfriend">
                             <input type='hidden' name='userid' value='{{$user[0]->id}}'>
@@ -167,20 +182,23 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                 @if($user[0]->id==auth()->user()->id)
 
                 <div class="tab-pane" id="edit">
-                    <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
+                    <form action="{{ route('profile.update') }}" method="POST" role="form"
+                        enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">User name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" readonly type="text" value="{{ Auth::user()->name }}" name='username'>
+                                <input class="form-control" readonly type="text" value="{{ Auth::user()->name }}"
+                                    name='username'>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" readonly type="email" value="{{ Auth::user()->email }}" name='email'>
+                                <input class="form-control" readonly type="email" value="{{ Auth::user()->email }}"
+                                    name='email'>
                             </div>
                         </div>
 
@@ -456,63 +474,66 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                 </select>
                             </div>
 
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Bio</label>
+                            <div class="col-lg-9">
+                                <textarea class="form-control" value="" rows="3" name='bio'></textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+
+                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                            </div>
+                        </div>
+                        {{ csrf_field() }}
+                    </form>
+
                 </div>
+                @endif
+
+                @if($user[0]->id==auth()->user()->id)
+                <div class="tab-pane" id="requests">
+
+                    {{ csrf_field() }}
+
+                    <table class="table table-sm table-hover table-striped">
+                        <tbody>
+                            @foreach ($frequests as $user)
+
+                            @if(auth()->user()->id!=$user->id)
+                            <tr>
+                                <td>
+
+                                    <a href="profile/{{ $user->id }}"
+                                        style="text-decoration:none; color:blue"><?php echo $user->name; ?></a>
+                                    requested to be your friend
+                                    <a href="profile/accept/{{$user->id}}" type="button" class="btn btn-success"
+                                        value="Accept">Accept</a>
+                                    <a href="profile/decline/{{$user->id}}" type="button" class="btn btn-danger"
+                                        value="Decline">Decline</a>
+                                <td>
+                            </tr>
+                            @endif
+                            @endforeach
+
+                        </tbody>
+                    </table>
 
 
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Bio</label>
-                    <div class="col-lg-9">
-                        <textarea class="form-control" value="" rows="3" name='bio'></textarea>
-
-                    </div>
                 </div>
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-
-                        <input type="submit" class="btn btn-primary" value="Save Changes">
-                    </div>
-                </div>
-                {{ csrf_field() }}
-                </form>
+                @endif
 
             </div>
-            @endif
-
-            @if($user[0]->id==auth()->user()->id)
-            <div class="tab-pane" id="requests">
-
-                {{ csrf_field() }}
-
-                <table class="table table-sm table-hover table-striped">
-                    <tbody>
-                        @foreach ($frequests as $user)
-
-                        @if(auth()->user()->id!=$user->id)
-                        <tr>
-                            <td>
-
-                                <a href="profile/{{ $user->id }}" style="text-decoration:none; color:blue"><?php echo $user->name; ?></a>
-                                requested to be your friend
-                                <a href="profile/accept/{{$user->id}}" type="button" class="btn btn-success" value="Accept">Accept</a>
-                                <a href="profile/decline/{{$user->id}}" type="button" class="btn btn-danger" value="Decline">Decline</a>
-                            <td>
-                        </tr>
-                        @endif
-                        @endforeach
-
-                    </tbody>
-                </table>
-
-
-            </div>
-            @endif
 
         </div>
-
     </div>
-</div>
 </div>
 
 @endsection
