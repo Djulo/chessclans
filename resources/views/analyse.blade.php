@@ -19,11 +19,6 @@
                     {{-- @component('components.who')
                     @endcomponent --}}
 
-                    @guest
-                    <h2> No games found</h2>
-                    <h2> Register and challange yourself!</h2>
-                    @endguest
-
                     @if($games->count() == 0)
                     <h2> No games found</h2>
                     @endif
