@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * AnalyseController je kontroler koji sluzi pri analizi partija
+ * Autori: Nikola Kovacevic i Svetozar Micanovic
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,6 +14,11 @@ use App\User;
 class AnalyseController extends Controller
 {
 
+    /**
+     * Prikaz stranice koja sadri odigrane partije
+     *
+     * @return void
+     */
     public function index()
     {
         $this->middleware('auth');
@@ -24,6 +33,12 @@ class AnalyseController extends Controller
         return view('analyse',['games'=>$games]);
     }
 
+    /**
+     * Metoda koja pronalazi sledeci potez
+     *
+     * @param Request $request
+     * @return void
+     */
     public function nextMove(Request $request)
     {
         $id = $request->id;
@@ -32,6 +47,12 @@ class AnalyseController extends Controller
         return $fen;
     }
 
+    /**
+     * Prikaz stranice za analizu odredjene partije
+     *
+     * @param Request $request
+     * @return void
+     */
     public function show(Request $request)
     {
         $id = $request->id;
@@ -47,6 +68,11 @@ class AnalyseController extends Controller
             'moves' => $moves->implode(',')]);
     }
 
+    /**
+     * Prikaz stranice za rangiranje
+     *
+     * @return void
+     */
     public function ranking()
     {
         $users = DB::table('users')->get()->sortByDesc('CCpoints');

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Event koji se poziva kada se pritisne timer u igri
+ *  Autor: Nikola Kovacevic
+ */
 namespace App\Events;
 
 use App\Game;
@@ -40,6 +43,11 @@ class TimerClicked implements ShouldBroadcastNow
         return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
+    /**
+     * naziv eventa
+     *
+     * @return void
+     */
     public function broadcastAs()
     {
         return 'timer.clicked';

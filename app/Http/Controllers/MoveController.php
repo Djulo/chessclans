@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * MoveController, kontroler koji se koristi pri odigravanju poteza
+ */
 namespace App\Http\Controllers;
 
 use App\Move;
@@ -12,12 +15,24 @@ use Illuminate\Support\Facades\Log;
 class MoveController extends Controller
 {
 
+    /**
+     * Prikaz stranice koja sadrzi json objekat svih odigranih poteza
+     *
+     * @return void
+     */
     public function index()
     {
         $moves = Move::with(['game'])->get();
         return response()->json($moves);
     }
 
+    /**
+     * Kreiranje poteza, smestanje u bazu
+     * Pozivanje eventa MoveCreated
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         $fen = $request->fen;

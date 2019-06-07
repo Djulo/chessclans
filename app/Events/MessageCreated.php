@@ -1,5 +1,12 @@
 <?php
 
+
+/**
+ * Event koji se poziva kada se napise poruka za vreme caskanja
+ *  Autor: Nikola Kovacevic
+ */
+
+
 namespace App\Events;
 
 use App\Message;
@@ -16,6 +23,11 @@ class MessageCreated implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /**
+     * objekat poslate poruke
+     *
+     * @var [Message]
+     */
     public $message;
 
     /**
@@ -28,6 +40,11 @@ class MessageCreated implements ShouldBroadcast
         $this->message = $message;
     }
 
+    /**
+     * parametri koje sadrzi event kada se posalje
+     *
+     * @return void
+     */
     public function broadcastWith()
     {
         $this->message->load(['user']);

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ *  Event koji se poziva kada se partija zavrsi
+ *  Autor: Nikola Kovacevic
+ */
+
 namespace App\Events;
 
 use App\Game;
@@ -39,6 +44,12 @@ class GameEnded implements ShouldBroadcastNow
         return new Channel('game.' . $this->game->id . '.' . $str[0] . '.' . $str[1]);
     }
 
+
+    /**
+     * naziv eventa
+     *
+     * @return void
+     */
     public function broadcastAs()
     {
         return 'game.ended';

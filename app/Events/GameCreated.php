@@ -1,4 +1,9 @@
 <?php
+/**
+ *  Event klasa koja se poziva kad se inicijalizuje partija
+ *  Autor: Nikola Kovacevic
+ */
+
 
 namespace App\Events;
 
@@ -15,6 +20,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 class GameCreated implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
 
     public $game;
 
@@ -42,6 +48,11 @@ class GameCreated implements ShouldBroadcastNow
         return new Channel('game.setup');
     }
 
+    /**
+     * postavlja naziv eventa
+     *
+     * @return void
+     */
     public function broadcastAs()
     {
         return 'game.created';

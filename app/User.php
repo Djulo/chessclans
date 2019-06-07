@@ -2,6 +2,11 @@
 
 namespace App;
 
+/**
+ * Model User
+ * Autor: NIkola Kovacevic
+ */
+
 use App\Message;
 use App\Report;
 use App\Game;
@@ -40,23 +45,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Skup poruka koje je korisnik poslao
+     *
+     * @return void
+     */
     public function messages()
     {
         return $this->hasMany(Message::class);
     }
 
-    public function getImageAtrribure()
+
+    /**
+     * Profilna slika
+     *
+     * @return void
+     */
+    public function getImageAtrribute()
     {
         return $this->profile_image;
     }
 
+    /**
+     * Partije koje je korisnik odigrao
+     *
+     * @return void
+     */
     public function games()
     {
         return $this->hasMany(Game::class);
     }
 
-    public function reports()
-    {
-        return $this->hasMany(Report::class);
-    }
 }

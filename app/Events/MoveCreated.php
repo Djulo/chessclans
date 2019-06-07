@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Event koji se poziva kada se odigra potez u partiji
+ */
+
 namespace App\Events;
 
 use App\Move;
@@ -42,6 +46,11 @@ class MoveCreated implements ShouldBroadcastNow
         return new Channel('game.' . $this->move->game_id . '.' . $str[0] . '.' . $str[1]);
     }
 
+    /**
+     * naziv eventa
+     *
+     * @return void
+     */
     public function broadcastAs()
     {
         return 'move.played';

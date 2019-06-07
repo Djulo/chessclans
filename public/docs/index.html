@@ -1,0 +1,2912 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://chessclans.test/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>general</h1>
+<!-- START_b8dc05d6f509d0ebfee1b9ecb497dd5d -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/mail" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/mail");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/mail</code></p>
+<!-- END_b8dc05d6f509d0ebfee1b9ecb497dd5d -->
+<!-- START_46cef718b6543d87392ef9d885c32074 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/mail/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/mail/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/mail/{telescopeEntryId}</code></p>
+<!-- END_46cef718b6543d87392ef9d885c32074 -->
+<!-- START_f437131ff649585d9e9028707aff6586 -->
+<h2>Get the HTML content of the given email.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/mail/1/preview" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/mail/1/preview");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/mail/{telescopeEntryId}/preview</code></p>
+<!-- END_f437131ff649585d9e9028707aff6586 -->
+<!-- START_e78ffa4a993bd280d8bbcfeece76333c -->
+<h2>Download the Eml content of the email.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/mail/1/download" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/mail/1/download");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/mail/{telescopeEntryId}/download</code></p>
+<!-- END_e78ffa4a993bd280d8bbcfeece76333c -->
+<!-- START_6d8be72a837a4251b2068584bf71a0da -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/exceptions" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/exceptions");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/exceptions</code></p>
+<!-- END_6d8be72a837a4251b2068584bf71a0da -->
+<!-- START_28f8ee28d6619d49fbc6f1e955d34728 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/exceptions/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/exceptions/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/exceptions/{telescopeEntryId}</code></p>
+<!-- END_28f8ee28d6619d49fbc6f1e955d34728 -->
+<!-- START_e08a570bb93827d8b6603d1fb9f2b93d -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/dumps" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/dumps");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/dumps</code></p>
+<!-- END_e08a570bb93827d8b6603d1fb9f2b93d -->
+<!-- START_eab4e91ba32edb6580a8ed2632fca255 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/logs" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/logs");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/logs</code></p>
+<!-- END_eab4e91ba32edb6580a8ed2632fca255 -->
+<!-- START_2a59c20c5796d5d492133c3e8bcd1d34 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/logs/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/logs/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/logs/{telescopeEntryId}</code></p>
+<!-- END_2a59c20c5796d5d492133c3e8bcd1d34 -->
+<!-- START_4ef84633ff5ac0c8df8f542d6d19a6d8 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/notifications" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/notifications");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/notifications</code></p>
+<!-- END_4ef84633ff5ac0c8df8f542d6d19a6d8 -->
+<!-- START_6395c2300a578d2ff312b0a7381521d3 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/notifications/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/notifications/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/notifications/{telescopeEntryId}</code></p>
+<!-- END_6395c2300a578d2ff312b0a7381521d3 -->
+<!-- START_9efcd66e514d1f19224e0b2e27468db9 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/jobs" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/jobs");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/jobs</code></p>
+<!-- END_9efcd66e514d1f19224e0b2e27468db9 -->
+<!-- START_d61020a49164fb68d91b4970072570bc -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/jobs/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/jobs/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/jobs/{telescopeEntryId}</code></p>
+<!-- END_d61020a49164fb68d91b4970072570bc -->
+<!-- START_15f74a948a5d813e235ca5d2ff32c892 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/events" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/events");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/events</code></p>
+<!-- END_15f74a948a5d813e235ca5d2ff32c892 -->
+<!-- START_cb367d2f23d97116a97d78faaae81e1f -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/events/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/events/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/events/{telescopeEntryId}</code></p>
+<!-- END_cb367d2f23d97116a97d78faaae81e1f -->
+<!-- START_7ec6f1ddc70142ea1f60a799307f4f4a -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/gates" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/gates");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/gates</code></p>
+<!-- END_7ec6f1ddc70142ea1f60a799307f4f4a -->
+<!-- START_f7261ef8c2d8def355b1be63596b9455 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/gates/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/gates/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/gates/{telescopeEntryId}</code></p>
+<!-- END_f7261ef8c2d8def355b1be63596b9455 -->
+<!-- START_104836e7045badb7761960560308f50c -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/cache" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/cache");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/cache</code></p>
+<!-- END_104836e7045badb7761960560308f50c -->
+<!-- START_a9794a212e7bc0d3bf15e26acdf7685e -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/cache/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/cache/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/cache/{telescopeEntryId}</code></p>
+<!-- END_a9794a212e7bc0d3bf15e26acdf7685e -->
+<!-- START_f5bd8c7cfbf94e2facea5e422716e828 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/queries" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/queries");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/queries</code></p>
+<!-- END_f5bd8c7cfbf94e2facea5e422716e828 -->
+<!-- START_126e06b566849f9991002afb0b34dd11 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/queries/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/queries/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/queries/{telescopeEntryId}</code></p>
+<!-- END_126e06b566849f9991002afb0b34dd11 -->
+<!-- START_2a0be87abbf498979bd57a79b0dbf8f5 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/models" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/models");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/models</code></p>
+<!-- END_2a0be87abbf498979bd57a79b0dbf8f5 -->
+<!-- START_b9f7de78bc63ac228648c9086ebad48c -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/models/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/models/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/models/{telescopeEntryId}</code></p>
+<!-- END_b9f7de78bc63ac228648c9086ebad48c -->
+<!-- START_07a4603df131c6daad826b2f7f2b009c -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/requests" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/requests");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/requests</code></p>
+<!-- END_07a4603df131c6daad826b2f7f2b009c -->
+<!-- START_deedcbe0d49ee78b6b0211b6382a6ad3 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/requests/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/requests/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/requests/{telescopeEntryId}</code></p>
+<!-- END_deedcbe0d49ee78b6b0211b6382a6ad3 -->
+<!-- START_1b00812e02a8ebcab44bee37f710e21a -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/commands" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/commands");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/commands</code></p>
+<!-- END_1b00812e02a8ebcab44bee37f710e21a -->
+<!-- START_630361bcb61ef50767ab0e87078233ed -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/commands/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/commands/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/commands/{telescopeEntryId}</code></p>
+<!-- END_630361bcb61ef50767ab0e87078233ed -->
+<!-- START_98a5c94ff64c824fc9202e5025af17b8 -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/schedule" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/schedule");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/schedule</code></p>
+<!-- END_98a5c94ff64c824fc9202e5025af17b8 -->
+<!-- START_1411a7b24b36bd9e8208b47212d346e4 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/schedule/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/schedule/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/schedule/{telescopeEntryId}</code></p>
+<!-- END_1411a7b24b36bd9e8208b47212d346e4 -->
+<!-- START_f25acbb3e06a57e8411a14e4694c75fb -->
+<h2>List the entries of the given type.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/redis" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/redis");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/redis</code></p>
+<!-- END_f25acbb3e06a57e8411a14e4694c75fb -->
+<!-- START_3670bdc683457b53a7c2b118c10905d0 -->
+<h2>Get an entry with the given ID.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/redis/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/redis/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [Laravel\\Telescope\\Storage\\EntryModel]."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/redis/{telescopeEntryId}</code></p>
+<!-- END_3670bdc683457b53a7c2b118c10905d0 -->
+<!-- START_af458f9f0b35f66bde272f4b973c6637 -->
+<h2>Get all of the tags being monitored.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/telescope-api/monitored-tags" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/monitored-tags");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "tags": []
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/telescope-api/monitored-tags</code></p>
+<!-- END_af458f9f0b35f66bde272f4b973c6637 -->
+<!-- START_b7f76aeac39a9c3f089e2da6d4b6b38a -->
+<h2>Begin monitoring the given tag.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/monitored-tags" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/monitored-tags");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/monitored-tags</code></p>
+<!-- END_b7f76aeac39a9c3f089e2da6d4b6b38a -->
+<!-- START_bdcab0f8e9b0350c8661f5c890333e8a -->
+<h2>Stop monitoring the given tag.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/monitored-tags/delete" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/monitored-tags/delete");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/monitored-tags/delete</code></p>
+<!-- END_bdcab0f8e9b0350c8661f5c890333e8a -->
+<!-- START_420018fbba86099da7b9c8db6d9bdc8d -->
+<h2>Toggle recording.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/telescope/telescope-api/toggle-recording" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/telescope-api/toggle-recording");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST telescope/telescope-api/toggle-recording</code></p>
+<!-- END_420018fbba86099da7b9c8db6d9bdc8d -->
+<!-- START_4030988e35daa5fb1ec401a4d536dc96 -->
+<h2>Display the Telescope view.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/telescope/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/telescope/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET telescope/{view?}</code></p>
+<!-- END_4030988e35daa5fb1ec401a4d536dc96 -->
+<!-- START_66df3678904adde969490f2278b8f47f -->
+<h2>Authenticate the request for channel access.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/broadcasting/auth" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/broadcasting/auth");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": ""
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET broadcasting/auth</code></p>
+<p><code>POST broadcasting/auth</code></p>
+<!-- END_66df3678904adde969490f2278b8f47f -->
+<!-- START_34ec3fb17d1ba9f9bffcb68b79baadda -->
+<h2>analyse</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/analyse" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/analyse");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET analyse</code></p>
+<!-- END_34ec3fb17d1ba9f9bffcb68b79baadda -->
+<!-- START_ce559181a89d5c3779e7af14c47b6b62 -->
+<h2>chat</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/chat" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/chat");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET chat</code></p>
+<!-- END_ce559181a89d5c3779e7af14c47b6b62 -->
+<!-- START_2071e7a5003b72f23be0afa439524cc6 -->
+<h2>message</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/message" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/message");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET message</code></p>
+<!-- END_2071e7a5003b72f23be0afa439524cc6 -->
+<!-- START_8a59da63c3fe347750fd5d2024bdfe82 -->
+<h2>message</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/message" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/message");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST message</code></p>
+<!-- END_8a59da63c3fe347750fd5d2024bdfe82 -->
+<!-- START_baa0c59ed0de734c835135bd307333e9 -->
+<h2>ranking</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/ranking" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/ranking");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET ranking</code></p>
+<!-- END_baa0c59ed0de734c835135bd307333e9 -->
+<!-- START_06347da505911532f51e40ac6f8af3ad -->
+<h2>pusherAuth</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/pusherAuth" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/pusherAuth");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST pusherAuth</code></p>
+<!-- END_06347da505911532f51e40ac6f8af3ad -->
+<!-- START_fe626f4820a47ec94b5660f2325ad8fc -->
+<h2>move</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/move" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/move");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 1,
+        "fen": "rnbqkbnr\/pppppppp\/8\/8\/8\/8\/PPPPPPPP\/RNBQKBNR w KQkq - 0 1",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:33:26",
+        "updated_at": "2019-06-07 20:33:26",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 2,
+        "fen": "rnbqkbnr\/pppppppp\/8\/8\/4P3\/8\/PPPP1PPP\/RNBQKBNR b KQkq e3 0 1",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:33:40",
+        "updated_at": "2019-06-07 20:33:40",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 3,
+        "fen": "rnbqkbnr\/pppp1ppp\/8\/4p3\/4P3\/8\/PPPP1PPP\/RNBQKBNR w KQkq e6 0 2",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:33:42",
+        "updated_at": "2019-06-07 20:33:42",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 4,
+        "fen": "rnbqkbnr\/pppp1ppp\/8\/4p3\/4P3\/P7\/1PPP1PPP\/RNBQKBNR b KQkq - 0 2",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:33:51",
+        "updated_at": "2019-06-07 20:33:51",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 5,
+        "fen": "rnb1kbnr\/pppp1ppp\/8\/4p1q1\/4P3\/P7\/1PPP1PPP\/RNBQKBNR w KQkq - 1 3",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:33:55",
+        "updated_at": "2019-06-07 20:33:55",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 6,
+        "fen": "rnb1kbnr\/pppp1ppp\/8\/4p1q1\/4P3\/P4P2\/1PPP2PP\/RNBQKBNR b KQkq - 0 3",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:00",
+        "updated_at": "2019-06-07 20:34:00",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 7,
+        "fen": "rnb1kbnr\/pppp1ppp\/8\/4p3\/4P2q\/P4P2\/1PPP2PP\/RNBQKBNR w KQkq - 1 4",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:03",
+        "updated_at": "2019-06-07 20:34:03",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 8,
+        "fen": "rnb1kbnr\/pppp1ppp\/8\/4p3\/4P2q\/P4PP1\/1PPP3P\/RNBQKBNR b KQkq - 0 4",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:07",
+        "updated_at": "2019-06-07 20:34:07",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 9,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/4P2q\/P4PP1\/1PPP3P\/RNBQKBNR w KQkq - 0 5",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:11",
+        "updated_at": "2019-06-07 20:34:11",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 10,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/4P2q\/P4PPP\/1PPP4\/RNBQKBNR b KQkq - 0 5",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:13",
+        "updated_at": "2019-06-07 20:34:13",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 11,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/4P3\/P4PqP\/1PPP4\/RNBQKBNR w KQkq - 0 6",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:17",
+        "updated_at": "2019-06-07 20:34:17",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 12,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/4P3\/P4PqP\/1PPPK3\/RNBQ1BNR b kq - 1 6",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:23",
+        "updated_at": "2019-06-07 20:34:23",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 13,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/4P2q\/P4P1P\/1PPPK3\/RNBQ1BNR w kq - 2 7",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:25",
+        "updated_at": "2019-06-07 20:34:25",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 14,
+        "fen": "rnb1kbnr\/1ppp1ppp\/p7\/4p3\/P3P2q\/5P1P\/1PPPK3\/RNBQ1BNR b kq - 0 7",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:33",
+        "updated_at": "2019-06-07 20:34:33",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 15,
+        "fen": "rnb1kbnr\/1pp2ppp\/p2p4\/4p3\/P3P2q\/5P1P\/1PPPK3\/RNBQ1BNR w kq - 0 8",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:38",
+        "updated_at": "2019-06-07 20:34:38",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 16,
+        "fen": "rnb1kbnr\/1pp2ppp\/p2p4\/4p3\/P3P2q\/5P1P\/RPPPK3\/1NBQ1BNR b kq - 1 8",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:40",
+        "updated_at": "2019-06-07 20:34:40",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 17,
+        "fen": "rn2kbnr\/1ppb1ppp\/p2p4\/4p3\/P3P2q\/5P1P\/RPPPK3\/1NBQ1BNR w kq - 2 9",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:42",
+        "updated_at": "2019-06-07 20:34:42",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 18,
+        "fen": "rn2kbnr\/1ppb1ppp\/p2p4\/4p3\/P3P2q\/5P1P\/1PPPK3\/RNBQ1BNR b kq - 3 9",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:44",
+        "updated_at": "2019-06-07 20:34:44",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 19,
+        "fen": "rn2kbnr\/1pp2ppp\/p2p4\/4p3\/b3P2q\/5P1P\/1PPPK3\/RNBQ1BNR w kq - 0 10",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:49",
+        "updated_at": "2019-06-07 20:34:49",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 20,
+        "fen": "rn2kbnr\/1pp2ppp\/p2p4\/4p3\/b3P2q\/5P1P\/RPPPK3\/1NBQ1BNR b kq - 1 10",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:51",
+        "updated_at": "2019-06-07 20:34:51",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 21,
+        "fen": "rn2kbnr\/1pp2ppp\/p2p4\/1b2p3\/4P2q\/5P1P\/RPPPK3\/1NBQ1BNR w kq - 2 11",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:53",
+        "updated_at": "2019-06-07 20:34:53",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 22,
+        "fen": "rn2kbnr\/1pp2ppp\/p2p4\/1b2p3\/4P2q\/4KP1P\/RPPP4\/1NBQ1BNR b kq - 3 11",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:57",
+        "updated_at": "2019-06-07 20:34:57",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 23,
+        "fen": "rn2kbnr\/1pp2ppp\/p1bp4\/4p3\/4P2q\/4KP1P\/RPPP4\/1NBQ1BNR w kq - 4 12",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:34:59",
+        "updated_at": "2019-06-07 20:34:59",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 24,
+        "fen": "rn2kbnr\/1pp2ppp\/p1bp4\/4p3\/4P2q\/5P1P\/RPPPK3\/1NBQ1BNR b kq - 5 12",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:01",
+        "updated_at": "2019-06-07 20:35:01",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 25,
+        "fen": "r3kbnr\/1ppn1ppp\/p1bp4\/4p3\/4P2q\/5P1P\/RPPPK3\/1NBQ1BNR w kq - 6 13",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:06",
+        "updated_at": "2019-06-07 20:35:06",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 26,
+        "fen": "r3kbnr\/1ppn1ppp\/p1bp4\/4p3\/4P2q\/5P1P\/1PPPK3\/RNBQ1BNR b kq - 7 13",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:10",
+        "updated_at": "2019-06-07 20:35:10",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 27,
+        "fen": "r3kbnr\/1ppn1ppp\/p1bp4\/4p2q\/4P3\/5P1P\/1PPPK3\/RNBQ1BNR w kq - 8 14",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:12",
+        "updated_at": "2019-06-07 20:35:12",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 28,
+        "fen": "r3kbnr\/1ppn1ppp\/p1bp4\/4p2q\/4P3\/5P1P\/1PPP4\/RNBQKBNR b kq - 9 14",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:15",
+        "updated_at": "2019-06-07 20:35:15",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 29,
+        "fen": "r3kbnr\/1ppn1ppp\/p2p4\/1b2p2q\/4P3\/5P1P\/1PPP4\/RNBQKBNR w kq - 10 15",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:17",
+        "updated_at": "2019-06-07 20:35:17",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 30,
+        "fen": "r3kbnr\/1ppn1ppp\/p2p4\/1b2p2q\/4P3\/5P1P\/RPPP4\/1NBQKBNR b kq - 11 15",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:24",
+        "updated_at": "2019-06-07 20:35:24",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    },
+    {
+        "id": 31,
+        "fen": "r3kbnr\/1ppn1ppp\/p2p4\/1b2p3\/4P2q\/5P1P\/RPPP4\/1NBQKBNR w kq - 12 16",
+        "game_id": 1,
+        "created_at": "2019-06-07 20:35:26",
+        "updated_at": "2019-06-07 20:35:26",
+        "game": {
+            "id": 1,
+            "white": 2,
+            "black": 1,
+            "winner": "0-1",
+            "format": "1+0",
+            "created_at": "2019-06-07 20:33:26",
+            "updated_at": "2019-06-07 20:33:34"
+        }
+    }
+]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET move</code></p>
+<!-- END_fe626f4820a47ec94b5660f2325ad8fc -->
+<!-- START_fcc77381f46e0308e2b51f99da0129c0 -->
+<h2>move</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/move" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/move");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST move</code></p>
+<!-- END_fcc77381f46e0308e2b51f99da0129c0 -->
+<!-- START_3ca24bb535a6292381c7bfc452b8ed75 -->
+<h2>timer</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/timer" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/timer");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST timer</code></p>
+<!-- END_3ca24bb535a6292381c7bfc452b8ed75 -->
+<!-- START_aee94c87a45c968d4f411c5192c3c585 -->
+<h2>turn</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/turn" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/turn");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST turn</code></p>
+<!-- END_aee94c87a45c968d4f411c5192c3c585 -->
+<!-- START_fb1ca69058443fda4e8ba47e07ea67a3 -->
+<h2>state</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/state" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/state");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST state</code></p>
+<!-- END_fb1ca69058443fda4e8ba47e07ea67a3 -->
+<!-- START_f8bd8c3c9f08a9e9199e6a3fe9fcfaf2 -->
+<h2>status</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/status" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/status");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST status</code></p>
+<!-- END_f8bd8c3c9f08a9e9199e6a3fe9fcfaf2 -->
+<!-- START_66e08d3cc8222573018fed49e121e96d -->
+<h2>Show the application&#039;s login form.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET login</code></p>
+<!-- END_66e08d3cc8222573018fed49e121e96d -->
+<!-- START_ba35aa39474cb98cfb31829e70eb8b74 -->
+<h2>Handle a login request to the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST login</code></p>
+<!-- END_ba35aa39474cb98cfb31829e70eb8b74 -->
+<!-- START_e65925f23b9bc6b93d9356895f29f80c -->
+<h2>Log the user out of the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/logout" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/logout");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST logout</code></p>
+<!-- END_e65925f23b9bc6b93d9356895f29f80c -->
+<!-- START_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+<h2>Show the application registration form.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/register" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET register</code></p>
+<!-- END_ff38dfb1bd1bb7e1aa24b4e1792a9768 -->
+<!-- START_d7aad7b5ac127700500280d511a3db01 -->
+<h2>Handle a registration request for the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/register" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/register");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST register</code></p>
+<!-- END_d7aad7b5ac127700500280d511a3db01 -->
+<!-- START_d72797bae6d0b1f3a341ebb1f8900441 -->
+<h2>Display the form to request a password reset link.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET password/reset</code></p>
+<!-- END_d72797bae6d0b1f3a341ebb1f8900441 -->
+<!-- START_feb40f06a93c80d742181b6ffb6b734e -->
+<h2>Send a reset link to the given user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/password/email" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/password/email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST password/email</code></p>
+<!-- END_feb40f06a93c80d742181b6ffb6b734e -->
+<!-- START_e1605a6e5ceee9d1aeb7729216635fd7 -->
+<h2>Display the password reset view for the given token.</h2>
+<p>If no token is present, display the link request form.</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/password/reset/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/password/reset/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET password/reset/{token}</code></p>
+<!-- END_e1605a6e5ceee9d1aeb7729216635fd7 -->
+<!-- START_cafb407b7a846b31491f97719bb15aef -->
+<h2>Reset the given user&#039;s password.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST password/reset</code></p>
+<!-- END_cafb407b7a846b31491f97719bb15aef -->
+<!-- START_c88fc6aa6eb1bee7a494d3c0a02038b1 -->
+<h2>Show the email verification notice.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/email/verify" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/email/verify");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET email/verify</code></p>
+<!-- END_c88fc6aa6eb1bee7a494d3c0a02038b1 -->
+<!-- START_af069c1c23cec25f2be1688621969179 -->
+<h2>Mark the authenticated user&#039;s email address as verified.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/email/verify/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/email/verify/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET email/verify/{id}</code></p>
+<!-- END_af069c1c23cec25f2be1688621969179 -->
+<!-- START_b44c38c624a55f23870089f09fba5cef -->
+<h2>Resend the email verification notification.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/email/resend" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/email/resend");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET email/resend</code></p>
+<!-- END_b44c38c624a55f23870089f09fba5cef -->
+<!-- START_3be6eea9d0129183d63c87599ed86f43 -->
+<h2>reportbug</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/reportbug" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/reportbug");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET reportbug</code></p>
+<!-- END_3be6eea9d0129183d63c87599ed86f43 -->
+<!-- START_e1385443ac8061ced5501397039fcd3d -->
+<h2>reported</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/reported" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/reported");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST reported</code></p>
+<!-- END_e1385443ac8061ced5501397039fcd3d -->
+<!-- START_cb859c8e84c35d7133b6a6c8eac253f8 -->
+<h2>Show the application dashboard.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/home" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/home");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET home</code></p>
+<!-- END_cb859c8e84c35d7133b6a6c8eac253f8 -->
+<!-- START_b0807ef04c641ee942ef8cc126102266 -->
+<h2>tutorials</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/tutorials" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/tutorials");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET tutorials</code></p>
+<!-- END_b0807ef04c641ee942ef8cc126102266 -->
+<!-- START_47f7fbb6bf98ef4cdc54b10f03cb3bdd -->
+<h2>profile</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/profile" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET profile</code></p>
+<!-- END_47f7fbb6bf98ef4cdc54b10f03cb3bdd -->
+<!-- START_96ef14044418dcb213284f7654348f76 -->
+<h2>user/logout</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/user/logout" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/user/logout");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (302):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET user/logout</code></p>
+<!-- END_96ef14044418dcb213284f7654348f76 -->
+<!-- START_03a76d7b7a89853a08696bfe71bbbba7 -->
+<h2>admin/login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/admin/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET admin/login</code></p>
+<!-- END_03a76d7b7a89853a08696bfe71bbbba7 -->
+<!-- START_fe5fe3a14f04e5648848f1a59ea3da82 -->
+<h2>admin/login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/admin/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST admin/login</code></p>
+<!-- END_fe5fe3a14f04e5648848f1a59ea3da82 -->
+<!-- START_b37225c1c4a9d4a9e253fecd543b79a0 -->
+<h2>admin/logout</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/admin/logout" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/logout");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (302):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET admin/logout</code></p>
+<!-- END_b37225c1c4a9d4a9e253fecd543b79a0 -->
+<!-- START_e40bc60a458a9740730202aaec04f818 -->
+<h2>Show the application dashboard.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/admin" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET admin</code></p>
+<!-- END_e40bc60a458a9740730202aaec04f818 -->
+<!-- START_671f0bfb74676067bfdcefdfe160402c -->
+<h2>admin/delete/profile</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/admin/delete/profile" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/delete/profile");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST admin/delete/profile</code></p>
+<!-- END_671f0bfb74676067bfdcefdfe160402c -->
+<!-- START_baee6a71de2fdd9b535db844fb4301ca -->
+<h2>admin/mute/profile</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/admin/mute/profile" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/mute/profile");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST admin/mute/profile</code></p>
+<!-- END_baee6a71de2fdd9b535db844fb4301ca -->
+<!-- START_f611ae8378c7426b163ac3d140ded37c -->
+<h2>Send a reset link to the given user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/admin/password/email" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/password/email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST admin/password/email</code></p>
+<!-- END_f611ae8378c7426b163ac3d140ded37c -->
+<!-- START_583a6990174e55a2eb91791ae4776c83 -->
+<h2>admin/password/reset</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/admin/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET admin/password/reset</code></p>
+<!-- END_583a6990174e55a2eb91791ae4776c83 -->
+<!-- START_d155055b87508acb9e934bcf9407b028 -->
+<h2>Reset the given user&#039;s password.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/admin/password/reset" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/password/reset");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST admin/password/reset</code></p>
+<!-- END_d155055b87508acb9e934bcf9407b028 -->
+<!-- START_71ae72ee385b59ab4fcc08d79ad9f488 -->
+<h2>admin/password/reset{token}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/admin/password/reset1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/admin/password/reset1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET admin/password/reset{token}</code></p>
+<!-- END_71ae72ee385b59ab4fcc08d79ad9f488 -->
+<!-- START_990223abae77388741cc4899c11bc423 -->
+<h2>analyse</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/analyse" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/analyse");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST analyse</code></p>
+<!-- END_990223abae77388741cc4899c11bc423 -->
+<!-- START_bf2df0942f53ac09ba7d4f3a75000d21 -->
+<h2>analyse/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/analyse/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/analyse/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET analyse/{id}</code></p>
+<!-- END_bf2df0942f53ac09ba7d4f3a75000d21 -->
+<!-- START_e4647a7dc926582f2a35662cc849d3ac -->
+<h2>analyse/{id}/next</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/analyse/1/next" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/analyse/1/next");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST analyse/{id}/next</code></p>
+<!-- END_e4647a7dc926582f2a35662cc849d3ac -->
+<!-- START_da61e288c6891a84618e621a9480bcdb -->
+<h2>game</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/game" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/game");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (302):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET game</code></p>
+<!-- END_da61e288c6891a84618e621a9480bcdb -->
+<!-- START_219368bfe217d50f4098823713864c3f -->
+<h2>{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET {id}</code></p>
+<!-- END_219368bfe217d50f4098823713864c3f -->
+<!-- START_5f7577d350810fcd0b2c88e0bb9b5a14 -->
+<h2>game</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/game" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/game");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST game</code></p>
+<!-- END_5f7577d350810fcd0b2c88e0bb9b5a14 -->
+<!-- START_76b361c4b06401f327aeb641dd11bcda -->
+<h2>game/home/{value}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/game/home/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/game/home/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (302):</p>
+</blockquote>
+<pre><code class="language-json">null</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET game/home/{value}</code></p>
+<!-- END_76b361c4b06401f327aeb641dd11bcda -->
+<!-- START_52941f126ff88902e8eb788b9a04cb6f -->
+<h2>gameEnd</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/gameEnd" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/gameEnd");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST gameEnd</code></p>
+<!-- END_52941f126ff88902e8eb788b9a04cb6f -->
+<!-- START_9b6e5296879ac6ff7c9abbd41a895c00 -->
+<h2>profile/add</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/profile/add" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/add");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST profile/add</code></p>
+<!-- END_9b6e5296879ac6ff7c9abbd41a895c00 -->
+<!-- START_592e4f1deee1ac6d3536da1233d8833a -->
+<h2>profile/unfriend</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/profile/unfriend" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/unfriend");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST profile/unfriend</code></p>
+<!-- END_592e4f1deee1ac6d3536da1233d8833a -->
+<!-- START_e7b4f7ddf7ecc9f3f5ce42d5edb993c3 -->
+<h2>profile/report</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/profile/report" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/report");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST profile/report</code></p>
+<!-- END_e7b4f7ddf7ecc9f3f5ce42d5edb993c3 -->
+<!-- START_ba0221d20c68bc448d74ff80f4e7d62a -->
+<h2>profile/reported</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/profile/reported" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/reported");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST profile/reported</code></p>
+<!-- END_ba0221d20c68bc448d74ff80f4e7d62a -->
+<!-- START_d1d0691a0e2b1048ade477c053bafac6 -->
+<h2>profile/{user}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/profile/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET profile/{user}</code></p>
+<!-- END_d1d0691a0e2b1048ade477c053bafac6 -->
+<!-- START_8314d1c6cd1747f3eaa25af166f36286 -->
+<h2>profile/accept/{user}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/profile/accept/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/accept/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET profile/accept/{user}</code></p>
+<!-- END_8314d1c6cd1747f3eaa25af166f36286 -->
+<!-- START_485aa62cda8d23e6e8f38298c3e65336 -->
+<h2>profile/decline/{user}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/profile/decline/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/decline/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET profile/decline/{user}</code></p>
+<!-- END_485aa62cda8d23e6e8f38298c3e65336 -->
+<!-- START_b7c67569e5a56bd0ae859ac9b99d48d8 -->
+<h2>profile/myprofile</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/profile/myprofile" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/myprofile");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET profile/myprofile</code></p>
+<!-- END_b7c67569e5a56bd0ae859ac9b99d48d8 -->
+<!-- START_643f86ff15dea0155f2a062e1815dc04 -->
+<h2>profile/update</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://chessclans.test/profile/update" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/profile/update");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST profile/update</code></p>
+<!-- END_643f86ff15dea0155f2a062e1815dc04 -->
+<!-- START_b078e3b8022b13eedcffb78315c05d1f -->
+<h2>showprofile</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://chessclans.test/showprofile" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://chessclans.test/showprofile");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "No query results for model [App\\Game] showprofile"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET showprofile</code></p>
+<!-- END_b078e3b8022b13eedcffb78315c05d1f -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

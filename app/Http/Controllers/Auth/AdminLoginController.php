@@ -8,7 +8,6 @@ use Auth;
 
 class AdminLoginController extends Controller
 {
-    //
 
     public function __construct()
     {

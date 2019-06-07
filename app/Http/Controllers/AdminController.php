@@ -30,6 +30,7 @@ class AdminController extends Controller
         $reports = DB::table('report')->get();
         return view('auth.admin',['users'=>$users,'reports'=>$reports]);
     }
+
     public function deleteProfile(Request $request)
     {
         //dd($request->userid);
