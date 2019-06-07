@@ -64,10 +64,7 @@
                             <a class="nav-link" href="/ranking">Ranking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tutorials</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/chat">Chat</a>
+                            <a class="nav-link" href="/tutorials">Tutorials</a>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
@@ -100,7 +97,7 @@
                                     {{ __('Logout') }}
                                 </a>
                                 @else
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                <a class="dropdown-item" href="{{ route('profile.myprofile') }}">Profile</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

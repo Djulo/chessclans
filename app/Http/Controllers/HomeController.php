@@ -30,4 +30,8 @@ class HomeController extends Controller
         //}
         return view('home',['users'=>$users]);
     }
+    public function tutorials(){
+
+        return view('tutorials');
+    }
 }

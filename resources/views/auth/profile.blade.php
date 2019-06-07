@@ -83,13 +83,17 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
                             <table class="table table-sm table-hover table-striped">
                                 <tbody>
+                                <?php 
+                                    $i=0;
+                                ?>
+
                                    @foreach($games as $game)
                                     <tr>
                                         <td>
 
                                             <form action="{{ route('analyse.show') }}" method="POST" id='my_form' name='my_form' role="form" enctype="multipart/form-data">
                                             {{ csrf_field() }}
-                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$game->id-1]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
+                                            <a href="profile/{{ $game->white }}" style=" font-size: 1.1rem; text-decoration:none; color:black;"><?php echo $whiteUsers[$i]->name; ?><?php //use App\Game; echo Game::find(1)->white->name; ?></a>
                                             <span style="color: lightgrey; font-size: 1.1rem;">
                                             <i class="fas fa-chess" color="Mediumslateblue"></i>
                                             </span>
@@ -97,7 +101,7 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
                                             <font style=" font-size: 1.1rem;"><a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;"> {{$game->winner}} </a></font>
                                             <input type="hidden" name="id" value='{{$game->id}}'>
                                             <span style="display:inline-block; width: 20px;"></span>
-                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$game->id-1]->name; ?></a>
+                                            <a href="profile/{{ $game->black }}" style=" font-size: 1.1rem; text-decoration:none; color:black;" ><?php echo $blackUsers[$i]->name; ?></a>
                                             <span style="color: black; font-size: 1.1rem;">
                                             <i class="fas fa-chess"></i>
                                             </span>
@@ -105,6 +109,9 @@ echo ($user[0]->profile_image) ?>" style="width: 150px; height: 150px; backgroun
 
                                         </td>
                                     </tr>
+                                    <?php 
+                                    $i=$i+1;
+                                    ?>
                                    @endforeach
                                 </tbody>
                             </table>
