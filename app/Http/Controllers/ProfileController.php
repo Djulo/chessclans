@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('auth:admin');
+        $this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
         $this->middleware('auth');
 
     }
@@ -55,7 +55,7 @@ class ProfileController extends Controller
             //dd($u->name);
             $u=User::find(Game::find($game->id)->white);
             //dd($u->name);
-           // array_push($indexes,$i);
+           //    array_push($indexes,$i);
             array_push($whiteUsers,(object)$u);
             $u=User::find(Game::find($game->id)->black);
             array_push($blackUsers,(object)$u);

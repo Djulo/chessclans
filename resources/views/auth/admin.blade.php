@@ -52,7 +52,7 @@
                                     __status:
                                     {{$user->status}}
                                     __rating:
-                                    {{$user->ranking}}
+                                    {{$user->CCpoints}}
                                     __e-mail:
                                     {{$user->email}}
                                     __country:

@@ -35,6 +35,7 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tutorials', 'HomeController@tutorials')->name('tutorials');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -70,6 +71,7 @@ Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.un
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
+
 
 
 

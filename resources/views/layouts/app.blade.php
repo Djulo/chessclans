@@ -64,7 +64,7 @@
                             <a class="nav-link" href="/ranking">Ranking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tutorials</a>
+                            <a class="nav-link" href="/tutorials">Tutorials</a>
                         </li>
                     </ul>
                     <!-- Right Side Of Navbar -->
