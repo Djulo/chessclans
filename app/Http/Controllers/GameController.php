@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Kontroler za igru;
+ * Autori: Nikola Kovacevic, Svetozar Micanovic
+ */
 namespace App\Http\Controllers;
 
 use App\Events\JoinedSuccessfully;
@@ -16,12 +19,18 @@ use App\Events\GameEnded;
 class GameController extends Controller
 {
 
+   
     public function index()
     {
         $this->middleware('auth');
         return redirect()->back();
     }
-
+    /**
+     * funkcija koja inicijalizuje partiju
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         if(Auth::user() == null) return redirect()->back();
@@ -54,7 +63,12 @@ class GameController extends Controller
 
         return redirect()->route('game.show', $game->id);
     }
-
+    /**
+     * funkcija koja prikazuje igru
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function show($id)
     {
         $game = Game::findOrFail($id);
@@ -63,7 +77,12 @@ class GameController extends Controller
             'vals' => $game->format
         ]);
     }
-
+/**
+ * funkcija koja apdejtuje stanje nakon odigranog poteza
+ *
+ * @param Request $request
+ * @return void
+ */
     public function turn(Request $request)
     {
         $game = Game::findOrFail($request->id);
@@ -71,12 +90,25 @@ class GameController extends Controller
 
         return response()->json($id);
     }
-
+    
+    /**
+     * funkcija koja apdejutje stanje table
+     *
+     * @param Request $request
+     * @return void
+     */
     public function state(Request $request)
     {
         $fen = Move::where('game_id', $request->id)->latest()->first()->fen;
         return response()->json($fen);
     }
+
+    /**
+     * funkcija koja na kraju partije updajtuje podatke o partiji i igracima u bazi
+     *
+     * @param Request $request prima informaciju o tome ko je pobedio i koji je id igre
+     * @return void
+     */
     public function gameEnd(Request $request)
     {
         /*
@@ -201,6 +233,12 @@ class GameController extends Controller
         return response('ok',200);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function status(Request $request)
     {
         $game = Game::find($request->id);

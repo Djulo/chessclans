@@ -6,6 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 
+/**
+ * autor Ognjen Bogicevic 0571/2016
+ * autor Stefan Pusica 0088/2016
+ * 
+ * 
+ * Kontroler klasa koja je odgovorna za proveru podataka za logovanje korisnika i upis u session
+ * kao i za logout korisnika
+ */
 class LoginController extends Controller
 {
     /*
@@ -37,7 +45,11 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout','userLogout');
     }
-
+    /**
+     * Funkcija se poziva pri odjavi korisnika
+     *
+     * @return void
+     */
     public function userLogout()
     {
         session()->forget(['admin']);
