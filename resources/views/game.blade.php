@@ -57,6 +57,7 @@
         <div class=" alert alert-info col-sm-12  text-center pt-3 pb-3 mt-3 " style="display: block;" id="setResults">
             White to move
         </div>
+              <input style="width:100" class="btn btn-block btn-danger " id="resign" type="button" value="resign" onclick='resignGame()'/>
         <!-- <input  style="display:none" class="btn btn-block btn-danger" id="gameEnd" type="button" value="Reset"/> -->
         <form action="{{ route('game.end') }}" method="POST" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
