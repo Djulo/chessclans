@@ -17,8 +17,15 @@ use App\Events\TestEvent;
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+=======
+
+Route::get('/analyse', 'AnalyseController@index')->name('analyse');
+
+
+>>>>>>> dd773d02c5af18c27c2d2a4f0378e0866c46db3b
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::post('/message', 'MessageController@store')->name('message.store');
@@ -39,11 +46,15 @@ Auth::routes(['verify' => true]);
 Route::get('/reportbug', 'HomeController@reportbug')->name('report.bug');
 Route::post('/reported', 'HomeController@reported')->name('reported.bug');
 
+Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
+Route::get('/analyse/{id}', 'AnalyseController@show');
+Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tutorials', 'HomeController@tutorials')->name('tutorials');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+
 
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -60,9 +71,12 @@ Route::prefix('admin')->group(function(){
 });
 
 
+<<<<<<< HEAD
 
 Route::get('/analyse/{id}', 'AnalyseController@show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
+=======
+>>>>>>> dd773d02c5af18c27c2d2a4f0378e0866c46db3b
 
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');

@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(auth()->user()!=null)
         if(auth()->user()->status==0){
             session(['message'=>'Your account has been banned!']);
             //dd(session('message'));
