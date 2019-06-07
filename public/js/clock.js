@@ -1,6 +1,6 @@
 /**
  * Fajl za kontrolu tajmera za sah;
- * Autor:Svetozar Micanovic 
+ * Autori:Svetozar Micanovic, Stefan Pusica
  */
 
  /**

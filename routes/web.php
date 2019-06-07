@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
 
