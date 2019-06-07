@@ -4,7 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @guest
                 <div class="card-header">GUEST Dashboard</div>
+                @else
+                <div class="card-header">USER Dashboard</div>
+                @endguest
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,6 +23,10 @@
                     <h2> No games found</h2>
                     <h2> Register and challange yourself!</h2>
                     @endguest
+
+                    @if($games->count() == 0)
+                    <h2> No games found</h2>
+                    @endif
 
 
                     <table class="table table-sm table-hover table-striped text-center">

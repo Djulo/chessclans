@@ -10,9 +10,6 @@
     </div>
     @endif
 
-    @component('components.who')
-
-    @endcomponent
     <?php
 
    // list($mins, $sec) = preg_split('[/.-]', $vals);

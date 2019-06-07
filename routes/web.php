@@ -31,6 +31,7 @@ Route::post('/move', 'MoveController@store')->name('move.store');
 Route::post('/timer', 'TimerController@update')->name('timer.update');
 Route::post('/turn', 'GameController@turn');
 Route::post('/state', 'GameController@state');
+Route::post('/status', 'GameController@status');
 
 Auth::routes();
 Auth::routes(['verify' => true]);
@@ -76,9 +77,6 @@ Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.un
 Route::post('/profile/report', 'ProfileController@report')->name('profile.report');
 Route::post('/profile/reported', 'ProfileController@reported')->name('profile.reported');
 Route::get('/profile/{user}', 'ProfileController@show');
-
-
-
 
 Route::get('/profile/accept/{user}', 'ProfileController@accept')->name('profile.accept');
 Route::get('/profile/decline/{user}', 'ProfileController@decline')->name('profile.decline');

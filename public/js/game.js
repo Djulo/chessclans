@@ -130,7 +130,6 @@ if (document.getElementById("board")) {
 
     var onDrop = function (source, target) {
         removeGreySquares();
-
         // see if the move is legal
         var move = game.move({
             from: source,
@@ -141,10 +140,10 @@ if (document.getElementById("board")) {
         // illegal move
         if (move === null) return 'snapback';
 
-        color = (color = 'w') ? 'white' : 'black';
-        removeHighlights(color);
-        boardEl.find('.square-' + source).addClass('highlight-' + color);
-        boardEl.find('.square-' + target).addClass('highlight-' + color);
+        tmpColor = (color == 'w') ? 'white' : 'black';
+        removeHighlights(tmpColor);
+        boardEl.find('.square-' + source).addClass('highlight-' + tmpColor);
+        boardEl.find('.square-' + target).addClass('highlight-' + tmpColor);
 
         updateStatus();
         state = game.fen();
@@ -195,6 +194,7 @@ if (document.getElementById("board")) {
         let fen = game.fen();
         let url = "" + window.location;
         let id = url.split('/')[3];
+        ready = true;
 
      //   document.getElementById("nesto").innerHTML=id;
         moveColor = (game.turn() == 'w') ? 'White' : 'Black';
@@ -240,6 +240,8 @@ if (document.getElementById("board")) {
                 status += ', ' + moveColor + ' is in check';
             }
         }
+
+        console.log(status);
 
         statusEl.html(status);
         fenEl.html(game.fen());
