@@ -4,6 +4,19 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+var resignGame= function(){
+   // alert("kraj");
+    moveColor = (game.turn() == 'w') ? 'White' : 'Black';
+    alert('You have resigned the game');
+    if(moveColor.localeCompare('Black')){
+        setGameEnd(2);
+      }
+    else {
+      setGameEnd(1);
+    }
+
+}
+
 
 if (document.getElementById("board")) {
     var board,
