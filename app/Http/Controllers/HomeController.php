@@ -30,6 +30,24 @@ class HomeController extends Controller
         //}
         return view('home',['users'=>$users]);
     }
+    public function reportbug(Request $request){
+        //dd('a');
+        //$user = DB::table('users')->where('id',$request->userid)->get();
+        //dd($user->name);
+        return view('auth.report',['user'=>null,'bug'=>'yes']);
+
+    }
+    public function reported(Request $request){
+        //$user = DB::table('users')->where('name',$request->name)->get();
+        //dd($user->name)
+        //dd($request->reason);
+        DB::table('report')->insert([
+            ['message' => $request->bug, 'idReporter' => auth()->user()->id,'idReported' => auth()->user()->id],
+        ]);
+        //////////// code za return
+        return $this->index();
+
+    }
     public function tutorials(){
 
         return view('tutorials');

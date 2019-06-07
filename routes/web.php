@@ -33,6 +33,9 @@ Route::post('/state', 'GameController@state');
 
 Auth::routes();
 Auth::routes(['verify' => true]);
+Route::get('/reportbug', 'HomeController@reportbug')->name('report.bug');
+Route::post('/reported', 'HomeController@reported')->name('reported.bug');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tutorials', 'HomeController@tutorials')->name('tutorials');
@@ -65,6 +68,7 @@ Route::post('/game', 'GameController@store');
 Route::get('/game/home/{value}', 'GameController@store')->name('game.home');
 Route::post('/game/{id}/move', 'GameController@insertMove');
 Route::post('/gameEnd', 'GameController@gameEnd')->name('game.end');
+
 
 Route::post('/profile/add', 'ProfileController@add')->name('profile.add');
 Route::post('/profile/unfriend', 'ProfileController@unfriend')->name('profile.unfriend');
