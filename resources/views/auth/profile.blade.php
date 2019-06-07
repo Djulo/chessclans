@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
 <div class="container">
     @csrf
     <div class="row my-2">

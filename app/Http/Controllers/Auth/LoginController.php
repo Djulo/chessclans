@@ -40,6 +40,7 @@ class LoginController extends Controller
 
     public function userLogout()
     {
+        session()->forget(['admin']);
         Auth::guard('web')->logout();
         //dd($request->message);
         return redirect('/');

@@ -17,9 +17,7 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-       // $this->middleware('auth:admin');
-         $this->middleware('auth');
-
+        $this->middleware('auth:web,admin');
     }
 
     public function index(Request $request)
@@ -80,7 +78,7 @@ class ProfileController extends Controller
         $some='myprofile';
         if($id==["user" => "myprofile" ]){return $this->showIndex($request);}
         //dd(["user" => "myprofile" ]);
-        $request->session()->put('profileID',auth()->user()->id);
+        // $request->session()->put('profileID',auth()->user()->id);
         $request->session()->put('profileID',$id);
         return redirect()->route('profile');
 
