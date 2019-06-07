@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Report') }}</div>
 
                 <div class="card-body">
+                    @if($bug=='no')<?php// dd($bug)?>
                     <form method="POST" action="{{ route('profile.reported') }}">
                         @csrf
 
@@ -42,6 +43,39 @@
                             </div>
                         </div>
                     </form>
+                    @else
+                    <form method="POST" action="{{ route('reported.bug') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('User') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" readonly class="form-control @error('name') is-invalid @enderror" name="name" value="<?php echo(auth()->user()->name); ?>" required autocomplete="name" autofocus>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Bug description') }}</label>
+
+                            <div class="col-md-6">
+<!--                                 <input id="" type="textarea" row="3" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+ -->                                <textarea class="form-control" value="" rows="3" name='bug'></textarea>
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-danger">
+                                    {{ __('Report') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>

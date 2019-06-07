@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function __construct()
     {
         //$this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
-        $this->middleware('auth:admin');
+        $this->middleware('auth');
 
     }
 
@@ -46,7 +46,7 @@ class ProfileController extends Controller
         $numfriends = DB::table('friends')->where('id_friend1',$user[0]->id)->orWhere('id_friend2',$user[0]->id)->count();
         //$games[]=null;
        // array_push($games,DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get());
-        $games = DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id)->get();
+        $games = (DB::table('games')->where('black',$user[0]->id)->orWhere('white',$user[0]->id))->where('white','<>',null)->where('black','<>',null)->get();
         $whiteUsers=[];
         $blackUsers=[];
         // $indexes=[];
@@ -126,10 +126,17 @@ class ProfileController extends Controller
         return redirect()->back()->with(['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
     }
+    public function reportbug(Request $request){
+        dd('a');
+        $user = DB::table('users')->where('id',$request->userid)->get();
+        //dd($user->name);
+        return view('auth.report',['user'=>$user,'bug'=>'yes']);
+
+    }
     public function report(Request $request){
         $user = DB::table('users')->where('id',$request->userid)->get();
         //dd($user->name);
-        return view('auth.report',['user'=>$user]);
+        return view('auth.report',['user'=>$user,'bug'=>'no']);
 
     }
     public function reported(Request $request){

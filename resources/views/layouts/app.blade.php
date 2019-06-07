@@ -106,6 +106,7 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('report.bug') }}" >{{ __('Report Bug') }} </a>
                                 @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf

@@ -75,7 +75,7 @@
                             
                             <tr>
                                 <td>
-                                    user with id:
+                                    user:
                                     <a href="profile/{{ $report->idReporter }}"
                                         style="text-decoration:none; color:blue">
                                         <?php 
@@ -90,8 +90,8 @@
                                         
                                         ?>
                                     </a>
-
-                                    reported user with id:
+                                    @if($report->idReporter!=$report->idReported)
+                                    reported user:
                                     <a href="profile/{{ $report->idReported }}"
                                         style="text-decoration:none; color:blue">
                                         <?php 
@@ -104,8 +104,12 @@
                                         ?>
                                         
                                     </a>
+
                                     reason: <?php echo($report->message)?>
-                                    
+                                    @else
+                                        reported bug:
+                                        {{$report->message}}
+                                    @endif
                                     
                                 <td>
                             </tr>
