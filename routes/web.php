@@ -17,7 +17,7 @@ use App\Events\TestEvent;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
+
 
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
@@ -63,14 +63,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/password/reset{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 });
 
-<<<<<<< HEAD
-
-=======
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 Route::post('/analyse', 'AnalyseController@show')->name('analyse.show');
 Route::get('/analyse/{id}', 'AnalyseController@show');
 Route::post('/analyse/{id}/next', 'AnalyseController@nextMove');
->>>>>>> db70ff552d209daf031f93997f9bbfd90b3df9d1
 
 Route::get('/game', 'GameController@index')->name('game');
 Route::get('/{id}', 'GameController@show')->name('game.show');
