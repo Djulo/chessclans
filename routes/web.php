@@ -7,7 +7,10 @@ use App\Events\TestEvent;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+|autor Ognjen Bogicevic 0571/2016
+|autor Stefan Pusica 0088/2016
+|autor Svetozar Micanovic 0036/2016
+|autor Nikola Kovacevic 0548/2016
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!

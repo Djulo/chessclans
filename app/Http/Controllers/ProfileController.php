@@ -24,9 +24,12 @@ class ProfileController extends Controller
     {
         $this->middleware('auth:web,admin');
     }
+    
     /**
      * indeks funkcija se poziva svaki put kada je neophodan poziv profila korisnika
      * Request $request je laravelov ragument preko kojeg se obracamo parametrima forme ili parametrima rute
+     * @param Request $request
+     * @return void
      */
     public function index(Request $request)
     {
@@ -73,16 +76,24 @@ class ProfileController extends Controller
         return view('auth.profile',['whiteUsers'=>$whiteUsers ,'blackUsers'=>$blackUsers,'user'=>$user,'requests'=>$requests,'frequests'=>$frequests,'are_friends'=>'yes','numfriends'=>$numfriends,'games'=>$games]);
 
     }
+    
     /**
      * funkcija koja zove indeks funkciju i salje mu id trenutno ulogovanog usera
+     *
+     * @param Request $request
+     * @return void
      */
     public function showIndex(Request $request){
        $request->session()->put('profileID',auth()->user()->id);
        return redirect()->route('profile');
 
     }
+   
     /**
      * funkcija koja poziva index i salje mu id usera ciji profil zelimo da vidimo
+     *
+     * @param Request $request
+     * @return void
      */
     public function show(Request $request)
     {
@@ -98,10 +109,12 @@ class ProfileController extends Controller
 
     }
 
+   
     /**
      * funkcija koja salje zahtev za prijateljstvo
      * korisniku sa odabranim id-jem
-     *  
+     * @param Request $request
+     * @return void
      */
     public function add(Request $request){
        // dd('d');
@@ -119,10 +132,13 @@ class ProfileController extends Controller
         return redirect()->back();
 
     }
-    /**
-     * Funkcija koja pociva stranicu report.blade.php koja ima formu za reportovanje
-     */
    
+   /**
+    * Funkcija koja pociva stranicu report.blade.php koja ima formu za reportovanje
+    *
+    * @param Request $request
+    * @return void
+    */
     public function report(Request $request){
         $user = DB::table('users')->where('id',$request->userid)->get();
         //dd($user->name);
@@ -134,6 +150,14 @@ class ProfileController extends Controller
      * ubaci odgovarajuce redove u bazu i te redove ce kasnije admin izlistati
      * 
      */
+
+     /**
+    * report funkcija se poziva kada se potvrdi report forma, funkcija obradi podatke, 
+     * ubaci odgovarajuce redove u bazu i te redove ce kasnije admin izlistati
+     *       *
+      * @param Request $request
+      * @return void
+      */
     public function reported(Request $request){
         $user = DB::table('users')->where('name',$request->name)->get();
 
@@ -168,8 +192,12 @@ class ProfileController extends Controller
 
 
     }
+    
     /**
      * funkcija brise iz baze prijate
+     *
+     * @param Request $request
+     * @return void
      */
     public function unfriend(Request $request){
         $userid= Auth::user()->id;
@@ -183,7 +211,13 @@ class ProfileController extends Controller
         return redirect()->back();
 
     }
+    
     /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     * 
      * funkcija koja prihvata zahtev za prijateljstvo i to prijateljstvo dodaje u bazu podataka
      */
     public function accept(Request $request){
@@ -235,7 +269,13 @@ class ProfileController extends Controller
 
 
     }
-
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     * funkcija odbija zahtev za prijateljstvo
+     */
     public function decline (Request $request){
 
         $id = $request->route()->parameters();
@@ -272,7 +312,12 @@ class ProfileController extends Controller
 
 
     }
-
+    /**
+     * Funkcija apdejtuje odabranu profilnu fotografiju
+     *
+     * @param Request $request
+     * @return void
+     */
     public function updatePicture(Request $request)
     {
         $user = User::findOrFail(auth()->user()->id);

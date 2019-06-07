@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 use DB;
 
 use Illuminate\Http\Request;
-
+    /**
+     *  autor Ognjen Bogicevic 0571/2016
+    *   autor Stefan Pusica 0088/2016
+    *   klasa koja prikazuje pocetnu stranicu aplikacije 
+     */
 class HomeController extends Controller
 {
     /**
@@ -18,7 +22,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Prikaz pocetne strane aplikacije.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -37,6 +41,12 @@ class HomeController extends Controller
         //}
         return view('home',['users'=>$users]);
     }
+    /**
+     * Funkcija se poziva pri zahtevu za prijavom baga u aplikaciji, otvara se nova stranica sa formom za prijavu
+     *
+     * @param Request $request
+     * @return void
+     */
     public function reportbug(Request $request){
         //dd('a');
         //$user = DB::table('users')->where('id',$request->userid)->get();
@@ -44,6 +54,12 @@ class HomeController extends Controller
         return view('auth.report',['user'=>null,'bug'=>'yes']);
 
     }
+    /**
+     * Funkcija koja se poziva pri potvrdi forme za prijavu
+     *
+     * @param Request $request
+     * @return void
+     */
     public function reported(Request $request){
         //$user = DB::table('users')->where('name',$request->name)->get();
         //dd($user->name)
@@ -55,6 +71,11 @@ class HomeController extends Controller
         return $this->index();
 
     }
+    /**
+     * Funkcija poziva stranicu sa tutorijalima i otvaranjima šaha
+     *
+     * @return void
+     */
     public function tutorials(){
 
         return view('tutorials');
