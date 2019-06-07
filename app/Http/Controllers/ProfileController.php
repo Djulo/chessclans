@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
+        //$this->middleware('auth:admin',['except' => ['proflie','add', 'accept', 'decline']]);
         $this->middleware('auth');
 
     }
