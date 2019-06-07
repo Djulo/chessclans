@@ -30,6 +30,11 @@
                 }
             },
             sendMessage() {
+                if(Laravel.user.muted == true) {
+                    alert("You have been muted by admin");
+                    this.body = null;
+                    return;
+                }
                 if(!this.body || this.body.trim() === '') {
                     return
                 }

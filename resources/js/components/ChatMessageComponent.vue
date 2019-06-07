@@ -21,7 +21,7 @@
                 this.messages = response.data;
             });
             Event.$on('added_message', (message) => {
-                this.messages.unshift(message);
+                this.messages.push(message);
                 if(message.selfMessage) {
                     this.$refs.message.scrollTop = 0;
                 }

@@ -18,11 +18,13 @@ class GameController extends Controller
 
     public function index()
     {
+        $this->middleware('auth');
         return redirect()->back();
     }
 
     public function store(Request $request)
     {
+        if(Auth::user() == null) return redirect()->back();
         $vals = $request->route()->parameters()['value'];
 
         $game = Game::where('black', null)->where('format', $vals)->first();

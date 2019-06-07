@@ -4,28 +4,29 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-          
+
     </div>
     <div class=row>
     <div class="col-sm-8">
     <section id="showcase">
         <div class="showcase-content">
+            @if(auth()->user() != null)
             <div class=" col-sm-3 left-content">
-                <h1>ChessClans</h1>
-                <h2 class="alert-info">#users:</h2>
+                <h2 class="">Online users:</h2>
                 <table class="table table-sm table-hover table-striped">
                     @foreach ($users as $user)
+                    @if(auth()->user() != null && auth()->user()->id!=$user->id)
                     <tr>
                         <td>
-                            @if(auth()->user()->id!=$user->id)
                             <a href="profile/{{ $user->id }}"
                                 style="text-decoration:none; color:black"><?php echo $user->name;?></a>
-                            @endif
                         <td>
                     </tr>
+                    @endif
                     @endforeach
                 </table>
             </div>
+            @endif
             <div class="container col-sm-9 main-area-container">
                 <div class="main-area">
                     <div class="game-mode-container">

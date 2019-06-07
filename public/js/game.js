@@ -7,28 +7,34 @@ $.ajaxSetup({
 
 if (document.getElementById("board")) {
     var board,
+        boardEl = $('#board'),
         game = new Chess(),
         statusEl = $('#status'),
         fenEl = $('#fen'),
         pgnEl = $('#pgn'),
-        color;
+        color,
+        ready = false;
 
-        var removeGreySquares = function() {
-            $('#board .square-55d63').css('background', '');
-          };
-          
-          var greySquare = function(square) {
-            var squareEl = $('#board .square-' + square);
-            
-            var background = '#a9a9a9';
-            if (squareEl.hasClass('black-3c85d') === true) {
-              background = '#696969';
-            }
-          
-            squareEl.css('background', background);
-          };
+    var removeGreySquares = function() {
+        $('#board .square-55d63').css('background', '');
+        };
 
-        
+    var greySquare = function(square) {
+    var squareEl = $('#board .square-' + square);
+
+    var background = '#a9a9a9';
+    if (squareEl.hasClass('black-3c85d') === true) {
+        background = '#696969';
+    }
+
+    squareEl.css('background', background);
+    };
+
+    var removeHighlights = function(color) {
+        boardEl.find('.square-55d63')
+            .removeClass('highlight-' + color);
+    };
+
     var state = game.fen();
 
     let url = "" + window.location;
@@ -60,6 +66,7 @@ if (document.getElementById("board")) {
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
         .listen('.joined.successfully', (e) => {
             alert('Opponent joined');
+            ready = true;
         });
 
         Echo.channel(`game.${id}.${format[0]}.${format[1]}`)
@@ -78,12 +85,17 @@ if (document.getElementById("board")) {
             }
         });
 
+        if(color == 'b') ready = true;
     }
 
     // do not pick up pieces if the game is over
     // only pick up pieces for the side to move
     var onDragStart = function (source, piece, position, orientation) {
 
+        if(!ready) {
+            alert('Waiting for opponent');
+            return false;
+        }
         if (game.game_over() === true ||
             game.turn() !== color ||
             (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
@@ -98,23 +110,23 @@ if (document.getElementById("board")) {
           square: square,
           verbose: true
         });
-      
+
         // exit if there are no moves available for this square
         if (moves.length === 0) return;
-      
+
         // highlight the square they moused over
         greySquare(square);
-      
+
         // highlight the possible squares for this piece
         for (var i = 0; i < moves.length; i++) {
           greySquare(moves[i].to);
         }
       };
-      
+
       var onMouseoutSquare = function(square, piece) {
         removeGreySquares();
       };
-      
+
 
     var onDrop = function (source, target) {
         removeGreySquares();
@@ -128,6 +140,11 @@ if (document.getElementById("board")) {
 
         // illegal move
         if (move === null) return 'snapback';
+
+        color = (color = 'w') ? 'white' : 'black';
+        removeHighlights(color);
+        boardEl.find('.square-' + source).addClass('highlight-' + color);
+        boardEl.find('.square-' + target).addClass('highlight-' + color);
 
         updateStatus();
         state = game.fen();
