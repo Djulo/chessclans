@@ -21,8 +21,6 @@ Route::get('/', function () {
 
 Route::get('/analyse', 'AnalyseController@index')->name('analyse');
 
-=======
->>>>>>> db70ff552d209daf031f93997f9bbfd90b3df9d1
 
 Route::get('/chat', 'ChatController@index')->name('chat');
 Route::get('/message', 'MessageController@index')->name('message');

@@ -3,6 +3,9 @@
  * Autor:Svetozar Micanovic 
  */
 
+ /**
+  * funkcija za formatiranje vremena
+  */
 (function () {
     // format duration as string
     var displayTime, getTimeString, resetButtonClasses, toggleButtons;
@@ -16,7 +19,9 @@
       return `${time.get('minutes')}:${secs}`;
     };
 
-
+    /**
+     * funkcija koja radi sa buttonima za kontrolu tajmera
+     */
     // toggle classes and disabled props of buttons
     toggleButtons = function (elem) {
       if (elem === "right") {
@@ -43,7 +48,9 @@
     let url = "" + window.location;
     let id = url.split('/')[3];
 
-
+/**
+ * funkcija koja resetuje tajmere
+ */
     // restores both toggles to original state
     resetButtonClasses = function () {
       $("#left input").addClass("btn-primary");
@@ -52,7 +59,9 @@
       return $("#right input").removeClass("btn-default btn-disabled");
     };
 
-
+/**
+ * funkcija za prikaz vremena
+ */
     // change the time shown on page
     displayTime = function (elem, time) {
       return $(elem).html(getTimeString(time));
@@ -93,6 +102,9 @@
           toggleButtons("right");
 
         }
+        /**
+         * funkcija za setovanje vremena na desnom tajmeru
+         */
         return rightTimer = setInterval(function () {
           if (t2.as('seconds') > 0) {
             t2.subtract(moment.duration(1, 's'));
@@ -110,7 +122,9 @@
           }
         }, 1000);
       });
-
+/**
+ * funkcija za setovanje vremena na levom tajmeru
+ */
       // set left timer
       leftTimer = $('#left .toggle').on('click', function () {
        // alert("Donji tajmer");
@@ -140,7 +154,9 @@
           }
         }, 1000);
       });
-
+      /**
+       * funkcija za pauziranje tajmera
+       */
       // pause timer for active player
       $("#pause").on('click', function () {
         if ($("#left .toggle").prop === "disabled") {
@@ -151,7 +167,9 @@
         clearInterval(leftTimer);
         return clearInterval(rightTimer);
       });
-
+      /**
+       * funkcija za resetovanje tajmera
+       */
       // reset both timers and toggles
       $("#reset").on('click', function () {
         $('#time-input').val(20);
@@ -160,6 +178,10 @@
       $('#time-input').on('change', function () {
         return resetAll(parseInt($('#time-input').val()));
       });
+
+      /**
+       * funkcija za resetovanje svega
+       */
       return resetAll = function (minutes) {
         clearInterval(leftTimer);
         clearInterval(rightTimer);
